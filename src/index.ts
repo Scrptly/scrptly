@@ -57,7 +57,7 @@ export default class Scrptly {
   ) {
     const layer = new LayerClass(this, settings);
     this.elements.push(layer);
-    this.pushAction({ statement: 'addLayer', id: layer.id, type: (LayerClass as any).type, settings: settings || {} });
+    this.pushAction({ statement: 'addLayer', id: layer.id, type: (LayerClass as any).type, settings: layer.settings || {} });
     return layer;
   }
 

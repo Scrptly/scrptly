@@ -1,6 +1,6 @@
-import { VisualLayer } from './VisualLayer';
+import { VisualLayer, VisualLayerProperties, VisualLayerSettings } from './VisualLayer';
 
-export class TextualLayer extends VisualLayer {
+export interface TextualLayerProperties extends VisualLayerProperties {
   textAlign?: string;
   fontFamily?: string;
   fontSize?: number;
@@ -12,5 +12,16 @@ export class TextualLayer extends VisualLayer {
   textShadowOffsetX?: number;
   textShadowOffsetY?: number;
   textShadowBlur?: number;
+}
+
+export interface TextualLayerSettings extends VisualLayerSettings {}
+
+export class TextualLayer extends VisualLayer {
+  properties!: TextualLayerProperties;
   static type = 'textual';
+  settings!: TextualLayerSettings;
+
+  constructor(parent: any, settings: TextualLayerSettings = {}, properties: TextualLayerProperties = {}) {
+    super(parent, settings, properties);
+  }
 }

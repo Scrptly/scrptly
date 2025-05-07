@@ -1,11 +1,21 @@
-import { AudioLayer } from './AudioLayer';
+import { AudioLayer, AudioLayerProperties, AudioLayerSettings } from './AudioLayer';
 import type { TTSPrompt } from '../types';
+import { BaseLayerSettings } from './BaseLayer';
+
+export interface TTSLayerSettings extends AudioLayerSettings {}
+export interface TTSLayerProperties extends AudioLayerProperties {}
 
 export class TTSLayer extends AudioLayer {
   voice!: string;
   model!: string;
   prompts: TTSPrompt[] = [];
   static type = 'tts';
+  settings!: TTSLayerSettings;
+  properties!: TTSLayerProperties;
+
+  constructor(parent: any, settings: TTSLayerSettings, properties: TTSLayerProperties = {}) {
+    super(parent, settings, properties);
+  }
 
   say(text: string) {
     const prompt: TTSPrompt = {
