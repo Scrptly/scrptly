@@ -1,6 +1,7 @@
 export type Time = string | number;
 export type Id = string;
-export type Easing = string;
+export type Easing = 'linear' | 'easeIn' | 'easeOut' | 'easeInOut' | 'easeInSine' | 'easeOutSine' | 'easeInOutSine' | 'easeInQuad' | 'easeOutQuad' | 'easeInOutQuad' | 'easeInCubic' | 'easeOutCubic' | 'easeInOutCubic' | 'easeInQuart' | 'easeOutQuart' | 'easeInOutQuart' | 'easeInQuint' | 'easeOutQuint' | 'easeInOutQuint';
+
 
 export interface TTSPrompt { text: string; startAt: Time; }
 
