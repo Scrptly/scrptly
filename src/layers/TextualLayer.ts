@@ -1,27 +1,27 @@
 import { VisualLayer, VisualLayerProperties, VisualLayerSettings } from './VisualLayer';
 
 export interface TextualLayerProperties extends VisualLayerProperties {
-  textAlign?: string;
-  fontFamily?: string;
-  fontSize?: number;
-  color?: string;
-  stroke?: string;
-  strokeWidth?: number;
-  textShadow?: string;
-  textShadowColor?: string;
-  textShadowOffsetX?: number;
-  textShadowOffsetY?: number;
-  textShadowBlur?: number;
+	textAlign?: string;
+	fontFamily?: string;
+	fontSize?: number;
+	color?: string;
+	stroke?: string;
+	strokeWidth?: number;
+	textShadow?: string;
+	textShadowColor?: string;
+	textShadowOffsetX?: number;
+	textShadowOffsetY?: number;
+	textShadowBlur?: number;
 }
 
-export interface TextualLayerSettings extends VisualLayerSettings {}
+export interface TextualLayerSettings extends VisualLayerSettings { }
 
 export class TextualLayer extends VisualLayer {
-  properties!: TextualLayerProperties;
-  static type = 'textual';
-  settings!: TextualLayerSettings;
+	properties!: TextualLayerProperties;
+	static type = 'textual';
+	settings!: TextualLayerSettings;
 
-  constructor(parent: any, settings: TextualLayerSettings = {}, properties: TextualLayerProperties = {}) {
-    super(parent, settings, properties);
-  }
+	constructor(parent: any, settings: TextualLayerSettings = {}, properties: TextualLayerProperties = {}) {
+		super(parent, settings, properties);
+	}
 }

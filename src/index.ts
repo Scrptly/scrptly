@@ -14,74 +14,74 @@ type ScrptlySettings = {
 
 export default class Scrptly {
 	settings!: ScrptlySettings;
-  
-  elements: BaseLayer[] = [];
-  timeline?: any;
-  linkedLayers: Id[] = [];
-  flow: Action[] = [];
 
-  flowPointer: Action[] = this.flow;
+	elements: BaseLayer[] = [];
+	timeline?: any;
+	linkedLayers: Id[] = [];
+	flow: Action[] = [];
 
-  constructor(settings: ScrptlySettings = {}) {
-    this.settings = {
-		size : {width: 1920, height: 1080},
-		frameRate: 30,
-		...settings,
-	};
-  }
+	flowPointer: Action[] = this.flow;
 
-  pushAction(action: Action) {
-	this.flowPointer.push(action);
-  }
+	constructor(settings: ScrptlySettings = {}) {
+		this.settings = {
+			size: { width: 1920, height: 1080 },
+			frameRate: 30,
+			...settings,
+		};
+	}
 
-  wait(time: Time) {
-    this.pushAction({ statement: 'wait', duration: time });
-    return this;
-  }
+	pushAction(action: Action) {
+		this.flowPointer.push(action);
+	}
 
-  parallel(funcs: Array<() => Action>, settings?: any) {
-	let initialPointer = this.flowPointer;
-	let actions: Action[][] = [];
-    funcs.forEach(fn => {
-		this.flowPointer = [];
-		actions.push(this.flowPointer);
-		fn();
-	});
-	this.flowPointer = initialPointer;
-	this.pushAction({ statement: 'parallel', actions });
-    return this;
-  }
+	wait(time: Time) {
+		this.pushAction({ statement: 'wait', duration: time });
+		return this;
+	}
 
-  generate() {
-    return this.flow;
-  }
+	parallel(funcs: Array<() => Action>, settings?: any) {
+		let initialPointer = this.flowPointer;
+		let actions: Action[][] = [];
+		funcs.forEach(fn => {
+			this.flowPointer = [];
+			actions.push(this.flowPointer);
+			fn();
+		});
+		this.flowPointer = initialPointer;
+		this.pushAction({ statement: 'parallel', actions });
+		return this;
+	}
 
-  addLayer<T extends BaseLayer>(
-    LayerClass: new (parent: Scrptly, settings?: any) => T,
-    settings?: any
-  ) {
-    const layer = new LayerClass(this, settings);
-    this.elements.push(layer);
-    this.pushAction({ statement: 'addLayer', id: layer.id, type: (LayerClass as any).type, settings: layer.settings || {} });
-    return layer;
-  }
+	generate() {
+		return this.flow;
+	}
 
-  addFolder(settings?: any) {
-    return this.addLayer(FolderLayer, settings);
-  }
-  addText(settings?: any) {
-    return this.addLayer(TextLayer, settings);
-  }
-  addImage(settings?: any) {
-    return this.addLayer(ImageLayer, settings);
-  }
-  addVideo(settings?: any) {
-    return this.addLayer(VideoLayer, settings);
-  }
-  addAudio(settings?: any) {
-    return this.addLayer(AudioTrackLayer, settings);
-  }
-  addTTS(settings?: any) {
-    return this.addLayer(TTSLayer, settings);
-  }
+	addLayer<T extends BaseLayer>(
+		LayerClass: new (parent: Scrptly, settings?: any) => T,
+		settings?: any
+	) {
+		const layer = new LayerClass(this, settings);
+		this.elements.push(layer);
+		this.pushAction({ statement: 'addLayer', id: layer.id, type: (LayerClass as any).type, settings: layer.settings || {} });
+		return layer;
+	}
+
+	addFolder(settings?: any) {
+		return this.addLayer(FolderLayer, settings);
+	}
+	addText(settings?: any) {
+		return this.addLayer(TextLayer, settings);
+	}
+	addImage(settings?: any) {
+		return this.addLayer(ImageLayer, settings);
+	}
+	addVideo(settings?: any) {
+		return this.addLayer(VideoLayer, settings);
+	}
+	addAudio(settings?: any) {
+		return this.addLayer(AudioTrackLayer, settings);
+	}
+	addTTS(settings?: any) {
+		return this.addLayer(TTSLayer, settings);
+	}
 }
