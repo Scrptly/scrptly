@@ -7,9 +7,14 @@ import { VideoLayer } from './layers/VideoLayer';
 import { AudioTrackLayer } from './layers/AudioTrackLayer';
 import { TTSLayer } from './layers/TTSLayer';
 
+type ScrptlySettings = {
+	size?: { width: number; height: number };
+	frameRate?: number | string;
+};
+
 export default class Scrptly {
-  size: { width: number; height: number };
-  frameRate: number | string;
+	settings!: ScrptlySettings;
+  
   elements: BaseLayer[] = [];
   timeline?: any;
   linkedLayers: Id[] = [];
@@ -17,12 +22,12 @@ export default class Scrptly {
 
   flowPointer: Action[] = this.flow;
 
-  constructor(
-    size: { width: number; height: number },
-    frameRate: number | string = 30
-  ) {
-    this.size = size;
-    this.frameRate = frameRate;
+  constructor(settings: ScrptlySettings = {}) {
+    this.settings = {
+		size : {width: 1920, height: 1080},
+		frameRate: 30,
+		...settings,
+	};
   }
 
   pushAction(action: Action) {

@@ -35,6 +35,7 @@
 	},
 	"homepage": "https://github.com/Scrptly/scrptly#readme",
 	"devDependencies": {
-		"@types/node": "^22.15.14"
+		"@types/node": "^22.15.14",
+		"typescript": "^5.8.3"
 	}
 }
