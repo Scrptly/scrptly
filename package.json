@@ -5,8 +5,8 @@
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
 	"scripts": {
-		"build": "tsc",
-		"dev": "tsc --watch",
+		"build": "tsc && tsc-alias",
+		"dev": "tsc && (concurrently \"tsc -w\" \"tsc-alias -w\")",
 		"prepublishOnly": "npm run build"
 	},
 	"repository": {
@@ -36,6 +36,7 @@
 	"homepage": "https://github.com/Scrptly/scrptly#readme",
 	"devDependencies": {
 		"@types/node": "^22.15.14",
+		"tsc-alias": "^1.8.16",
 		"typescript": "^5.8.3"
 	}
 }
