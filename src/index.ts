@@ -7,6 +7,8 @@ import { VideoLayer } from './layers/VideoLayer';
 import { AudioTrackLayer } from './layers/AudioTrackLayer';
 import { TTSLayer } from './layers/TTSLayer';
 
+export { BaseLayer, FolderLayer, TextLayer, ImageLayer, VideoLayer, AudioTrackLayer, TTSLayer };
+
 type ScrptlySettings = {
 	size?: { width: number; height: number };
 	frameRate?: number | string;
