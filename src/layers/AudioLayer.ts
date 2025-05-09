@@ -14,8 +14,8 @@ export class AudioLayer extends BaseLayer {
 	static type = 'audio';
 	settings!: AudioLayerSettings;
 
-	constructor(parent: any, settings: AudioLayerSettings, properties: AudioLayerProperties = {}) {
-		super(parent, settings, properties);
+	constructor(parent: any, properties: AudioLayerProperties = {}, settings: AudioLayerSettings) {
+		super(parent, properties, settings);
 		this.properties = {
 			volume: 1,
 			pan: 0,

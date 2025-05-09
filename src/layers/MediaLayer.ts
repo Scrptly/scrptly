@@ -14,8 +14,8 @@ export class MediaLayer extends VisualLayer {
 	properties!: MediaLayerProperties;
 	static type = 'media';
 
-	constructor(parent: any, settings: MediaLayerSettings, properties: MediaLayerProperties = {}) {
-		super(parent, settings, properties);
+	constructor(parent: any, properties: MediaLayerProperties = {}, settings: MediaLayerSettings) {
+		super(parent, properties, settings);
 		this.settings = {
 			sourceType: 'url',
 			...this.settings,

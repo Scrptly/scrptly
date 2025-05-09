@@ -10,7 +10,7 @@ export class FolderLayer extends VisualLayer {
 	settings!: FolderLayerSettings;
 	properties!: FolderLayerProperties;
 
-	constructor(parent: any, settings: FolderLayerSettings, properties: FolderLayerProperties = {}) {
-		super(parent, settings, properties);
+	constructor(parent: any, properties: FolderLayerProperties = {}, settings: FolderLayerSettings) {
+		super(parent, properties, settings);
 	}
 }

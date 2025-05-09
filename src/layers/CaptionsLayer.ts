@@ -13,8 +13,8 @@ export class CaptionsLayer extends VisualLayer {
 	settings!: CaptionsLayerSettings;
 	properties!: CaptionsLayerProperties;
 
-	constructor(parent: any, settings: CaptionsLayerSettings, properties: CaptionsLayerProperties = {}) {
-		super(parent, settings, properties);
+	constructor(parent: any, properties: CaptionsLayerProperties = {}, settings: CaptionsLayerSettings) {
+		super(parent, properties, settings);
 		this.settings = {
 			sourceType: 'layer',
 			...this.settings,

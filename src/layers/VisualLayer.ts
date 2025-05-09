@@ -18,8 +18,8 @@ export class VisualLayer extends BaseLayer {
 	static type = 'visual';
 	settings!: VisualLayerSettings;
 
-	constructor(parent: any, settings: VisualLayerSettings, properties: VisualLayerProperties = {}) {
-		super(parent, settings, properties);
+	constructor(parent: any, properties: VisualLayerProperties = {}, settings: VisualLayerSettings) {
+		super(parent, properties, settings);
 		this.properties = {
 			visible: true,
 			opacity: 1,

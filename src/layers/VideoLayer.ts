@@ -8,7 +8,7 @@ export class VideoLayer extends MediaLayer {
 	settings!: VideoLayerSettings;
 	properties!: VideoLayerProperties;
 
-	constructor(parent: any, settings: VideoLayerSettings, properties: VideoLayerProperties = {}) {
-		super(parent, settings, properties);
+	constructor(parent: any, properties: VideoLayerProperties = {}, settings: VideoLayerSettings) {
+		super(parent, properties, settings);
 	}
 }

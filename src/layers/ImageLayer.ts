@@ -8,7 +8,7 @@ export class ImageLayer extends MediaLayer {
 	settings!: ImageLayerSettings;
 	properties!: ImageLayerProperties;
 
-	constructor(parent: any, settings: ImageLayerSettings, properties: ImageLayerProperties = {}) {
-		super(parent, settings, properties);
+	constructor(parent: any, properties: ImageLayerProperties = {}, settings: ImageLayerSettings) {
+		super(parent, properties, settings);
 	}
 }

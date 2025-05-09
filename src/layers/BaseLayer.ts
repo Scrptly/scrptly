@@ -20,7 +20,7 @@ export class BaseLayer {
 	properties: BaseLayerProperties;
 	protected parent: Scrptly;
 
-	constructor(parent: Scrptly, settings: BaseLayerSettings, properties: BaseLayerProperties = {}) {
+	constructor(parent: Scrptly, properties: BaseLayerProperties = {}, settings: BaseLayerSettings) {
 		this.parent = parent;
 		this.id = randomUUID();
 		this.settings = {

@@ -11,8 +11,8 @@ export class AudioTrackLayer extends AudioLayer {
 	properties!: AudioTrackLayerProperties;
 	static type = 'audioTrack';
 
-	constructor(parent: any, settings: AudioTrackLayerSettings, properties: AudioTrackLayerProperties = {}) {
-		super(parent, settings, properties);
+	constructor(parent: any, properties: AudioTrackLayerProperties = {}, settings: AudioTrackLayerSettings) {
+		super(parent, properties, settings);
 		this.settings = {
 			sourceType: 'url',
 			...this.settings,

@@ -59,31 +59,32 @@ export default class Scrptly {
 	}
 
 	addLayer<T extends BaseLayer>(
-		LayerClass: new (parent: Scrptly, settings?: any) => T,
+		LayerClass: new (parent: Scrptly, properties?: any, settings?: any) => T,
+		properties?: any,
 		settings?: any
 	) {
-		const layer = new LayerClass(this, settings);
+		const layer = new LayerClass(this, properties, settings);
 		this.elements.push(layer);
-		this.pushAction({ statement: 'addLayer', id: layer.id, type: (LayerClass as any).type, settings: layer.settings || {} });
+		this.pushAction({ statement: 'addLayer', id: layer.id, type: (LayerClass as any).type, settings: settings || {}, properties: properties || {} });
 		return layer;
 	}
 
-	addFolder(settings?: any) {
-		return this.addLayer(FolderLayer, settings);
+	addFolder(properties?: any, settings?: any) {
+		return this.addLayer(FolderLayer, properties, settings);
 	}
-	addText(settings?: any) {
-		return this.addLayer(TextLayer, settings);
+	addText(properties?: any, settings?: any) {
+		return this.addLayer(TextLayer, properties, settings);
 	}
-	addImage(settings?: any) {
-		return this.addLayer(ImageLayer, settings);
+	addImage(properties?: any, settings?: any) {
+		return this.addLayer(ImageLayer, properties, settings);
 	}
-	addVideo(settings?: any) {
-		return this.addLayer(VideoLayer, settings);
+	addVideo(properties?: any, settings?: any) {
+		return this.addLayer(VideoLayer, properties, settings);
 	}
-	addAudio(settings?: any) {
-		return this.addLayer(AudioTrackLayer, settings);
+	addAudio(properties?: any, settings?: any) {
+		return this.addLayer(AudioTrackLayer, properties, settings);
 	}
-	addTTS(settings?: any) {
-		return this.addLayer(TTSLayer, settings);
+	addTTS(properties?: any, settings?: any) {
+		return this.addLayer(TTSLayer, properties, settings);
 	}
 }

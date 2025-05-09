@@ -13,8 +13,8 @@ export class TTSLayer extends AudioLayer {
 	settings!: TTSLayerSettings;
 	properties!: TTSLayerProperties;
 
-	constructor(parent: any, settings: TTSLayerSettings, properties: TTSLayerProperties = {}) {
-		super(parent, settings, properties);
+	constructor(parent: any, properties: TTSLayerProperties = {}, settings: TTSLayerSettings) {
+		super(parent, properties, settings);
 	}
 
 	say(text: string) {
