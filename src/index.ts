@@ -25,7 +25,7 @@ export type { AudioTrackLayerProperties, AudioTrackLayerSettings } from './layer
 import TTSLayer from './layers/TTSLayer';
 export type { TTSLayerProperties, TTSLayerSettings } from './layers/TTSLayer';
 
-export { BaseLayer, FolderLayer, TextLayer, ImageLayer, VideoLayer, AudioTrackLayer, TTSLayer };
+export { BaseLayer, FolderLayer, TextLayer, CaptionsLayer, ImageLayer, VideoLayer, AudioTrackLayer, TTSLayer };
 
 export {default as TextualLayer} from './layers/TextualLayer';
 export type { TextualLayerProperties, TextualLayerSettings } from './layers/TextualLayer';
