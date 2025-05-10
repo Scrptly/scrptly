@@ -1,4 +1,4 @@
-import { AudioLayer, AudioLayerProperties, AudioLayerSettings } from './AudioLayer';
+import AudioLayer, { AudioLayerProperties, AudioLayerSettings } from './AudioLayer';
 
 export interface AudioTrackLayerSettings extends AudioLayerSettings {
 	source: string;
@@ -6,7 +6,7 @@ export interface AudioTrackLayerSettings extends AudioLayerSettings {
 }
 export interface AudioTrackLayerProperties extends AudioLayerProperties { }
 
-export class AudioTrackLayer extends AudioLayer {
+export default class AudioTrackLayer extends AudioLayer {
 	settings!: AudioTrackLayerSettings;
 	properties!: AudioTrackLayerProperties;
 	static type = 'audioTrack';

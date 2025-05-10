@@ -1,39 +1,39 @@
 import type { Time, Id, Action } from './types';
 export type { Time, Id, Action };
 
-import { BaseLayer } from './layers/BaseLayer';
+import BaseLayer from './layers/BaseLayer';
 export type { BaseLayerProperties, BaseLayerSettings } from './layers/BaseLayer';
 
-import { FolderLayer } from './layers/FolderLayer';
+import FolderLayer from './layers/FolderLayer';
 export type { FolderLayerProperties, FolderLayerSettings } from './layers/FolderLayer';
 
-import { TextLayer } from './layers/TextLayer';
+import TextLayer from './layers/TextLayer';
 export type { TextLayerProperties, TextLayerSettings } from './layers/TextLayer';
 
-import { CaptionsLayer } from './layers/CaptionsLayer';
+import CaptionsLayer from './layers/CaptionsLayer';
 export type { CaptionsLayerProperties, CaptionsLayerSettings } from './layers/CaptionsLayer';
 
-import { ImageLayer } from './layers/ImageLayer';
+import ImageLayer from './layers/ImageLayer';
 export type { ImageLayerProperties, ImageLayerSettings } from './layers/ImageLayer';
 
-import { VideoLayer } from './layers/VideoLayer';
+import VideoLayer from './layers/VideoLayer';
 export type { VideoLayerProperties, VideoLayerSettings } from './layers/VideoLayer';
 
-import { AudioTrackLayer } from './layers/AudioTrackLayer';
+import AudioTrackLayer from './layers/AudioTrackLayer';
 export type { AudioTrackLayerProperties, AudioTrackLayerSettings } from './layers/AudioTrackLayer';
 
-import { TTSLayer } from './layers/TTSLayer';
+import TTSLayer from './layers/TTSLayer';
 export type { TTSLayerProperties, TTSLayerSettings } from './layers/TTSLayer';
 
 export { BaseLayer, FolderLayer, TextLayer, ImageLayer, VideoLayer, AudioTrackLayer, TTSLayer };
 
-export { TextualLayer } from './layers/TextualLayer';
+export {default as TextualLayer} from './layers/TextualLayer';
 export type { TextualLayerProperties, TextualLayerSettings } from './layers/TextualLayer';
-export { AudioLayer } from './layers/AudioLayer';
+export {default as AudioLayer} from './layers/AudioLayer';
 export type { AudioLayerProperties, AudioLayerSettings } from './layers/AudioLayer';
-export { MediaLayer } from './layers/MediaLayer';
+export {default as MediaLayer} from './layers/MediaLayer';
 export type { MediaLayerProperties, MediaLayerSettings } from './layers/MediaLayer';
-export { VisualLayer } from './layers/VisualLayer';
+export {default as VisualLayer} from './layers/VisualLayer';
 export type { VisualLayerProperties, VisualLayerSettings } from './layers/VisualLayer';
 
 
@@ -77,7 +77,6 @@ export default class Scrptly {
 		});
 		this._flowPointer = initialPointer;
 		this.pushAction({ statement: 'parallel', actions });
-		return this;
 	}
 
 	generate() {

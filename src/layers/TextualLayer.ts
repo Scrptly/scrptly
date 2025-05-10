@@ -1,13 +1,14 @@
-import { VisualLayer, VisualLayerProperties, VisualLayerSettings } from './VisualLayer';
+import VisualLayer, { VisualLayerProperties, VisualLayerSettings } from './VisualLayer';
 
 export interface TextualLayerProperties extends VisualLayerProperties {
 	textAlign?: string;
 	fontFamily?: string;
 	fontSize?: number;
 	color?: string;
-	stroke?: string;
+	stroke?: boolean;
 	strokeWidth?: number;
-	textShadow?: string;
+	strokeColor?: string;
+	textShadow?: boolean;
 	textShadowColor?: string;
 	textShadowOffsetX?: number;
 	textShadowOffsetY?: number;
@@ -16,7 +17,7 @@ export interface TextualLayerProperties extends VisualLayerProperties {
 
 export interface TextualLayerSettings extends VisualLayerSettings { }
 
-export class TextualLayer extends VisualLayer {
+export default class TextualLayer extends VisualLayer {
 	properties!: TextualLayerProperties;
 	static type = 'textual';
 	settings!: TextualLayerSettings;
@@ -24,6 +25,21 @@ export class TextualLayer extends VisualLayer {
 	static get defaultProperties(): Partial<TextualLayerProperties> {
 		return {
 			...super.defaultProperties,
+
+			textAlign: 'center',
+			fontFamily: 'Arial',
+			fontSize: 1.0,
+			color: '#000000',
+
+			stroke: false,
+			strokeWidth: 0,
+			strokeColor: '#000000',
+
+			textShadow: false,
+			textShadowColor: '#000000',
+			textShadowOffsetX: 0,
+			textShadowOffsetY: 0,
+			textShadowBlur: 0,
 		};
 	}
 

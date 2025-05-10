@@ -1,9 +1,9 @@
-import { MediaLayer, MediaLayerSettings, MediaLayerProperties } from './MediaLayer';
+import MediaLayer, { MediaLayerSettings, MediaLayerProperties } from './MediaLayer';
 
 export interface VideoLayerSettings extends MediaLayerSettings { }
 export interface VideoLayerProperties extends MediaLayerProperties { }
 
-export class VideoLayer extends MediaLayer {
+export default class VideoLayer extends MediaLayer {
 	static type = 'video';
 	settings!: VideoLayerSettings;
 	properties!: VideoLayerProperties;

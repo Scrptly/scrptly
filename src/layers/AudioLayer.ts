@@ -1,4 +1,4 @@
-import { BaseLayer, BaseLayerSettings, BaseLayerProperties } from './BaseLayer';
+import BaseLayer, { BaseLayerSettings, BaseLayerProperties } from './BaseLayer';
 
 export interface AudioLayerProperties extends BaseLayerProperties {
 	volume?: number;
@@ -9,7 +9,7 @@ export interface AudioLayerProperties extends BaseLayerProperties {
 
 export interface AudioLayerSettings extends BaseLayerSettings { }
 
-export class AudioLayer extends BaseLayer {
+export default class AudioLayer extends BaseLayer {
 	properties!: AudioLayerProperties;
 	static type = 'audio';
 	settings!: AudioLayerSettings;

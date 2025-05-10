@@ -1,4 +1,4 @@
-import { VisualLayer, VisualLayerProperties, VisualLayerSettings } from './VisualLayer';
+import VisualLayer, { VisualLayerProperties, VisualLayerSettings } from './VisualLayer';
 
 export interface MediaLayerSettings extends VisualLayerSettings {
 	source: string;
@@ -9,7 +9,7 @@ export interface MediaLayerProperties extends VisualLayerProperties {
 	objectFit?: string;
 }
 
-export class MediaLayer extends VisualLayer {
+export default class MediaLayer extends VisualLayer {
 	settings!: MediaLayerSettings;
 	properties!: MediaLayerProperties;
 	static type = 'media';

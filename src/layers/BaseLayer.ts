@@ -13,7 +13,7 @@ export interface BaseLayerSettings {
 
 export interface BaseLayerProperties { }
 
-export class BaseLayer {
+export default class BaseLayer {
 	readonly id: Id;
 	static type = 'base';
 	settings: BaseLayerSettings;

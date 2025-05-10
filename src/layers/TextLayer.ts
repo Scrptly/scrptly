@@ -1,11 +1,11 @@
-import { TextualLayer, TextualLayerProperties, TextualLayerSettings } from './TextualLayer';
+import TextualLayer, { TextualLayerProperties, TextualLayerSettings } from './TextualLayer';
 
 export interface TextLayerProperties extends TextualLayerProperties {
 	text?: string;
 }
 export interface TextLayerSettings extends TextualLayerSettings { }
 
-export class TextLayer extends TextualLayer {
+export default class TextLayer extends TextualLayer {
 	properties!: TextLayerProperties;
 	settings!: TextLayerSettings;
 	static type = 'text';

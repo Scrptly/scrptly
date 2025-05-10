@@ -1,4 +1,4 @@
-import { VisualLayer, VisualLayerProperties, VisualLayerSettings } from './VisualLayer';
+import VisualLayer, { VisualLayerProperties, VisualLayerSettings } from './VisualLayer';
 
 export interface CaptionsLayerSettings extends VisualLayerSettings {
 	source: string;
@@ -6,7 +6,7 @@ export interface CaptionsLayerSettings extends VisualLayerSettings {
 }
 export interface CaptionsLayerProperties extends VisualLayerProperties { }
 
-export class CaptionsLayer extends VisualLayer {
+export default class CaptionsLayer extends VisualLayer {
 	source!: string;
 	sourceType!: 'layer' | 'subtitles';
 	static type = 'captions';

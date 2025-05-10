@@ -1,4 +1,4 @@
-import { BaseLayer, BaseLayerSettings, BaseLayerProperties } from './BaseLayer';
+import BaseLayer, { BaseLayerSettings, BaseLayerProperties } from './BaseLayer';
 import type { Time, Easing } from '../types';
 
 export interface VisualLayerProperties extends BaseLayerProperties {
@@ -13,7 +13,7 @@ export interface VisualLayerProperties extends BaseLayerProperties {
 
 export interface VisualLayerSettings extends BaseLayerSettings { }
 
-export class VisualLayer extends BaseLayer {
+export default class VisualLayer extends BaseLayer {
 	properties!: VisualLayerProperties;
 	static type = 'visual';
 	settings!: VisualLayerSettings;
