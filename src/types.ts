@@ -2,9 +2,6 @@ export type Time = string | number;
 export type Id = string;
 export type Easing = 'step' | 'linear' | 'easeIn' | 'easeOut' | 'easeInOut' | 'easeInSine' | 'easeOutSine' | 'easeInOutSine' | 'easeInQuad' | 'easeOutQuad' | 'easeInOutQuad' | 'easeInCubic' | 'easeOutCubic' | 'easeInOutCubic' | 'easeInQuart' | 'easeOutQuart' | 'easeInOutQuart' | 'easeInQuint' | 'easeOutQuint' | 'easeInOutQuint';
 
-
-export interface TTSPrompt { text: string; startAt: Time; }
-
 export type Action =
 	  { statement: 'wait'; duration: Time }
 	| { statement: 'parallel'; actions: Action[][] }

@@ -10,6 +10,9 @@ export type { FolderLayerProperties, FolderLayerSettings } from './layers/Folder
 import { TextLayer } from './layers/TextLayer';
 export type { TextLayerProperties, TextLayerSettings } from './layers/TextLayer';
 
+import { CaptionsLayer } from './layers/CaptionsLayer';
+export type { CaptionsLayerProperties, CaptionsLayerSettings } from './layers/CaptionsLayer';
+
 import { ImageLayer } from './layers/ImageLayer';
 export type { ImageLayerProperties, ImageLayerSettings } from './layers/ImageLayer';
 
@@ -23,6 +26,15 @@ import { TTSLayer } from './layers/TTSLayer';
 export type { TTSLayerProperties, TTSLayerSettings } from './layers/TTSLayer';
 
 export { BaseLayer, FolderLayer, TextLayer, ImageLayer, VideoLayer, AudioTrackLayer, TTSLayer };
+
+export { TextualLayer } from './layers/TextualLayer';
+export type { TextualLayerProperties, TextualLayerSettings } from './layers/TextualLayer';
+export { AudioLayer } from './layers/AudioLayer';
+export type { AudioLayerProperties, AudioLayerSettings } from './layers/AudioLayer';
+export { MediaLayer } from './layers/MediaLayer';
+export type { MediaLayerProperties, MediaLayerSettings } from './layers/MediaLayer';
+export { VisualLayer } from './layers/VisualLayer';
+export type { VisualLayerProperties, VisualLayerSettings } from './layers/VisualLayer';
 
 
 export type ProjectSettings = {
@@ -97,6 +109,9 @@ export default class Scrptly {
 	}
 	addAudio(properties?: any, settings?: any) {
 		return this.addLayer(AudioTrackLayer, properties, settings);
+	}
+	addCaptions(properties?: any, settings?: any) {
+		return this.addLayer(CaptionsLayer, properties, settings);
 	}
 	addTTS(properties?: any, settings?: any) {
 		return this.addLayer(TTSLayer, properties, settings);
