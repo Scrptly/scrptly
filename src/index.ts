@@ -1,15 +1,29 @@
 import type { Time, Id, Action } from './types';
+export type { Time, Id, Action };
+
 import { BaseLayer } from './layers/BaseLayer';
+export type { BaseLayerProperties, BaseLayerSettings } from './layers/BaseLayer';
+
 import { FolderLayer } from './layers/FolderLayer';
+export type { FolderLayerProperties, FolderLayerSettings } from './layers/FolderLayer';
+
 import { TextLayer } from './layers/TextLayer';
+export type { TextLayerProperties, TextLayerSettings } from './layers/TextLayer';
+
 import { ImageLayer } from './layers/ImageLayer';
+export type { ImageLayerProperties, ImageLayerSettings } from './layers/ImageLayer';
+
 import { VideoLayer } from './layers/VideoLayer';
+export type { VideoLayerProperties, VideoLayerSettings } from './layers/VideoLayer';
+
 import { AudioTrackLayer } from './layers/AudioTrackLayer';
+export type { AudioTrackLayerProperties, AudioTrackLayerSettings } from './layers/AudioTrackLayer';
+
 import { TTSLayer } from './layers/TTSLayer';
+export type { TTSLayerProperties, TTSLayerSettings } from './layers/TTSLayer';
 
 export { BaseLayer, FolderLayer, TextLayer, ImageLayer, VideoLayer, AudioTrackLayer, TTSLayer };
 
-export type {Time, Id, Action};
 
 export type ProjectSettings = {
 	size?: { width: number; height: number };
@@ -20,11 +34,9 @@ export default class Scrptly {
 	settings!: ProjectSettings;
 
 	elements: BaseLayer[] = [];
-	timeline?: any;
-	linkedLayers: Id[] = [];
 	flow: Action[] = [];
 
-	flowPointer: Action[] = this.flow;
+	private _flowPointer: Action[] = this.flow;
 
 	constructor(settings: ProjectSettings = {}) {
 		this.settings = {
@@ -35,7 +47,7 @@ export default class Scrptly {
 	}
 
 	pushAction(action: Action) {
-		this.flowPointer.push(action);
+		this._flowPointer.push(action);
 	}
 
 	wait(time: Time) {
@@ -44,14 +56,14 @@ export default class Scrptly {
 	}
 
 	parallel(funcs: Array<() => Action>, settings?: any) {
-		let initialPointer = this.flowPointer;
+		let initialPointer = this._flowPointer;
 		let actions: Action[][] = [];
 		funcs.forEach(fn => {
-			this.flowPointer = [];
-			actions.push(this.flowPointer);
+			this._flowPointer = [];
+			actions.push(this._flowPointer);
 			fn();
 		});
-		this.flowPointer = initialPointer;
+		this._flowPointer = initialPointer;
 		this.pushAction({ statement: 'parallel', actions });
 		return this;
 	}
