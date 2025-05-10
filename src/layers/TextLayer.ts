@@ -10,11 +10,14 @@ export class TextLayer extends TextualLayer {
 	settings!: TextLayerSettings;
 	static type = 'text';
 
+	static get defaultProperties(): Partial<TextLayerProperties> {
+		return {
+			...super.defaultProperties,
+			text: 'Type your text here',
+		};
+	}
+
 	constructor(parent: any, properties: TextLayerProperties = {}, settings: TextLayerSettings = {}) {
 		super(parent, properties, settings);
-		this.properties = {
-			text: 'Type your text here',
-			...this.properties,
-		};
 	}
 }

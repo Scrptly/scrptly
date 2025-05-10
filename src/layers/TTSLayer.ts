@@ -13,6 +13,18 @@ export class TTSLayer extends AudioLayer {
 	settings!: TTSLayerSettings;
 	properties!: TTSLayerProperties;
 
+	static get defaultSettings(): Partial<TTSLayerSettings> {
+		return {
+			...super.defaultSettings,
+		};
+	}
+
+	static get defaultProperties(): Partial<TTSLayerProperties> {
+		return {
+			...super.defaultProperties,
+		};
+	}
+
 	constructor(parent: any, properties: TTSLayerProperties = {}, settings: TTSLayerSettings) {
 		super(parent, properties, settings);
 	}

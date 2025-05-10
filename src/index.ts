@@ -9,13 +9,15 @@ import { TTSLayer } from './layers/TTSLayer';
 
 export { BaseLayer, FolderLayer, TextLayer, ImageLayer, VideoLayer, AudioTrackLayer, TTSLayer };
 
-type ScrptlySettings = {
+export type {Time, Id, Action};
+
+export type ProjectSettings = {
 	size?: { width: number; height: number };
 	frameRate?: number | string;
 };
 
 export default class Scrptly {
-	settings!: ScrptlySettings;
+	settings!: ProjectSettings;
 
 	elements: BaseLayer[] = [];
 	timeline?: any;
@@ -24,7 +26,7 @@ export default class Scrptly {
 
 	flowPointer: Action[] = this.flow;
 
-	constructor(settings: ScrptlySettings = {}) {
+	constructor(settings: ProjectSettings = {}) {
 		this.settings = {
 			size: { width: 1920, height: 1080 },
 			frameRate: 30,

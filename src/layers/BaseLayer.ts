@@ -24,19 +24,30 @@ export class BaseLayer {
 		this.parent = parent;
 		this.id = randomUUID();
 		this.settings = {
+				...((this.constructor as typeof BaseLayer).defaultSettings),
+				...settings,
+		};
+		this.properties = {
+				...((this.constructor as typeof BaseLayer).defaultProperties),
+				...properties
+		};
+	}
+
+	static get defaultSettings(): Partial<BaseLayerSettings> {
+		return {
 			name: 'Layer',
 			enabled: true,
 			locked: false,
 			startTime: 0,
-			endTime: 0,
+			endTime: Infinity,
 			speed: 1,
-			...settings,
 		};
-		this.properties = { ...properties };
+	}
+	static get defaultProperties(): Partial<BaseLayerProperties> {
+		return {};
 	}
 
 	set(value: Record<string, any>) {
-		Object.assign(this.properties, value);
 		this.parent.pushAction({ statement: 'set', layer: this.id, value });
 		return this;
 	}
@@ -44,10 +55,10 @@ export class BaseLayer {
 	animate(
 		from: Record<string, any>,
 		to: Record<string, any>,
-		settings: { duration: Time; easing: Easing }
+		duration: Time,
+		easing: Easing
 	) {
-		Object.assign(this.properties, to);
-		this.parent.pushAction({ statement: 'animate', layer: this.id, from, to, settings });
+		this.parent.pushAction({ statement: 'animate', layer: this.id, from, to, duration, easing });
 		return this;
 	}
 }

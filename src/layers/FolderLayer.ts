@@ -10,6 +10,18 @@ export class FolderLayer extends VisualLayer {
 	settings!: FolderLayerSettings;
 	properties!: FolderLayerProperties;
 
+	static get defaultSettings(): Partial<FolderLayerSettings> {
+		return {
+			...super.defaultSettings,
+		};
+	}
+
+	static get defaultProperties(): Partial<FolderLayerProperties> {
+		return {
+			...super.defaultProperties,
+		};
+	}
+
 	constructor(parent: any, properties: FolderLayerProperties = {}, settings: FolderLayerSettings) {
 		super(parent, properties, settings);
 	}

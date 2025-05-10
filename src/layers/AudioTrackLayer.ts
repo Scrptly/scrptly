@@ -11,11 +11,20 @@ export class AudioTrackLayer extends AudioLayer {
 	properties!: AudioTrackLayerProperties;
 	static type = 'audioTrack';
 
+	static get defaultSettings(): Partial<AudioTrackLayerSettings> {
+		return {
+			...super.defaultSettings,
+			sourceType: 'url',
+		};
+	}
+
+	static get defaultProperties(): Partial<AudioTrackLayerProperties> {
+		return {
+			...super.defaultProperties,
+		};
+	}
+
 	constructor(parent: any, properties: AudioTrackLayerProperties = {}, settings: AudioTrackLayerSettings) {
 		super(parent, properties, settings);
-		this.settings = {
-			sourceType: 'url',
-			...this.settings,
-		};
 	}
 }

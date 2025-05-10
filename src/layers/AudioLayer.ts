@@ -14,14 +14,17 @@ export class AudioLayer extends BaseLayer {
 	static type = 'audio';
 	settings!: AudioLayerSettings;
 
-	constructor(parent: any, properties: AudioLayerProperties = {}, settings: AudioLayerSettings) {
-		super(parent, properties, settings);
-		this.properties = {
+	static get defaultProperties(): Partial<AudioLayerProperties> {
+		return {
+			...super.defaultProperties,
 			volume: 1,
 			pan: 0,
 			pitch: 1,
 			mute: false,
-			...this.properties, // Inherit properties from BaseLayer
 		};
+	}
+
+	constructor(parent: any, properties: AudioLayerProperties = {}, settings: AudioLayerSettings) {
+		super(parent, properties, settings);
 	}
 }

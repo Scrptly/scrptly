@@ -8,6 +8,18 @@ export class ImageLayer extends MediaLayer {
 	settings!: ImageLayerSettings;
 	properties!: ImageLayerProperties;
 
+	static get defaultSettings(): Partial<ImageLayerSettings> {
+		return {
+			...super.defaultSettings,
+		};
+	}
+
+	static get defaultProperties(): Partial<ImageLayerProperties> {
+		return {
+			...super.defaultProperties,
+		};
+	}
+
 	constructor(parent: any, properties: ImageLayerProperties = {}, settings: ImageLayerSettings) {
 		super(parent, properties, settings);
 	}

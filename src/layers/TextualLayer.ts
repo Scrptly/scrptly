@@ -21,6 +21,12 @@ export class TextualLayer extends VisualLayer {
 	static type = 'textual';
 	settings!: TextualLayerSettings;
 
+	static get defaultProperties(): Partial<TextualLayerProperties> {
+		return {
+			...super.defaultProperties,
+		};
+	}
+
 	constructor(parent: any, properties: TextualLayerProperties = {}, settings: TextualLayerSettings = {}) {
 		super(parent, properties, settings);
 	}
