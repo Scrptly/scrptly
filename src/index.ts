@@ -1,5 +1,5 @@
-import type { Time, Id, Action } from './types';
-export type { Time, Id, Action };
+import type { Time, Id, Easing, Action } from './types';
+export type { Time, Id, Easing, Action };
 
 import BaseLayer from './layers/BaseLayer';
 export type { BaseLayerProperties, BaseLayerSettings } from './layers/BaseLayer';
@@ -52,9 +52,14 @@ export default class Scrptly {
 
 	constructor(settings: ProjectSettings = {}) {
 		this.settings = {
+			...((this.constructor as typeof Scrptly).defaultSettings),
+			...settings,
+		};
+	}
+	static get defaultSettings() : ProjectSettings {
+		return {
 			size: { width: 1920, height: 1080 },
 			frameRate: 30,
-			...settings,
 		};
 	}
 

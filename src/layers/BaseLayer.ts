@@ -55,10 +55,12 @@ export default class BaseLayer {
 	animate(
 		from: Record<string, any>,
 		to: Record<string, any>,
-		duration: Time,
-		easing: Easing
+		settings: {
+			duration: Time,
+			easing: Easing
+		} = {duration: 0, easing: 'linear'}
 	) {
-		this.parent.pushAction({ statement: 'animate', layer: this.id, from, to, duration, easing });
+		this.parent.pushAction({ statement: 'animate', layer: this.id, from, to, settings });
 		return this;
 	}
 }
