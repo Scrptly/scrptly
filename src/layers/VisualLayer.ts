@@ -34,10 +34,10 @@ export default class VisualLayer extends BaseLayer {
 	show() { return this.set({ visible: true }); }
 	hide() { return this.set({ visible: false }); }
 	toggle() { return this.set({ visible: !this.properties.visible }); }
-	fadeIn(duration: Time = 300, easing: Easing = 'linear') {
-		return this.animate({ opacity: 0, visible: true }, { opacity: 1 }, duration, easing);
+	fadeIn(duration: Time = '300ms', easing: Easing = 'linear') {
+		return this.animate({ opacity: 0, visible: true }, { opacity: 1 }, {duration, easing});
 	}
-	fadeOut(duration: Time = 300, easing: Easing = 'linear') {
-		return this.animate({ opacity: 1 }, { opacity: 0, visible: false }, duration, easing);
+	fadeOut(duration: Time = '300ms', easing: Easing = 'linear') {
+		return this.animate({ opacity: 1 }, { opacity: 0, visible: false }, {duration, easing});
 	}
 }
