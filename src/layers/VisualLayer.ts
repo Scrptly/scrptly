@@ -47,6 +47,11 @@ export default class VisualLayer extends BaseLayer {
 			'blendMode': {
 				cssProperty: 'mix-blend-mode',
 				units: [''],
+				enum: [
+					'normal', 'multiply', 'screen', 'overlay', 'darken', 'lighten',
+					'color-dodge', 'color-burn', 'hard-light', 'soft-light', 'difference',
+					'exclusion', 'hue', 'saturation', 'color', 'luminosity',
+				],
 				default: 'normal',
 				animatable: false,
 			},

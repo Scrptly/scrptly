@@ -21,4 +21,14 @@ export default class VideoLayer extends MediaLayer {
 			...super.defaultProperties,
 		};
 	}
+	static get propertiesDefinition() {
+		let props = super.propertiesDefinition;
+		return {
+			...props,
+			'objectFit': {
+				...props.objectFit,
+				default: 'cover',
+			},
+		};
+	}
 }

@@ -39,22 +39,23 @@ export default class TextualLayer extends VisualLayer {
 		return {
 			...super.propertiesDefinition,
 			'textAlign': {
+				cssProperty: 'text-align',
 				units: [''],
+				enum: ['left', 'right', 'center', 'justify'],
 				default: 'center',
 				animatable: false,
-				cssProperty: 'text-align',
 			},
 			'fontFamily': {
+				cssProperty: 'font-family',
 				units: [''],
 				default: 'Arial',
 				animatable: false,
-				cssProperty: 'font-family',
 			},
 			'fontSize': {
+				cssProperty: 'font-size',
 				units: ['em', 'px'],
 				default: 1.0,
 				animatable: true,
-				cssProperty: 'font-size',
 			},
 			'color': {
 				units: [''],
@@ -67,46 +68,45 @@ export default class TextualLayer extends VisualLayer {
 				animatable: false,
 			},
 			'strokeWidth': {
+				cssProperty: '-webkit-text-stroke-width',
 				units: ['px'],
 				default: 0,
 				animatable: true,
-				cssProperty: 'stroke-width',
 			},
 			'strokeColor': {
+				cssProperty: '-webkit-text-stroke-color',
 				units: [''],
 				default: '#000000',
 				animatable: false,
-				cssProperty: 'stroke',
 			},
 			'textShadow': {
 				units: [''],
 				default: false,
 				animatable: false,
-				// not a CSS property
 			},
 			'textShadowColor': {
+				cssProperty: 'text-shadow-color',
 				units: [''],
 				default: '#000000',
 				animatable: false,
-				cssProperty: 'text-shadow-color',
 			},
 			'textShadowOffsetX': {
+				cssProperty: 'text-shadow-offset-x',
 				units: ['px'],
 				default: 0,
 				animatable: true,
-				cssProperty: 'text-shadow-offset-x',
 			},
 			'textShadowOffsetY': {
+				cssProperty: 'text-shadow-offset-y',
 				units: ['px'],
 				default: 0,
 				animatable: true,
-				cssProperty: 'text-shadow-offset-y',
 			},
 			'textShadowBlur': {
+				cssProperty: 'text-shadow-blur',
 				units: ['px'],
 				default: 0,
 				animatable: true,
-				cssProperty: 'text-shadow-blur',
 			},
 		};
 	}

@@ -34,7 +34,8 @@ export default class MediaLayer extends VisualLayer {
 			'objectFit': {
 				cssProperty: 'object-fit',
 				units: [''],
-				default: 'cover',
+				enum: ['fill', 'contain', 'cover'],
+				default: 'contain',
 				animatable: false,
 			},
 		};
