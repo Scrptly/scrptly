@@ -1,6 +1,6 @@
 {
 	"name": "scrptly",
-	"version": "1.0.9",
+	"version": "1.0.10",
 	"description": "Scrptly is a Video Development Kit (VDK) for programmatically generating AI-powered videos.",
 	"main": "dist/index.js",
 	"types": "dist/index.d.ts",
