@@ -48,7 +48,7 @@ export default class TextualLayer extends VisualLayer {
 			'fontFamily': {
 				cssProperty: 'font-family',
 				units: [''],
-				default: 'Arial',
+				default: 'Noto Sans',
 				animatable: false,
 			},
 			'fontSize': {
