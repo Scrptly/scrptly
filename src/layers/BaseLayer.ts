@@ -12,6 +12,13 @@ export interface BaseLayerSettings {
 }
 
 export interface BaseLayerProperties { }
+export interface PropertyDefinition {
+	cssProperty?: string;
+	units: string[],
+	default: any,
+	animatable: boolean
+}
+
 
 export default class BaseLayer {
 	readonly id: Id;
@@ -44,6 +51,9 @@ export default class BaseLayer {
 		};
 	}
 	static get defaultProperties(): Partial<BaseLayerProperties> {
+		return Object.fromEntries(Object.entries(this.propertiesDefinition).map(([k, v])=>[k, v.default || '']));
+	}
+	static get propertiesDefinition(): Record<string, PropertyDefinition> {
 		return {};
 	}
 

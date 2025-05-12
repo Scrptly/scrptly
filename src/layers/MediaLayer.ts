@@ -14,21 +14,30 @@ export default class MediaLayer extends VisualLayer {
 	properties!: MediaLayerProperties;
 	static type = 'media';
 
+	constructor(parent: any, properties: MediaLayerProperties = {}, settings: MediaLayerSettings) {
+		super(parent, properties, settings);
+	}
 	static get defaultSettings(): Partial<MediaLayerSettings> {
 		return {
 			...super.defaultSettings,
 			sourceType: 'url',
 		};
 	}
-
 	static get defaultProperties(): Partial<MediaLayerProperties> {
 		return {
 			...super.defaultProperties,
-			objectFit: 'cover',
+		};
+	}
+	static get propertiesDefinition() {
+		return {
+			...super.propertiesDefinition,
+			'objectFit': {
+				cssProperty: 'object-fit',
+				units: [''],
+				default: 'cover',
+				animatable: false,
+			},
 		};
 	}
 
-	constructor(parent: any, properties: MediaLayerProperties = {}, settings: MediaLayerSettings) {
-		super(parent, properties, settings);
-	}
 }

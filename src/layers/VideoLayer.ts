@@ -8,19 +8,17 @@ export default class VideoLayer extends MediaLayer {
 	settings!: VideoLayerSettings;
 	properties!: VideoLayerProperties;
 
+	constructor(parent: any, properties: VideoLayerProperties = {}, settings: VideoLayerSettings) {
+		super(parent, properties, settings);
+	}
 	static get defaultSettings(): Partial<VideoLayerSettings> {
 		return {
 			...super.defaultSettings,
 		};
 	}
-
 	static get defaultProperties(): Partial<VideoLayerProperties> {
 		return {
 			...super.defaultProperties,
 		};
-	}
-
-	constructor(parent: any, properties: VideoLayerProperties = {}, settings: VideoLayerSettings) {
-		super(parent, properties, settings);
 	}
 }

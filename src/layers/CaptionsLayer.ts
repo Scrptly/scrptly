@@ -13,20 +13,19 @@ export default class CaptionsLayer extends VisualLayer {
 	settings!: CaptionsLayerSettings;
 	properties!: CaptionsLayerProperties;
 
+	constructor(parent: any, properties: CaptionsLayerProperties = {}, settings: CaptionsLayerSettings) {
+		super(parent, properties, settings);
+	}
+	
 	static get defaultSettings(): Partial<CaptionsLayerSettings> {
 		return {
 			...super.defaultSettings,
 			sourceType: 'layer',
 		};
 	}
-
 	static get defaultProperties(): Partial<CaptionsLayerProperties> {
 		return {
 			...super.defaultProperties,
 		};
-	}
-
-	constructor(parent: any, properties: CaptionsLayerProperties = {}, settings: CaptionsLayerSettings) {
-		super(parent, properties, settings);
 	}
 }

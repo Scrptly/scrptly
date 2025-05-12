@@ -10,22 +10,21 @@ export default class TTSLayer extends AudioLayer {
 	static type = 'tts';
 	settings!: TTSLayerSettings;
 	properties!: TTSLayerProperties;
+	constructor(parent: any, properties: TTSLayerProperties = {}, settings: TTSLayerSettings) {
+		super(parent, properties, settings);
+	}
 
 	static get defaultSettings(): Partial<TTSLayerSettings> {
 		return {
 			...super.defaultSettings,
 		};
 	}
-
 	static get defaultProperties(): Partial<TTSLayerProperties> {
 		return {
 			...super.defaultProperties,
 		};
 	}
-
-	constructor(parent: any, properties: TTSLayerProperties = {}, settings: TTSLayerSettings) {
-		super(parent, properties, settings);
-	}
+	
 
 	say(text: string) {
 		this.parent.pushAction({ statement: 'ttsSay', layer: this.id, text });

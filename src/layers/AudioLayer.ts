@@ -14,17 +14,43 @@ export default class AudioLayer extends BaseLayer {
 	static type = 'audio';
 	settings!: AudioLayerSettings;
 
-	static get defaultProperties(): Partial<AudioLayerProperties> {
-		return {
-			...super.defaultProperties,
-			volume: 1,
-			pan: 0,
-			pitch: 1,
-			mute: false,
-		};
-	}
-
 	constructor(parent: any, properties: AudioLayerProperties = {}, settings: AudioLayerSettings) {
 		super(parent, properties, settings);
 	}
+	static get defaultSettings(): Partial<AudioLayerSettings> {
+		return {
+			...super.defaultSettings,
+		};
+	}
+	static get defaultProperties(): Partial<AudioLayerProperties> {
+		return {
+			...super.defaultProperties,
+		};
+	}
+	static get propertiesDefinition() {
+		return {
+			...super.propertiesDefinition,
+			'volume': {
+				units: [''],
+				default: 1,
+				animatable: true,
+			},
+			'pan': {
+				units: [''],
+				default: 0,
+				animatable: true,
+			},
+			'pitch': {
+				units: [''],
+				default: 1,
+				animatable: true,
+			},
+			'mute': {
+				units: [''],
+				default: false,
+				animatable: false,
+			},
+		};
+	}
+
 }

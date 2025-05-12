@@ -18,18 +18,65 @@ export default class VisualLayer extends BaseLayer {
 	static type = 'visual';
 	settings!: VisualLayerSettings;
 
-	static get defaultProperties(): Partial<VisualLayerProperties> {
-		return {
-			...super.defaultProperties,
-			visible: true,
-			opacity: 1,
-			rotation: 0,
-		};
-	}
-
 	constructor(parent: any, properties: VisualLayerProperties = {}, settings: VisualLayerSettings) {
 		super(parent, properties, settings);
 	}
+	static get defaultSettings(): Partial<VisualLayerSettings> {
+		return {
+			...super.defaultSettings,
+		};
+	}
+	static get defaultProperties(): Partial<VisualLayerProperties> {
+		return {
+			...super.defaultProperties,
+		};
+	}
+	static get propertiesDefinition() {
+		return {
+			...super.propertiesDefinition,
+			'visible': {
+				units: [''],
+				default: true,
+				animatable: false,
+			},
+			'opacity': {
+				units: [''],
+				default: 1,
+				animatable: true,
+			},
+			'blendMode': {
+				cssProperty: 'mix-blend-mode',
+				units: [''],
+				default: 'normal',
+				animatable: false,
+			},
+			'position': {
+				cssProperty: 'left/top',
+				units: [''],
+				default: [0, 0],
+				animatable: true,
+			},
+			'scale': {
+				cssProperty: 'transform',
+				units: [''],
+				default: [1, 1],
+				animatable: true,
+			},
+			'rotation': {
+				cssProperty: 'transform',
+				units: [''],
+				default: 0,
+				animatable: true,
+			},
+			'anchor': {
+				cssProperty: 'transform-origin',
+				units: [''],
+				default: [0.5, 0.5],
+				animatable: false,
+			},
+		};
+	}
+
 
 	show() { return this.set({ visible: true }); }
 	hide() { return this.set({ visible: false }); }
