@@ -40,6 +40,8 @@ export type { VisualLayerProperties, VisualLayerSettings } from './layers/Visual
 export type ProjectSettings = {
 	size?: { width: number; height: number };
 	frameRate?: number | string;
+	backgroundColor?: string;
+	defaultEasing?: Easing;
 };
 
 export default class Scrptly {
@@ -60,6 +62,8 @@ export default class Scrptly {
 		return {
 			size: { width: 1920, height: 1080 },
 			frameRate: 30,
+			backgroundColor: '#00000000',
+			defaultEasing: 'easeInOut',
 		};
 	}
 

@@ -69,7 +69,7 @@ export default class VisualLayer extends BaseLayer {
 			},
 			'rotation': {
 				cssProperty: '--rotation',
-				units: [''],
+				units: ['deg'],
 				default: 0,
 				animatable: true,
 			},
