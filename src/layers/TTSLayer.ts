@@ -27,7 +27,7 @@ export default class TTSLayer extends AudioLayer {
 	
 
 	say(text: string) {
-		this.parent.pushAction({ statement: 'ttsSay', layer: this.id, text });
+		this.parent.pushAction({ statement: 'ttsSay', id: this.id, text });
 		return this;
 	}
 }

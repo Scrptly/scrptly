@@ -27,6 +27,8 @@ export default class BaseLayer {
 	properties: BaseLayerProperties;
 	protected parent: Scrptly;
 
+	private removed = false;
+
 	constructor(parent: Scrptly, properties: BaseLayerProperties = {}, settings: BaseLayerSettings) {
 		this.parent = parent;
 		this.id = randomUUID();
@@ -58,7 +60,7 @@ export default class BaseLayer {
 	}
 
 	set(value: Record<string, any>) {
-		this.parent.pushAction({ statement: 'set', layer: this.id, value });
+		this.parent.pushAction({ statement: 'set', id: this.id, value });
 		return this;
 	}
 
@@ -70,7 +72,15 @@ export default class BaseLayer {
 			easing: Easing
 		} = {duration: 0, easing: 'linear'}
 	) {
-		this.parent.pushAction({ statement: 'animate', layer: this.id, from, to, settings });
+		this.parent.pushAction({ statement: 'animate', id: this.id, from, to, settings });
+		return this;
+	}
+
+	remove() {
+		if(this.removed)
+			throw new Error('Layer already removed');
+		this.removed = true;
+		this.parent.pushAction({ statement: 'removeLayer', id: this.id });
 		return this;
 	}
 }
