@@ -31,22 +31,18 @@ export default class AudioLayer extends BaseLayer {
 		return {
 			...super.propertiesDefinition,
 			'volume': {
-				units: [''],
 				default: 1,
 				animatable: true,
 			},
 			'pan': {
-				units: [''],
 				default: 0,
 				animatable: true,
 			},
 			'pitch': {
-				units: [''],
 				default: 1,
 				animatable: true,
 			},
 			'mute': {
-				units: [''],
 				default: false,
 				animatable: false,
 			},

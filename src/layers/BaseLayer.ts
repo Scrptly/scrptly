@@ -14,7 +14,7 @@ export interface BaseLayerSettings {
 export interface BaseLayerProperties { }
 export interface PropertyDefinition {
 	cssProperty?: string;
-	units: string[],
+	units?: string[],
 	default: any,
 	animatable: boolean
 }

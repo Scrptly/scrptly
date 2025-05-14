@@ -33,7 +33,6 @@ export default class MediaLayer extends VisualLayer {
 			...super.propertiesDefinition,
 			'objectFit': {
 				cssProperty: 'object-fit',
-				units: [''],
 				enum: ['fill', 'contain', 'cover'],
 				default: 'contain',
 				animatable: false,

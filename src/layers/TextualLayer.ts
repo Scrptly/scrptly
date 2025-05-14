@@ -57,45 +57,37 @@ export default class TextualLayer extends VisualLayer {
 			},
 			'fontFamily': {
 				cssProperty: 'font-family',
-				units: [''],
 				default: 'Noto Sans',
 				animatable: false,
 			},
 			'fontWeight': {
 				cssProperty: 'font-weight',
-				units: [''],
-				enum: ['normal', 'bold', 'bolder', 'lighter', 100, 200, 300, 400, 500, 600, 700, 800, 900],
-				default: 'normal',
+				default: 400,
 				animatable: true,
 			},
 			'fontStyle': {
 				cssProperty: 'font-style',
-				units: [''],
 				enum: ['normal', 'italic', 'oblique'],
 				default: 'normal',
 				animatable: false,
 			},
 			'color': {
-				units: [''],
 				default: '#FFFFFF',
 				animatable: true,
 			},
 			'textAlign': {
 				cssProperty: 'text-align',
-				units: [''],
 				enum: ['left', 'right', 'center', 'justify'],
 				default: 'center',
 				animatable: false,
 			},
 			'verticalAlign': {
 				cssProperty: 'vertical-align',
-				units: [''],
 				enum: ['top', 'middle', 'bottom'],
 				default: 'middle',
 				animatable: false,
 			},
 			'stroke': {
-				units: [''],
 				default: false,
 				animatable: false,
 			},
@@ -107,18 +99,15 @@ export default class TextualLayer extends VisualLayer {
 			},
 			'strokeColor': {
 				cssProperty: '-webkit-text-stroke-color',
-				units: [''],
 				default: '#000000',
 				animatable: false,
 			},
 			'textShadow': {
-				units: [''],
 				default: false,
 				animatable: false,
 			},
 			'textShadowColor': {
 				cssProperty: 'text-shadow-color',
-				units: [''],
 				default: '#000000',
 				animatable: false,
 			},
@@ -154,14 +143,12 @@ export default class TextualLayer extends VisualLayer {
 			},
 			'textTransform': {
 				cssProperty: 'text-transform',
-				units: [''],
 				enum: ['none', 'capitalize', 'uppercase', 'lowercase'],
 				default: 'none',
 				animatable: false,
 			},
 			'textDecoration': {
 				cssProperty: 'text-decoration',
-				units: [''],
 				enum: ['none', 'underline', 'overline', 'line-through'],
 				default: 'none',
 				animatable: false,
@@ -180,7 +167,6 @@ export default class TextualLayer extends VisualLayer {
 			},
 			'direction': {
 				cssProperty: 'direction',
-				units: [''],
 				enum: ['ltr', 'rtl'],
 				default: 'ltr',
 				animatable: false,

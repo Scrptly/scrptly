@@ -28,7 +28,6 @@ export default class TextLayer extends TextualLayer {
 			...super.propertiesDefinition,
 			'text': {
 				cssProperty: false,
-				units: [''],
 				default: 'Type your text here',
 				animatable: false,
 			},

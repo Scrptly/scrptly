@@ -35,35 +35,20 @@ export default class VisualLayer extends BaseLayer {
 		return {
 			...super.propertiesDefinition,
 			'visible': {
-				units: [''],
 				default: true,
 				animatable: false,
 			},
 			'opacity': {
-				units: [''],
 				default: 1,
 				animatable: true,
 			},
-			'blendMode': {
-				cssProperty: 'mix-blend-mode',
-				units: [''],
-				enum: [
-					'normal', 'multiply', 'screen', 'overlay', 'darken', 'lighten',
-					'color-dodge', 'color-burn', 'hard-light', 'soft-light', 'difference',
-					'exclusion', 'hue', 'saturation', 'color', 'luminosity',
-				],
-				default: 'normal',
-				animatable: false,
-			},
 			'position': {
 				cssProperty: '--position',
-				units: [''],
 				default: [0, 0],
 				animatable: true,
 			},
 			'scale': {
 				cssProperty: '--scale',
-				units: [''],
 				default: [1, 1],
 				animatable: true,
 			},
@@ -75,7 +60,6 @@ export default class VisualLayer extends BaseLayer {
 			},
 			'anchor': {
 				cssProperty: '--anchor',
-				units: [''],
 				default: [0.5, 0.5],
 				animatable: false,
 			},
