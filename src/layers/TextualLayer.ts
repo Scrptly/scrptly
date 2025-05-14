@@ -1,10 +1,13 @@
 import VisualLayer, { VisualLayerProperties, VisualLayerSettings } from './VisualLayer';
 
 export interface TextualLayerProperties extends VisualLayerProperties {
-	textAlign?: string;
-	fontFamily?: string;
 	fontSize?: number;
+	fontFamily?: string;
+	fontWeight?: string | number;
+	fontStyle?: string;
 	color?: string;
+	textAlign?: string;
+	verticalAlign?: string;
 	stroke?: boolean;
 	strokeWidth?: number;
 	strokeColor?: string;
@@ -13,6 +16,14 @@ export interface TextualLayerProperties extends VisualLayerProperties {
 	textShadowOffsetX?: number;
 	textShadowOffsetY?: number;
 	textShadowBlur?: number;
+	letterSpacing?: number;
+	lineHeight?: number;
+	textTransform?: string;
+	textDecoration?: string;
+	wordSpacing?: number;
+	direction?: string;
+	whiteSpace?: string;
+	textIndent?: number;
 }
 
 export interface TextualLayerSettings extends VisualLayerSettings { }
@@ -38,12 +49,11 @@ export default class TextualLayer extends VisualLayer {
 	static get propertiesDefinition() {
 		return {
 			...super.propertiesDefinition,
-			'textAlign': {
-				cssProperty: 'text-align',
-				units: [''],
-				enum: ['left', 'right', 'center', 'justify'],
-				default: 'center',
-				animatable: false,
+			'fontSize': {
+				cssProperty: 'font-size',
+				units: ['em', 'px'],
+				default: 1.0,
+				animatable: true,
 			},
 			'fontFamily': {
 				cssProperty: 'font-family',
@@ -51,16 +61,38 @@ export default class TextualLayer extends VisualLayer {
 				default: 'Noto Sans',
 				animatable: false,
 			},
-			'fontSize': {
-				cssProperty: 'font-size',
-				units: ['em', 'px'],
-				default: 1.0,
+			'fontWeight': {
+				cssProperty: 'font-weight',
+				units: [''],
+				enum: ['normal', 'bold', 'bolder', 'lighter', 100, 200, 300, 400, 500, 600, 700, 800, 900],
+				default: 'normal',
 				animatable: true,
+			},
+			'fontStyle': {
+				cssProperty: 'font-style',
+				units: [''],
+				enum: ['normal', 'italic', 'oblique'],
+				default: 'normal',
+				animatable: false,
 			},
 			'color': {
 				units: [''],
-				default: '#000000',
+				default: '#FFFFFF',
 				animatable: true,
+			},
+			'textAlign': {
+				cssProperty: 'text-align',
+				units: [''],
+				enum: ['left', 'right', 'center', 'justify'],
+				default: 'center',
+				animatable: false,
+			},
+			'verticalAlign': {
+				cssProperty: 'vertical-align',
+				units: [''],
+				enum: ['top', 'middle', 'bottom'],
+				default: 'middle',
+				animatable: false,
 			},
 			'stroke': {
 				units: [''],
@@ -107,6 +139,51 @@ export default class TextualLayer extends VisualLayer {
 				units: ['px'],
 				default: 0,
 				animatable: true,
+			},
+			'letterSpacing': {
+				cssProperty: 'letter-spacing',
+				units: ['em', 'px'],
+				default: 0,
+				animatable: true,
+			},
+			'lineHeight': {
+				cssProperty: 'line-height',
+				units: ['em', 'px', ''],
+				default: 1.2,
+				animatable: true,
+			},
+			'textTransform': {
+				cssProperty: 'text-transform',
+				units: [''],
+				enum: ['none', 'capitalize', 'uppercase', 'lowercase'],
+				default: 'none',
+				animatable: false,
+			},
+			'textDecoration': {
+				cssProperty: 'text-decoration',
+				units: [''],
+				enum: ['none', 'underline', 'overline', 'line-through'],
+				default: 'none',
+				animatable: false,
+			},
+			'wordSpacing': {
+				cssProperty: 'word-spacing',
+				units: ['em', 'px'],
+				default: 0,
+				animatable: true,
+			},
+			'textIndent': {
+				cssProperty: 'text-indent',
+				units: ['em', 'px'],
+				default: 0,
+				animatable: true,
+			},
+			'direction': {
+				cssProperty: 'direction',
+				units: [''],
+				enum: ['ltr', 'rtl'],
+				default: 'ltr',
+				animatable: false,
 			},
 		};
 	}
