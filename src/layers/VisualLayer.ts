@@ -15,13 +15,14 @@ export interface VisualLayerProperties extends BaseLayerProperties {
 	borderColor?: string;
 	borderRadius?: number | [number, number, number, number];
 	boxShadow?:boolean;
-	boxShadowBlur:number;
-	boxShadowOffset:[number, number];
-	boxShadowSpread:number;
-	boxShadowColor:string;
+	boxShadowBlur?:number;
+	boxShadowOffset?:[number, number];
+	boxShadowSpread?:number;
+	boxShadowColor?:string;
 	outlineWidth?: number;
 	outlineStyle?: string;
 	outlineColor?: string;
+	outlineOffset?: number;
 	filterBlur?: number;
 	filterBrightness?: number;
 	filterContrast?: number;
@@ -163,6 +164,12 @@ export default class VisualLayer extends BaseLayer {
 			'outlineColor': {
 				cssProperty: 'outline-color',
 				default: 'black',
+				animatable: false,
+			},
+			'outlineOffset': {
+				cssProperty: 'outline-offset',
+				units: ['px'],
+				default: 0,
 				animatable: false,
 			},
 
