@@ -8,6 +8,7 @@ export interface TextualLayerProperties extends VisualLayerProperties {
 	color?: string;
 	textAlign?: string;
 	verticalAlign?: string;
+	padding?: number | [number, number, number, number];
 	stroke?: boolean;
 	strokeWidth?: number;
 	strokeColor?: string;
@@ -86,6 +87,12 @@ export default class TextualLayer extends VisualLayer {
 				enum: ['top', 'middle', 'bottom'],
 				default: 'middle',
 				animatable: false,
+			},
+			'padding': {
+				cssProperty: 'padding',
+				units: ['px'],
+				default: 0,
+				animatable: true,
 			},
 			'stroke': {
 				default: false,
