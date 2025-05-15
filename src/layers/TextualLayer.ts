@@ -107,7 +107,7 @@ export default class TextualLayer extends VisualLayer {
 			'strokeColor': {
 				cssProperty: '-webkit-text-stroke-color',
 				default: '#000000',
-				animatable: false,
+				animatable: true,
 			},
 			'textShadow': {
 				default: false,
@@ -116,7 +116,7 @@ export default class TextualLayer extends VisualLayer {
 			'textShadowColor': {
 				cssProperty: 'text-shadow-color',
 				default: '#000000',
-				animatable: false,
+				animatable: true,
 			},
 			'textShadowOffsetX': {
 				cssProperty: 'text-shadow-offset-x',

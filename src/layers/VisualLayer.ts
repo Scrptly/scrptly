@@ -84,14 +84,14 @@ export default class VisualLayer extends BaseLayer {
 			'anchor': {
 				cssProperty: '--anchor',
 				default: [0.5, 0.5],
-				animatable: false,
+				animatable: true,
 			},
 
 			// Background
 			'backgroundColor': {
 				cssProperty: 'background-color',
 				default: 'transparent',
-				animatable: false,
+				animatable: true,
 			},
 
 			// Border
@@ -110,7 +110,7 @@ export default class VisualLayer extends BaseLayer {
 			'borderColor': {
 				cssProperty: 'border-color',
 				default: 'black',
-				animatable: false,
+				animatable: true,
 			},
 			'borderRadius': {
 				cssProperty: 'border-radius',
@@ -145,7 +145,7 @@ export default class VisualLayer extends BaseLayer {
 			'boxShadowColor': {
 				cssProperty: '--box-shadow-color',
 				default: '#000000',
-				animatable: false,
+				animatable: true,
 			},
 
 			// Outline
@@ -153,7 +153,7 @@ export default class VisualLayer extends BaseLayer {
 				cssProperty: 'outline-width',
 				units: ['px'],
 				default: 0,
-				animatable: false,
+				animatable: true,
 			},
 			'outlineStyle': {
 				cssProperty: 'outline-style',
@@ -164,13 +164,13 @@ export default class VisualLayer extends BaseLayer {
 			'outlineColor': {
 				cssProperty: 'outline-color',
 				default: 'black',
-				animatable: false,
+				animatable: true,
 			},
 			'outlineOffset': {
 				cssProperty: 'outline-offset',
 				units: ['px'],
 				default: 0,
-				animatable: false,
+				animatable: true,
 			},
 
 			// Filter (individual filter props as CSS variables)
@@ -230,7 +230,7 @@ export default class VisualLayer extends BaseLayer {
 				cssProperty: '--perspective',
 				units: ['px'],
 				default: 0,
-				animatable: false,
+				animatable: true,
 			},
 		};
 	}
