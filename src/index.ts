@@ -1,5 +1,5 @@
-import type { Time, Id, Easing, Action } from './types';
-export type { Time, Id, Easing, Action };
+import type { Time, Id, Easing, Action, AddLayerOptions } from './types';
+export type { Time, Id, Easing, Action, AddLayerOptions };
 
 import BaseLayer from './layers/BaseLayer';
 export type { BaseLayerProperties, BaseLayerSettings } from './layers/BaseLayer';
@@ -94,12 +94,13 @@ export default class Scrptly {
 
 	addLayer<T extends BaseLayer>(
 		LayerClass: new (parent: Scrptly, properties?: any, settings?: any) => T,
-		properties?: any,
-		settings?: any
+		properties: any = {},
+		settings: any = {},
+		options: AddLayerOptions = {}
 	) {
 		const layer = new LayerClass(this, properties, settings);
 		this.elements.push(layer);
-		this.pushAction({ statement: 'addLayer', id: layer.id, type: (LayerClass as any).type, settings: settings || {}, properties: properties || {} });
+		this.pushAction({ statement: 'addLayer', id: layer.id, type: (LayerClass as any).type, settings, properties, options });
 		return layer;
 	}
 
