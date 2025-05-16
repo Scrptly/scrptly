@@ -14,8 +14,7 @@ export interface TextualLayerProperties extends VisualLayerProperties {
 	strokeColor?: string;
 	textShadow?: boolean;
 	textShadowColor?: string;
-	textShadowOffsetX?: number;
-	textShadowOffsetY?: number;
+	textShadowOffset?: [number, number];
 	textShadowBlur?: number;
 	letterSpacing?: number;
 	lineHeight?: number;
@@ -118,16 +117,10 @@ export default class TextualLayer extends VisualLayer {
 				default: '#000000',
 				animatable: true,
 			},
-			'textShadowOffsetX': {
-				cssProperty: 'text-shadow-offset-x',
+			'textShadowOffset': {
+				cssProperty: 'text-shadow-offset',
 				units: ['px'],
-				default: 0,
-				animatable: true,
-			},
-			'textShadowOffsetY': {
-				cssProperty: 'text-shadow-offset-y',
-				units: ['px'],
-				default: 0,
+				default: [0, 0],
 				animatable: true,
 			},
 			'textShadowBlur': {
