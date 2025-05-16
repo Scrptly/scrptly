@@ -104,25 +104,25 @@ export default class Scrptly {
 		return layer;
 	}
 
-	addFolder(properties?: any, settings?: any) {
-		return this.addLayer(FolderLayer, properties, settings);
+	addFolder(properties?: any, settings?: any, options?: AddLayerOptions) {
+		return this.addLayer(FolderLayer, properties, settings, options);
 	}
-	addText(properties?: any, settings?: any) {
-		return this.addLayer(TextLayer, properties, settings);
+	addText(properties?: any, settings?: any, options?: AddLayerOptions) {
+		return this.addLayer(TextLayer, properties, settings, options);
 	}
-	addImage(properties?: any, settings?: any) {
-		return this.addLayer(ImageLayer, properties, settings);
+	addImage(properties?: any, settings?: any, options?: AddLayerOptions) {
+		return this.addLayer(ImageLayer, properties, settings, options);
 	}
-	addVideo(properties?: any, settings?: any) {
-		return this.addLayer(VideoLayer, properties, settings);
+	addVideo(properties?: any, settings?: any, options?: AddLayerOptions) {
+		return this.addLayer(VideoLayer, properties, settings, options);
 	}
-	addAudio(properties?: any, settings?: any) {
-		return this.addLayer(AudioTrackLayer, properties, settings);
+	addAudio(properties?: any, settings?: any, options?: AddLayerOptions) {
+		return this.addLayer(AudioTrackLayer, properties, settings, options);
 	}
-	addCaptions(properties?: any, settings?: any) {
-		return this.addLayer(CaptionsLayer, properties, settings);
+	addCaptions(properties?: any, settings?: any, options?: AddLayerOptions) {
+		return this.addLayer(CaptionsLayer, properties, settings, options);
 	}
-	addTTS(properties?: any, settings?: any) {
-		return this.addLayer(TTSLayer, properties, settings);
+	addTTS(properties?: any, settings?: any, options?: AddLayerOptions) {
+		return this.addLayer(TTSLayer, properties, settings, options);
 	}
 }
