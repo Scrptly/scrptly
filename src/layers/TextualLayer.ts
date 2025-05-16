@@ -113,18 +113,18 @@ export default class TextualLayer extends VisualLayer {
 				animatable: false,
 			},
 			'textShadowColor': {
-				cssProperty: 'text-shadow-color',
+				cssProperty: '--text-shadow-color',
 				default: '#000000',
 				animatable: true,
 			},
 			'textShadowOffset': {
-				cssProperty: 'text-shadow-offset',
+				cssProperty: '--text-shadow-offset',
 				units: ['px'],
 				default: [0, 0],
 				animatable: true,
 			},
 			'textShadowBlur': {
-				cssProperty: 'text-shadow-blur',
+				cssProperty: '--text-shadow-blur',
 				units: ['px'],
 				default: 0,
 				animatable: true,
