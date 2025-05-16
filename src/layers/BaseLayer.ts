@@ -7,7 +7,7 @@ export interface BaseLayerSettings {
 	enabled?: boolean;
 	locked?: boolean;
 	startTime?: number;
-	endTime?: number;
+	endTime?: false | number;
 	speed?: number;
 }
 
@@ -48,7 +48,7 @@ export default class BaseLayer {
 			enabled: true,
 			locked: false,
 			startTime: 0,
-			endTime: Infinity,
+			endTime: false,
 			speed: 1,
 		};
 	}
