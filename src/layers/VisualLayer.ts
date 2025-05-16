@@ -67,7 +67,7 @@ export default class VisualLayer extends BaseLayer {
 			},
 			'position': {
 				cssProperty: '--position',
-				default: [0, 0],
+				default: [0.5, 0.5],
 				animatable: true,
 			},
 			'scale': {
