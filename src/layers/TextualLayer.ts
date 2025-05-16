@@ -9,9 +9,9 @@ export interface TextualLayerProperties extends VisualLayerProperties {
 	textAlign?: string;
 	verticalAlign?: string;
 	padding?: number | [number, number, number, number];
-	stroke?: boolean;
-	strokeWidth?: number;
-	strokeColor?: string;
+	textStroke?: boolean;
+	textStrokeWidth?: number;
+	textStrokeColor?: string;
 	textShadow?: boolean;
 	textShadowColor?: string;
 	textShadowOffset?: [number, number];
@@ -93,17 +93,17 @@ export default class TextualLayer extends VisualLayer {
 				default: 0,
 				animatable: true,
 			},
-			'stroke': {
+			'textStroke': {
 				default: false,
 				animatable: false,
 			},
-			'strokeWidth': {
+			'textStrokeWidth': {
 				cssProperty: '-webkit-text-stroke-width',
 				units: ['px'],
 				default: 0,
 				animatable: true,
 			},
-			'strokeColor': {
+			'textStrokeColor': {
 				cssProperty: '-webkit-text-stroke-color',
 				default: '#000000',
 				animatable: true,
