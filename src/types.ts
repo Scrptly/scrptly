@@ -3,8 +3,8 @@ export type Id = string;
 export type Easing = 'step' | 'linear' | 'easeIn' | 'easeOut' | 'easeInOut' | 'easeInSine' | 'easeOutSine' | 'easeInOutSine' | 'easeInQuad' | 'easeOutQuad' | 'easeInOutQuad' | 'easeInCubic' | 'easeOutCubic' | 'easeInOutCubic' | 'easeInQuart' | 'easeOutQuart' | 'easeInOutQuart' | 'easeInQuint' | 'easeOutQuint' | 'easeInOutQuint';
 
 export type AddLayerOptions = {
-	waitFor?: Time | 'finish',
-	index?: number,
+	waitFor?: Time | 'finish', // wait for this time after adding the layer before continuing to the next action
+	index?: number, // index for ordering the layer in the timeline, negative values put the layer at the back and positive values at the front
 };
 
 export type Action =
