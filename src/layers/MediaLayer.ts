@@ -31,10 +31,15 @@ export default class MediaLayer extends VisualLayer {
 	static get propertiesDefinition() {
 		return {
 			...super.propertiesDefinition,
-			'objectFit': {
+			'fit': { // Changes the whole element's size/box to contain or cover the project dimensions
+				enum: ['contain', 'cover'],
+				default: 'contain',
+				animatable: false,
+			},
+			'objectFit': { // Changes the object-fit property of the element
 				cssProperty: 'object-fit',
 				enum: ['fill', 'contain', 'cover'],
-				default: 'contain',
+				default: 'fill',
 				animatable: false,
 			},
 		};
