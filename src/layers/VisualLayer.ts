@@ -6,7 +6,7 @@ export interface VisualLayerProperties extends BaseLayerProperties {
 	opacity?: number;
 	blendMode?: string;
 	position?: [number, number] | [number, number, number];
-	scale?: number | [number, number];
+	scale?: number | [number, number] | [number, number, number];
 	rotation?: number | [number, number, number];
 	anchor?: [number, number] | [number, number, number];
 	backgroundColor?: string;
