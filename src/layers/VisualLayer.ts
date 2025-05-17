@@ -114,7 +114,7 @@ export default class VisualLayer extends BaseLayer {
 			},
 			'borderRadius': {
 				cssProperty: 'border-radius',
-				units: ['px', '%'],
+				units: ['', 'px', '%'], // '' unit is a special option that allows setting the value relative to the element's size while ensure the radius is a circle, not an ellipse (as it would be with %)
 				default: 0,
 				animatable: true,
 			},
