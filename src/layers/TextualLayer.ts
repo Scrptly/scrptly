@@ -5,6 +5,7 @@ export interface TextualLayerProperties extends VisualLayerProperties {
 	fontFamily?: string;
 	fontWeight?: string | number;
 	fontStyle?: string;
+	fontStretch?: string;
 	color?: string;
 	textAlign?: string;
 	verticalAlign?: string;
@@ -22,7 +23,6 @@ export interface TextualLayerProperties extends VisualLayerProperties {
 	textDecoration?: string;
 	wordSpacing?: number;
 	direction?: string;
-	whiteSpace?: string;
 	textIndent?: number;
 }
 
@@ -70,6 +70,12 @@ export default class TextualLayer extends VisualLayer {
 				enum: ['normal', 'italic', 'oblique'],
 				default: 'normal',
 				animatable: false,
+			},
+			'fontStretch': {
+				cssProperty: 'font-stretch',
+				units: ['%'],
+				default: 100,
+				animatable: true,
 			},
 			'color': {
 				default: '#FFFFFF',
