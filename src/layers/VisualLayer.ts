@@ -6,7 +6,7 @@ export interface VisualLayerProperties extends BaseLayerProperties {
 	opacity?: number;
 	blendMode?: string;
 	position?: [number, number] | [number, number, number];
-	scale?: [number, number];
+	scale?: number | [number, number];
 	rotation?: number | [number, number, number];
 	anchor?: [number, number] | [number, number, number];
 	backgroundColor?: string;
@@ -72,7 +72,7 @@ export default class VisualLayer extends BaseLayer {
 			},
 			'scale': {
 				cssProperty: '--scale',
-				default: [1, 1],
+				default: 1,
 				animatable: true,
 			},
 			'rotation': {
