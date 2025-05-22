@@ -36,6 +36,7 @@ export type ProjectSettings = {
 };
 export type ScrptlySettings = {
     apiKey: string | false;
+    apiEndpoint?: string;
 };
 export default class Scrptly {
     settings: ProjectSettings;
@@ -44,7 +45,7 @@ export default class Scrptly {
     private _flowPointer;
     constructor(settings?: ProjectSettings);
     static get defaultSettings(): ProjectSettings;
-    static setApiKey(apiKey: false | string): void;
+    static setApiSettings(settings: ScrptlySettings): void;
     pushAction(action: Action): void;
     wait(time: Time): this;
     parallel(funcs: Array<() => Action>, settings?: any): void;

@@ -13,6 +13,7 @@ export { default as MediaLayer } from './layers/MediaLayer.js';
 export { default as VisualLayer } from './layers/VisualLayer.js';
 const scriptlySettings = {
     apiKey: false,
+    apiEndpoint: 'https://api.scrptly.com/',
 };
 export default class Scrptly {
     constructor(settings = {}) {
@@ -32,8 +33,10 @@ export default class Scrptly {
             defaultEasing: 'easeInOut',
         };
     }
-    static setApiKey(apiKey) {
-        scriptlySettings.apiKey = apiKey;
+    static setApiSettings(settings) {
+        for (const k of Object.keys(settings)) {
+            scriptlySettings[k] = settings[k];
+        }
     }
     // Flow control
     pushAction(action) {
@@ -88,7 +91,7 @@ export default class Scrptly {
     async apiCall(endpoint, options = {}) {
         if (!scriptlySettings.apiKey)
             throw new Error('API key not set');
-        const url = `https://api.scrptly.com/v1/${endpoint}`;
+        const url = `${scriptlySettings.apiEndpoint}${endpoint}`;
         const response = await fetch(url, {
             method: options?.method || 'GET',
             headers: {
