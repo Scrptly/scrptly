@@ -13,5 +13,5 @@ export type Action =
 	| { statement: 'addLayer'; id: Id; type: string; settings: Record<string, any>; properties: Record<string, any>; options?: AddLayerOptions }
 	| { statement: 'removeLayer'; id: Id; }
 	| { statement: 'set'; id: Id; value: Record<string, any> }
-	| { statement: 'animate'; id: Id; from: Record<string, any>; to: Record<string, any>; settings: { duration: Time; easing: Easing, wait: boolean } }
+	| { statement: 'animate'; id: Id; from: Record<string, any>; to: Record<string, any>; settings: { duration: Time; easing?: Easing, wait?: boolean } }
 	| { statement: 'ttsSay'; id: Id; text: string };
