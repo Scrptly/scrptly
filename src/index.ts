@@ -43,6 +43,13 @@ export type ProjectSettings = {
 	backgroundColor?: string;
 	defaultEasing?: Easing;
 };
+export type ScrptlySettings = {
+	apiKey: string | false;
+};
+
+const scriptlySettings: ScrptlySettings = {
+	apiKey: false,
+};
 
 export default class Scrptly {
 	settings!: ProjectSettings;
@@ -66,7 +73,11 @@ export default class Scrptly {
 			defaultEasing: 'easeInOut',
 		};
 	}
+	static setApiKey(apiKey: false | string) {
+		scriptlySettings.apiKey = apiKey;
+	}
 
+	// Flow control
 	pushAction(action: Action) {
 		this._flowPointer.push(action);
 	}
@@ -124,5 +135,29 @@ export default class Scrptly {
 	}
 	addTTS(properties?: any, settings?: any, options?: AddLayerOptions) {
 		return this.addLayer(TTSLayer, properties, settings, options);
+	}
+
+
+	// API calls
+	private async apiCall(endpoint: string, options: any = {}) {
+		if (!scriptlySettings.apiKey) throw new Error('API key not set');
+		const url = `https://api.scrptly.com/v1/${endpoint}`;
+		const response = await fetch(url, {
+			method: options?.method || 'GET',
+			headers: {
+				'Content-Type': 'application/json',
+				'Authorization': `Bearer ${scriptlySettings.apiKey}`,
+				...(options?.headers || {}),
+			},
+			...options
+		});
+		if (!response.ok) throw new Error(`API call failed: ${response.statusText}`);
+		return await response.json();
+
+	}
+
+	async info() {
+		const response = await this.apiCall('info');
+		return response;
 	}
 }
