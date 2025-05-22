@@ -9,7 +9,7 @@ package-lock.json
 !.env.example
 
 # Build output
-dist/
+#dist/
 build/
 lib/
 coverage/
