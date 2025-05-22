@@ -45,10 +45,12 @@ export type ProjectSettings = {
 };
 export type ScrptlySettings = {
 	apiKey: string | false;
+	apiEndpoint?: string
 };
 
 const scriptlySettings: ScrptlySettings = {
 	apiKey: false,
+	apiEndpoint: 'https://api.scrptly.com/',
 };
 
 export default class Scrptly {
@@ -73,8 +75,10 @@ export default class Scrptly {
 			defaultEasing: 'easeInOut',
 		};
 	}
-	static setApiKey(apiKey: false | string) {
-		scriptlySettings.apiKey = apiKey;
+	static setApiSettings(settings: ScrptlySettings) {
+		for (const k of Object.keys(settings) as (keyof ScrptlySettings)[]) {
+			scriptlySettings[k] = settings[k]as any;
+		}
 	}
 
 	// Flow control
@@ -141,7 +145,7 @@ export default class Scrptly {
 	// API calls
 	private async apiCall(endpoint: string, options: any = {}) {
 		if (!scriptlySettings.apiKey) throw new Error('API key not set');
-		const url = `https://api.scrptly.com/v1/${endpoint}`;
+		const url = `${scriptlySettings.apiEndpoint}${endpoint}`;
 		const response = await fetch(url, {
 			method: options?.method || 'GET',
 			headers: {
