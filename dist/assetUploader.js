@@ -50,6 +50,7 @@ export default class AssetUploader {
                     method: 'PUT',
                     headers: {
                         'Content-Type': prepare.contentType,
+                        'Content-MD5': hash,
                     },
                     body: fileStream,
                     // @ts-expect-error

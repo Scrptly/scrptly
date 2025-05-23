@@ -4,7 +4,7 @@ export default class AssetUploader {
     path: string;
     type: string;
     constructor($: Scrptly, path: string, type: string);
-    hashFile(): Promise<unknown>;
+    hashFile(): Promise<string>;
     uploadAsset(): Promise<{
         assetId: any;
         url: any;

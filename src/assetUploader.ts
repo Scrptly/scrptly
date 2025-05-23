@@ -14,7 +14,7 @@ export default class AssetUploader {
 		this.type = type;
 	}
 
-	async hashFile() {
+	async hashFile(): Promise<string> {
 		return new Promise((resolve, reject) => {
 			const hash = crypto.createHash('md5');
 			const stream = fs.createReadStream(this.path);
@@ -56,6 +56,7 @@ export default class AssetUploader {
 					method: 'PUT',
 					headers: {
 						'Content-Type': prepare.contentType,
+						'Content-MD5': hash,
 					},
 					body: fileStream as any,
 					// @ts-expect-error
