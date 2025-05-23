@@ -1,6 +1,9 @@
 import fs from 'fs';
 import crypto from 'crypto';
 export default class AssetUploader {
+    $;
+    path;
+    type;
     constructor($, path, type) {
         this.$ = $;
         this.path = path;
@@ -49,6 +52,8 @@ export default class AssetUploader {
                         'Content-Type': prepare.contentType,
                     },
                     body: fileStream,
+                    // @ts-expect-error
+                    duplex: 'half'
                 });
                 if (res.ok) {
                     const successUpload = await this.$.apiCall('completeAssetUpload', {

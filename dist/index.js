@@ -17,10 +17,11 @@ const scriptlySettings = {
     apiEndpoint: 'https://api.scrptly.com/',
 };
 export default class Scrptly {
+    settings;
+    layers = [];
+    flow = [];
+    _flowPointer = this.flow;
     constructor(settings = {}) {
-        this.layers = [];
-        this.flow = [];
-        this._flowPointer = this.flow;
         this.settings = {
             ...(this.constructor.defaultSettings),
             ...settings,

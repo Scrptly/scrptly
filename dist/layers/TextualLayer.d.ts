@@ -27,8 +27,8 @@ export interface TextualLayerProperties extends VisualLayerProperties {
 export interface TextualLayerSettings extends VisualLayerSettings {
 }
 export default class TextualLayer extends VisualLayer {
-    properties: TextualLayerProperties;
     static type: string;
+    properties: TextualLayerProperties;
     settings: TextualLayerSettings;
     constructor(parent: any, properties?: TextualLayerProperties, settings?: TextualLayerSettings);
     static get defaultSettings(): Partial<TextualLayerSettings>;

@@ -8,8 +8,8 @@ export interface AuditoryLayerProperties extends BaseLayerProperties {
 export interface AuditoryLayerSettings extends BaseLayerSettings {
 }
 export default class AuditoryLayer extends BaseLayer {
-    properties: AuditoryLayerProperties;
     static type: string;
+    properties: AuditoryLayerProperties;
     settings: AuditoryLayerSettings;
     constructor(parent: any, properties: AuditoryLayerProperties | undefined, settings: AuditoryLayerSettings);
     static get defaultSettings(): Partial<AuditoryLayerSettings>;

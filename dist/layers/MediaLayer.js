@@ -1,5 +1,6 @@
 import VisualLayer from './VisualLayer.js';
-class MediaLayer extends VisualLayer {
+export default class MediaLayer extends VisualLayer {
+    static type = 'media';
     constructor(parent, properties = {}, settings) {
         super(parent, properties, settings);
         if (settings.source && !settings.sourceType)
@@ -36,5 +37,3 @@ class MediaLayer extends VisualLayer {
         };
     }
 }
-MediaLayer.type = 'media';
-export default MediaLayer;

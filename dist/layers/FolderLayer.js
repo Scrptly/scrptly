@@ -1,8 +1,9 @@
 import VisualLayer from './VisualLayer.js';
-class FolderLayer extends VisualLayer {
+export default class FolderLayer extends VisualLayer {
+    children = [];
+    static type = 'folder';
     constructor(parent, properties = {}, settings) {
         super(parent, properties, settings);
-        this.children = [];
     }
     static get defaultSettings() {
         return {
@@ -15,5 +16,3 @@ class FolderLayer extends VisualLayer {
         };
     }
 }
-FolderLayer.type = 'folder';
-export default FolderLayer;

@@ -1,5 +1,6 @@
 import AuditoryLayer from './AuditoryLayer.js';
-class AudioLayer extends AuditoryLayer {
+export default class AudioLayer extends AuditoryLayer {
+    static type = 'audio';
     constructor(parent, properties = {}, settings) {
         super(parent, properties, settings);
         if (settings.source && !settings.sourceType)
@@ -20,5 +21,3 @@ class AudioLayer extends AuditoryLayer {
         };
     }
 }
-AudioLayer.type = 'audio';
-export default AudioLayer;

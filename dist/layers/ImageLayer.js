@@ -1,5 +1,6 @@
 import MediaLayer from './MediaLayer.js';
-class ImageLayer extends MediaLayer {
+export default class ImageLayer extends MediaLayer {
+    static type = 'image';
     constructor(parent, properties = {}, settings) {
         super(parent, properties, settings);
     }
@@ -14,5 +15,3 @@ class ImageLayer extends MediaLayer {
         };
     }
 }
-ImageLayer.type = 'image';
-export default ImageLayer;

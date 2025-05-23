@@ -1,5 +1,6 @@
 import BaseLayer from './BaseLayer.js';
-class VisualLayer extends BaseLayer {
+export default class VisualLayer extends BaseLayer {
+    static type = 'visual';
     constructor(parent, properties = {}, settings) {
         super(parent, properties, settings);
     }
@@ -198,5 +199,3 @@ class VisualLayer extends BaseLayer {
         return this.animate({ opacity: 1 }, { opacity: 0, visible: false }, { duration, easing, wait });
     }
 }
-VisualLayer.type = 'visual';
-export default VisualLayer;

@@ -1,5 +1,6 @@
 import BaseLayer from './BaseLayer.js';
-class AuditoryLayer extends BaseLayer {
+export default class AuditoryLayer extends BaseLayer {
+    static type = 'auditory';
     constructor(parent, properties = {}, settings) {
         super(parent, properties, settings);
     }
@@ -35,5 +36,3 @@ class AuditoryLayer extends BaseLayer {
         };
     }
 }
-AuditoryLayer.type = 'auditory';
-export default AuditoryLayer;

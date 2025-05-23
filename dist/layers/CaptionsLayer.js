@@ -1,5 +1,8 @@
 import VisualLayer from './VisualLayer.js';
-class CaptionsLayer extends VisualLayer {
+export default class CaptionsLayer extends VisualLayer {
+    source;
+    sourceType;
+    static type = 'captions';
     constructor(parent, properties = {}, settings) {
         super(parent, properties, settings);
     }
@@ -15,5 +18,3 @@ class CaptionsLayer extends VisualLayer {
         };
     }
 }
-CaptionsLayer.type = 'captions';
-export default CaptionsLayer;

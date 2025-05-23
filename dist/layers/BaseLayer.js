@@ -1,7 +1,12 @@
 import { randomUUID } from 'crypto';
-class BaseLayer {
+export default class BaseLayer {
+    id;
+    static type = 'base';
+    settings;
+    properties;
+    parent;
+    removed = false;
     constructor(parent, properties = {}, settings) {
-        this.removed = false;
         this.parent = parent;
         this.id = randomUUID();
         this.settings = {
@@ -62,5 +67,3 @@ class BaseLayer {
         return this;
     }
 }
-BaseLayer.type = 'base';
-export default BaseLayer;

@@ -7,9 +7,9 @@ export interface MediaLayerProperties extends VisualLayerProperties {
     objectFit?: string;
 }
 export default class MediaLayer extends VisualLayer {
+    static type: string;
     settings: MediaLayerSettings;
     properties: MediaLayerProperties;
-    static type: string;
     constructor(parent: any, properties: MediaLayerProperties | undefined, settings: MediaLayerSettings);
     static get isAsset(): boolean;
     static get defaultSettings(): Partial<MediaLayerSettings>;

@@ -35,8 +35,8 @@ export interface VisualLayerProperties extends BaseLayerProperties {
 export interface VisualLayerSettings extends BaseLayerSettings {
 }
 export default class VisualLayer extends BaseLayer {
-    properties: VisualLayerProperties;
     static type: string;
+    properties: VisualLayerProperties;
     settings: VisualLayerSettings;
     constructor(parent: any, properties: VisualLayerProperties | undefined, settings: VisualLayerSettings);
     static get defaultSettings(): Partial<VisualLayerSettings>;

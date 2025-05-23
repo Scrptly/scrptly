@@ -1,5 +1,6 @@
 import VisualLayer from './VisualLayer.js';
-class TextualLayer extends VisualLayer {
+export default class TextualLayer extends VisualLayer {
+    static type = 'textual';
     constructor(parent, properties = {}, settings = {}) {
         super(parent, properties, settings);
     }
@@ -147,5 +148,3 @@ class TextualLayer extends VisualLayer {
         };
     }
 }
-TextualLayer.type = 'textual';
-export default TextualLayer;
