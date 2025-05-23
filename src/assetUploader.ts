@@ -58,8 +58,8 @@ export default class AssetUploader {
 						'Content-Type': prepare.contentType,
 					},
 					body: fileStream as any,
-					// @ts-expect-error: No overload matches this call.
-					duplex: true
+					// @ts-expect-error
+					duplex: 'half'
 				});
 				if (res.ok) {
 					const successUpload = await this.$.apiCall('completeAssetUpload', {
