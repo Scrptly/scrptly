@@ -16,7 +16,7 @@ export default class AssetUploader {
 
 	async hashFile() {
 		return new Promise((resolve, reject) => {
-			const hash = crypto.createHash('sha256');
+			const hash = crypto.createHash('md5');
 			const stream = fs.createReadStream(this.path);
 			stream.on('error', reject);
 			stream.on('data', chunk => {
@@ -24,7 +24,7 @@ export default class AssetUploader {
 			});
 
 			stream.on('end', () => {
-				resolve(hash.digest('hex'));
+				resolve(hash.digest('base64'));
 			});
 		});
 	}
