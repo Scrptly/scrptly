@@ -1,4 +1,3 @@
-
 import fs from 'fs';
 import crypto from 'crypto';
 import type Scrptly from './index';
@@ -56,6 +55,7 @@ export default class AssetUploader {
 					method: 'PUT',
 					headers: {
 						'Content-Type': prepare.contentType,
+						'Content-Length': size.toString(),
 						'Content-MD5': hash,
 					},
 					body: fileStream as any,
