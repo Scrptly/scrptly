@@ -1,25 +1,27 @@
-import BaseLayer, { BaseLayerSettings, BaseLayerProperties } from './BaseLayer';
+import AuditoryLayer, { AuditoryLayerProperties, AuditoryLayerSettings } from './AuditoryLayer';
 
-export interface AudioLayerProperties extends BaseLayerProperties {
-	volume?: number;
-	pan?: number;
-	pitch?: number;
-	mute?: boolean;
+export interface AudioLayerSettings extends AuditoryLayerSettings {
+	source: string;
+	sourceType?: 'url' | 'asset' | 'base64' | 'file';
 }
+export interface AudioLayerProperties extends AuditoryLayerProperties { }
 
-export interface AudioLayerSettings extends BaseLayerSettings { }
-
-export default class AudioLayer extends BaseLayer {
+export default class AudioLayer extends AuditoryLayer {
+	settings!: AudioLayerSettings;
 	properties!: AudioLayerProperties;
 	static type = 'audio';
-	settings!: AudioLayerSettings;
 
 	constructor(parent: any, properties: AudioLayerProperties = {}, settings: AudioLayerSettings) {
 		super(parent, properties, settings);
 	}
+	static get isAsset() {
+		return true;
+	}
+
 	static get defaultSettings(): Partial<AudioLayerSettings> {
 		return {
 			...super.defaultSettings,
+			sourceType: 'url',
 		};
 	}
 	static get defaultProperties(): Partial<AudioLayerProperties> {
@@ -27,26 +29,4 @@ export default class AudioLayer extends BaseLayer {
 			...super.defaultProperties,
 		};
 	}
-	static get propertiesDefinition() {
-		return {
-			...super.propertiesDefinition,
-			'volume': {
-				default: 1,
-				animatable: true,
-			},
-			'pan': {
-				default: 0,
-				animatable: true,
-			},
-			'pitch': {
-				default: 1,
-				animatable: true,
-			},
-			'mute': {
-				default: false,
-				animatable: false,
-			},
-		};
-	}
-
 }

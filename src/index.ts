@@ -19,20 +19,22 @@ export type { ImageLayerProperties, ImageLayerSettings } from './layers/ImageLay
 import VideoLayer from './layers/VideoLayer';
 export type { VideoLayerProperties, VideoLayerSettings } from './layers/VideoLayer';
 
-import AudioTrackLayer from './layers/AudioTrackLayer';
-export type { AudioTrackLayerProperties, AudioTrackLayerSettings } from './layers/AudioTrackLayer';
+import AudioLayer from './layers/AudioLayer';
+export type { AudioLayerProperties, AudioLayerSettings } from './layers/AudioLayer';
 
 import TTSLayer from './layers/TTSLayer';
 export type { TTSLayerProperties, TTSLayerSettings } from './layers/TTSLayer';
 
-export { BaseLayer, FolderLayer, TextLayer, CaptionsLayer, ImageLayer, VideoLayer, AudioTrackLayer, TTSLayer };
+export { BaseLayer, FolderLayer, TextLayer, CaptionsLayer, ImageLayer, VideoLayer, AudioLayer, TTSLayer };
 
 export {default as TextualLayer} from './layers/TextualLayer';
 export type { TextualLayerProperties, TextualLayerSettings } from './layers/TextualLayer';
-export {default as AudioLayer} from './layers/AudioLayer';
-export type { AudioLayerProperties, AudioLayerSettings } from './layers/AudioLayer';
+export {default as AuditoryLayer} from './layers/AuditoryLayer';
+export type { AuditoryLayerProperties, AuditoryLayerSettings } from './layers/AuditoryLayer';
 export {default as MediaLayer} from './layers/MediaLayer';
+import MediaLayer from './layers/MediaLayer';
 export type { MediaLayerProperties, MediaLayerSettings } from './layers/MediaLayer';
+import type { MediaLayerProperties, MediaLayerSettings } from './layers/MediaLayer';
 export {default as VisualLayer} from './layers/VisualLayer';
 export type { VisualLayerProperties, VisualLayerSettings } from './layers/VisualLayer';
 
