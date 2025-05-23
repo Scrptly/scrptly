@@ -5,8 +5,8 @@ export interface ImageLayerProperties extends MediaLayerProperties { }
 
 export default class ImageLayer extends MediaLayer {
 	static type = 'image';
-	settings!: ImageLayerSettings;
-	properties!: ImageLayerProperties;
+	declare settings: ImageLayerSettings;
+	declare properties: ImageLayerProperties;
 
 	constructor(parent: any, properties: ImageLayerProperties = {}, settings: ImageLayerSettings) {
 		super(parent, properties, settings);

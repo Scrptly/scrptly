@@ -37,9 +37,9 @@ export interface VisualLayerProperties extends BaseLayerProperties {
 export interface VisualLayerSettings extends BaseLayerSettings { }
 
 export default class VisualLayer extends BaseLayer {
-	properties!: VisualLayerProperties;
 	static type = 'visual';
-	settings!: VisualLayerSettings;
+	declare properties: VisualLayerProperties;
+	declare settings: VisualLayerSettings;
 
 	constructor(parent: any, properties: VisualLayerProperties = {}, settings: VisualLayerSettings) {
 		super(parent, properties, settings);

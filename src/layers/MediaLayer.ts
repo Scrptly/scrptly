@@ -10,9 +10,9 @@ export interface MediaLayerProperties extends VisualLayerProperties {
 }
 
 export default class MediaLayer extends VisualLayer {
-	settings!: MediaLayerSettings;
-	properties!: MediaLayerProperties;
 	static type = 'media';
+	declare settings: MediaLayerSettings;
+	declare properties: MediaLayerProperties;
 
 	constructor(parent: any, properties: MediaLayerProperties = {}, settings: MediaLayerSettings) {
 		super(parent, properties, settings);

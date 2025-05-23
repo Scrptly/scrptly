@@ -6,9 +6,9 @@ export interface TextLayerProperties extends TextualLayerProperties {
 export interface TextLayerSettings extends TextualLayerSettings { }
 
 export default class TextLayer extends TextualLayer {
-	properties!: TextLayerProperties;
-	settings!: TextLayerSettings;
 	static type = 'text';
+	declare properties: TextLayerProperties;
+	declare settings: TextLayerSettings;
 
 	constructor(parent: any, properties: TextLayerProperties = {}, settings: TextLayerSettings = {}) {
 		super(parent, properties, settings);

@@ -10,9 +10,9 @@ export interface AuditoryLayerProperties extends BaseLayerProperties {
 export interface AuditoryLayerSettings extends BaseLayerSettings { }
 
 export default class AuditoryLayer extends BaseLayer {
-	properties!: AuditoryLayerProperties;
 	static type = 'auditory';
-	settings!: AuditoryLayerSettings;
+	declare properties: AuditoryLayerProperties;
+	declare settings: AuditoryLayerSettings;
 
 	constructor(parent: any, properties: AuditoryLayerProperties = {}, settings: AuditoryLayerSettings) {
 		super(parent, properties, settings);

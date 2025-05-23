@@ -10,8 +10,8 @@ export default class CaptionsLayer extends VisualLayer {
 	source!: string;
 	sourceType!: 'layer' | 'subtitles';
 	static type = 'captions';
-	settings!: CaptionsLayerSettings;
-	properties!: CaptionsLayerProperties;
+	declare settings: CaptionsLayerSettings;
+	declare properties: CaptionsLayerProperties;
 
 	constructor(parent: any, properties: CaptionsLayerProperties = {}, settings: CaptionsLayerSettings) {
 		super(parent, properties, settings);

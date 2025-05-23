@@ -8,8 +8,8 @@ export interface TTSLayerProperties extends AuditoryLayerProperties { }
 
 export default class TTSLayer extends AuditoryLayer {
 	static type = 'tts';
-	settings!: TTSLayerSettings;
-	properties!: TTSLayerProperties;
+	declare settings: TTSLayerSettings;
+	declare properties: TTSLayerProperties;
 	constructor(parent: any, properties: TTSLayerProperties = {}, settings: TTSLayerSettings) {
 		super(parent, properties, settings);
 	}

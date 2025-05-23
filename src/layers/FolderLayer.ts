@@ -7,8 +7,8 @@ export interface FolderLayerProperties extends VisualLayerProperties { }
 export default class FolderLayer extends VisualLayer {
 	children: BaseLayer[] = [];
 	static type = 'folder';
-	settings!: FolderLayerSettings;
-	properties!: FolderLayerProperties;
+	declare settings: FolderLayerSettings;
+	declare properties: FolderLayerProperties;
 
 	constructor(parent: any, properties: FolderLayerProperties = {}, settings: FolderLayerSettings) {
 		super(parent, properties, settings);

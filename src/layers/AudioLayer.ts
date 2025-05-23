@@ -7,9 +7,9 @@ export interface AudioLayerSettings extends AuditoryLayerSettings {
 export interface AudioLayerProperties extends AuditoryLayerProperties { }
 
 export default class AudioLayer extends AuditoryLayer {
-	settings!: AudioLayerSettings;
-	properties!: AudioLayerProperties;
 	static type = 'audio';
+	declare settings: AudioLayerSettings;
+	declare properties: AudioLayerProperties;
 
 	constructor(parent: any, properties: AudioLayerProperties = {}, settings: AudioLayerSettings) {
 		super(parent, properties, settings);
