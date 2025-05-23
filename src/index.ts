@@ -58,7 +58,7 @@ const scriptlySettings: ScrptlySettings = {
 export default class Scrptly {
 	settings!: ProjectSettings;
 
-	elements: BaseLayer[] = [];
+	layers: BaseLayer[] = [];
 	flow: Action[] = [];
 
 	private _flowPointer: Action[] = this.flow;
@@ -116,7 +116,7 @@ export default class Scrptly {
 		options: AddLayerOptions = {}
 	) {
 		const layer = new LayerClass(this, properties, settings);
-		this.elements.push(layer);
+		this.layers.push(layer);
 		this.pushAction({ statement: 'addLayer', id: layer.id, type: (LayerClass as any).type, settings, properties, options });
 		return layer;
 	}
