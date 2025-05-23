@@ -41,6 +41,17 @@ export default class BaseLayer {
 				...properties
 		};
 	}
+	autoDetermineSourceType(source: string) {
+		if(source.startsWith('https://assets.scrptly.com/')) {
+			return 'asset';
+		} else if(source.startsWith('https://') || source.startsWith('http://')) {
+			return 'url';
+		} else if(source.startsWith('data:')) {
+			return 'base64';
+		} else if(source.startsWith('file://') || (!source.match(/[:=]/) && source.match(/[\.][a-z0-9]{3,4}$/i))) {
+			return 'file';
+		}
+	}
 	static get isAsset() {
 		return false;
 	}

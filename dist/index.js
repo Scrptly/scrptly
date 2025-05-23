@@ -125,6 +125,7 @@ export default class Scrptly {
         // TODO upload media files
         await this.prepareAssets();
         const response = await this.apiCall('renderVideo', {
+            method: 'POST',
             body: JSON.stringify({
                 flow: this.generate(),
                 settings: this.settings,
