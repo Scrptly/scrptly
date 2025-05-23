@@ -41,7 +41,7 @@ export default class AssetUploader {
             }),
         });
         if (prepare.success) {
-            if (prepare.assetId) {
+            if (prepare.found) {
                 return { assetId: prepare.assetId, url: prepare.url };
             }
             else if (prepare.presignedUrl) {
