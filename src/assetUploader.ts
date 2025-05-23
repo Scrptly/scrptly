@@ -82,7 +82,7 @@ export default class AssetUploader {
 							result: 'error',
 						}),
 					});
-					throw new Error(`Upload failed [${res.status}}\n> ${await res.text()}`);
+					throw new Error(`Upload failed [${res.status}]\n> ${await res.text()}`);
 				}
 			} else {
 				throw new Error('Invalid response from server');
