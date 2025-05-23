@@ -1,5 +1,5 @@
-import AudioLayer from './AudioLayer.js';
-class TTSLayer extends AudioLayer {
+import AuditoryLayer from './AuditoryLayer.js';
+class TTSLayer extends AuditoryLayer {
     constructor(parent, properties = {}, settings) {
         super(parent, properties, settings);
     }

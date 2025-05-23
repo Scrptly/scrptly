@@ -1,7 +1,7 @@
 import VisualLayer, { VisualLayerProperties, VisualLayerSettings } from './VisualLayer.js';
 export interface MediaLayerSettings extends VisualLayerSettings {
     source: string;
-    sourceType?: 'url' | 'mediaId' | 'base64';
+    sourceType?: 'url' | 'asset' | 'base64' | 'file';
 }
 export interface MediaLayerProperties extends VisualLayerProperties {
     objectFit?: string;
@@ -11,6 +11,7 @@ export default class MediaLayer extends VisualLayer {
     properties: MediaLayerProperties;
     static type: string;
     constructor(parent: any, properties: MediaLayerProperties | undefined, settings: MediaLayerSettings);
+    static get isAsset(): boolean;
     static get defaultSettings(): Partial<MediaLayerSettings>;
     static get defaultProperties(): Partial<MediaLayerProperties>;
     static get propertiesDefinition(): {

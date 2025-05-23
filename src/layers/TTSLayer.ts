@@ -1,12 +1,12 @@
-import AudioLayer, { AudioLayerProperties, AudioLayerSettings } from './AudioLayer';
+import AuditoryLayer, { AuditoryLayerProperties, AuditoryLayerSettings } from './AuditoryLayer';
 
-export interface TTSLayerSettings extends AudioLayerSettings {
+export interface TTSLayerSettings extends AuditoryLayerSettings {
 	voice: string;
 	model: string;
 }
-export interface TTSLayerProperties extends AudioLayerProperties { }
+export interface TTSLayerProperties extends AuditoryLayerProperties { }
 
-export default class TTSLayer extends AudioLayer {
+export default class TTSLayer extends AuditoryLayer {
 	static type = 'tts';
 	settings!: TTSLayerSettings;
 	properties!: TTSLayerProperties;

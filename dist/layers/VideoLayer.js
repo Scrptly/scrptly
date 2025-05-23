@@ -1,5 +1,5 @@
 import MediaLayer from './MediaLayer.js';
-import AudioLayer from './AudioLayer.js';
+import AuditoryLayer from './AuditoryLayer.js';
 class VideoLayer extends MediaLayer {
     constructor(parent, properties = {}, settings) {
         super(parent, properties, settings);
@@ -7,20 +7,20 @@ class VideoLayer extends MediaLayer {
     static get defaultSettings() {
         return {
             ...super.defaultSettings,
-            ...AudioLayer.defaultSettings,
+            ...AuditoryLayer.defaultSettings,
         };
     }
     static get defaultProperties() {
         return {
             ...super.defaultProperties,
-            ...AudioLayer.defaultProperties,
+            ...AuditoryLayer.defaultProperties,
         };
     }
     static get propertiesDefinition() {
         let props = super.propertiesDefinition;
         return {
             ...props,
-            ...AudioLayer.propertiesDefinition,
+            ...AuditoryLayer.propertiesDefinition,
             'fit': {
                 ...props.fit,
                 default: 'cover',

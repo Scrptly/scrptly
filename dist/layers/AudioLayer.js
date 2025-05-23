@@ -1,37 +1,20 @@
-import BaseLayer from './BaseLayer.js';
-class AudioLayer extends BaseLayer {
+import AuditoryLayer from './AuditoryLayer.js';
+class AudioLayer extends AuditoryLayer {
     constructor(parent, properties = {}, settings) {
         super(parent, properties, settings);
+    }
+    static get isAsset() {
+        return true;
     }
     static get defaultSettings() {
         return {
             ...super.defaultSettings,
+            sourceType: 'url',
         };
     }
     static get defaultProperties() {
         return {
             ...super.defaultProperties,
-        };
-    }
-    static get propertiesDefinition() {
-        return {
-            ...super.propertiesDefinition,
-            'volume': {
-                default: 1,
-                animatable: true,
-            },
-            'pan': {
-                default: 0,
-                animatable: true,
-            },
-            'pitch': {
-                default: 1,
-                animatable: true,
-            },
-            'mute': {
-                default: false,
-                animatable: false,
-            },
         };
     }
 }

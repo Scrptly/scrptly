@@ -12,15 +12,15 @@ import ImageLayer from './layers/ImageLayer.js';
 export type { ImageLayerProperties, ImageLayerSettings } from './layers/ImageLayer.js';
 import VideoLayer from './layers/VideoLayer.js';
 export type { VideoLayerProperties, VideoLayerSettings } from './layers/VideoLayer.js';
-import AudioTrackLayer from './layers/AudioTrackLayer.js';
-export type { AudioTrackLayerProperties, AudioTrackLayerSettings } from './layers/AudioTrackLayer.js';
+import AudioLayer from './layers/AudioLayer.js';
+export type { AudioLayerProperties, AudioLayerSettings } from './layers/AudioLayer.js';
 import TTSLayer from './layers/TTSLayer.js';
 export type { TTSLayerProperties, TTSLayerSettings } from './layers/TTSLayer.js';
-export { BaseLayer, FolderLayer, TextLayer, CaptionsLayer, ImageLayer, VideoLayer, AudioTrackLayer, TTSLayer };
+export { BaseLayer, FolderLayer, TextLayer, CaptionsLayer, ImageLayer, VideoLayer, AudioLayer, TTSLayer };
 export { default as TextualLayer } from './layers/TextualLayer.js';
 export type { TextualLayerProperties, TextualLayerSettings } from './layers/TextualLayer.js';
-export { default as AudioLayer } from './layers/AudioLayer.js';
-export type { AudioLayerProperties, AudioLayerSettings } from './layers/AudioLayer.js';
+export { default as AuditoryLayer } from './layers/AuditoryLayer.js';
+export type { AuditoryLayerProperties, AuditoryLayerSettings } from './layers/AuditoryLayer.js';
 export { default as MediaLayer } from './layers/MediaLayer.js';
 export type { MediaLayerProperties, MediaLayerSettings } from './layers/MediaLayer.js';
 export { default as VisualLayer } from './layers/VisualLayer.js';
@@ -40,7 +40,7 @@ export type ScrptlySettings = {
 };
 export default class Scrptly {
     settings: ProjectSettings;
-    elements: BaseLayer[];
+    layers: BaseLayer[];
     flow: Action[];
     private _flowPointer;
     constructor(settings?: ProjectSettings);
@@ -55,9 +55,11 @@ export default class Scrptly {
     addText(properties?: any, settings?: any, options?: AddLayerOptions): TextLayer;
     addImage(properties?: any, settings?: any, options?: AddLayerOptions): ImageLayer;
     addVideo(properties?: any, settings?: any, options?: AddLayerOptions): VideoLayer;
-    addAudio(properties?: any, settings?: any, options?: AddLayerOptions): AudioTrackLayer;
+    addAudio(properties?: any, settings?: any, options?: AddLayerOptions): AudioLayer;
     addCaptions(properties?: any, settings?: any, options?: AddLayerOptions): CaptionsLayer;
     addTTS(properties?: any, settings?: any, options?: AddLayerOptions): TTSLayer;
-    private apiCall;
+    apiCall(endpoint: string, options?: any): Promise<any>;
     info(): Promise<any>;
+    prepareAssets(): Promise<void>;
+    renderVideo(options?: {}): Promise<any>;
 }

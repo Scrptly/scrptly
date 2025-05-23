@@ -13,6 +13,9 @@ class BaseLayer {
             ...properties
         };
     }
+    static get isAsset() {
+        return false;
+    }
     static get defaultSettings() {
         return {
             name: 'Layer',

@@ -1,8 +1,8 @@
 import MediaLayer, { MediaLayerSettings, MediaLayerProperties } from './MediaLayer';
-import AudioLayer, { AudioLayerSettings, AudioLayerProperties } from './AudioLayer';
+import AuditoryLayer, { AuditoryLayerSettings, AuditoryLayerProperties } from './AuditoryLayer';
 
-export interface VideoLayerSettings extends MediaLayerSettings, AudioLayerSettings { }
-export interface VideoLayerProperties extends MediaLayerProperties, AudioLayerProperties { }
+export interface VideoLayerSettings extends MediaLayerSettings, AuditoryLayerSettings { }
+export interface VideoLayerProperties extends MediaLayerProperties, AuditoryLayerProperties { }
 
 export default class VideoLayer extends MediaLayer {
 	static type = 'video';
@@ -15,20 +15,20 @@ export default class VideoLayer extends MediaLayer {
 	static get defaultSettings(): Partial<VideoLayerSettings> {
 		return {
 			...super.defaultSettings,
-			...AudioLayer.defaultSettings,
+			...AuditoryLayer.defaultSettings,
 		};
 	}
 	static get defaultProperties(): Partial<VideoLayerProperties> {
 		return {
 			...super.defaultProperties,
-			...AudioLayer.defaultProperties,
+			...AuditoryLayer.defaultProperties,
 		};
 	}
 	static get propertiesDefinition() {
 		let props = super.propertiesDefinition;
 		return {
 			...props,
-			...AudioLayer.propertiesDefinition,
+			...AuditoryLayer.propertiesDefinition,
 			'fit': {
 				...props.fit,
 				default: 'cover',

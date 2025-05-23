@@ -1,15 +1,16 @@
-import AudioLayer, { AudioLayerProperties, AudioLayerSettings } from './AudioLayer.js';
-export interface AudioTrackLayerSettings extends AudioLayerSettings {
+import AuditoryLayer, { AuditoryLayerProperties, AuditoryLayerSettings } from './AuditoryLayer.js';
+export interface AudioLayerSettings extends AuditoryLayerSettings {
     source: string;
-    sourceType?: 'url' | 'mediaId' | 'base64';
+    sourceType?: 'url' | 'asset' | 'base64' | 'file';
 }
-export interface AudioTrackLayerProperties extends AudioLayerProperties {
+export interface AudioLayerProperties extends AuditoryLayerProperties {
 }
-export default class AudioTrackLayer extends AudioLayer {
-    settings: AudioTrackLayerSettings;
-    properties: AudioTrackLayerProperties;
+export default class AudioLayer extends AuditoryLayer {
+    settings: AudioLayerSettings;
+    properties: AudioLayerProperties;
     static type: string;
-    constructor(parent: any, properties: AudioTrackLayerProperties | undefined, settings: AudioTrackLayerSettings);
-    static get defaultSettings(): Partial<AudioTrackLayerSettings>;
-    static get defaultProperties(): Partial<AudioTrackLayerProperties>;
+    constructor(parent: any, properties: AudioLayerProperties | undefined, settings: AudioLayerSettings);
+    static get isAsset(): boolean;
+    static get defaultSettings(): Partial<AudioLayerSettings>;
+    static get defaultProperties(): Partial<AudioLayerProperties>;
 }

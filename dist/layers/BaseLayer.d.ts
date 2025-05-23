@@ -24,6 +24,7 @@ export default class BaseLayer {
     protected parent: Scrptly;
     private removed;
     constructor(parent: Scrptly, properties: BaseLayerProperties | undefined, settings: BaseLayerSettings);
+    static get isAsset(): boolean;
     static get defaultSettings(): Partial<BaseLayerSettings>;
     static get defaultProperties(): Partial<BaseLayerProperties>;
     static get propertiesDefinition(): Record<string, PropertyDefinition>;

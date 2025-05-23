@@ -1,6 +1,8 @@
 import type { Time, Id, Easing, Action, AddLayerOptions } from './types';
 export type { Time, Id, Easing, Action, AddLayerOptions };
 
+import AssetUploader from './assetUploader';
+
 import BaseLayer from './layers/BaseLayer';
 export type { BaseLayerProperties, BaseLayerSettings } from './layers/BaseLayer';
 
@@ -134,7 +136,7 @@ export default class Scrptly {
 		return this.addLayer(VideoLayer, properties, settings, options);
 	}
 	addAudio(properties?: any, settings?: any, options?: AddLayerOptions) {
-		return this.addLayer(AudioTrackLayer, properties, settings, options);
+		return this.addLayer(AudioLayer, properties, settings, options);
 	}
 	addCaptions(properties?: any, settings?: any, options?: AddLayerOptions) {
 		return this.addLayer(CaptionsLayer, properties, settings, options);
@@ -145,7 +147,7 @@ export default class Scrptly {
 
 
 	// API calls
-	private async apiCall(endpoint: string, options: any = {}) {
+	async apiCall(endpoint: string, options: any = {}) {
 		if (!scriptlySettings.apiKey) throw new Error('API key not set');
 		const url = `${scriptlySettings.apiEndpoint}${endpoint}`;
 		const response = await fetch(url, {
@@ -164,6 +166,30 @@ export default class Scrptly {
 
 	async info() {
 		const response = await this.apiCall('info');
+		return response;
+	}
+
+	async prepareAssets() {
+		for(let layer_ of this.layers) {
+			let layer: MediaLayer = layer_ as MediaLayer;
+			if((layer.constructor as typeof MediaLayer).isAsset && layer.settings.sourceType=='file') {
+				let asset = new AssetUploader(this, layer.settings.source, (layer.constructor as typeof MediaLayer).type);
+				let response = await asset.uploadAsset();
+				layer.settings.source = response.url;
+				layer.settings.sourceType = 'asset';
+			}
+		}
+	}
+	
+	async renderVideo(options = {}) {
+		// TODO upload media files
+		await this.prepareAssets();
+		const response = await this.apiCall('renderVideo', {
+			body: JSON.stringify({
+				flow: this.generate(),
+				settings: this.settings,
+			}),
+		});
 		return response;
 	}
 }

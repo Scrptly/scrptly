@@ -1,35 +1,16 @@
-import BaseLayer, { BaseLayerSettings, BaseLayerProperties } from './BaseLayer.js';
-export interface AudioLayerProperties extends BaseLayerProperties {
-    volume?: number;
-    pan?: number;
-    pitch?: number;
-    mute?: boolean;
+import AuditoryLayer, { AuditoryLayerProperties, AuditoryLayerSettings } from './AuditoryLayer.js';
+export interface AudioLayerSettings extends AuditoryLayerSettings {
+    source: string;
+    sourceType?: 'url' | 'asset' | 'base64' | 'file';
 }
-export interface AudioLayerSettings extends BaseLayerSettings {
+export interface AudioLayerProperties extends AuditoryLayerProperties {
 }
-export default class AudioLayer extends BaseLayer {
+export default class AudioLayer extends AuditoryLayer {
+    settings: AudioLayerSettings;
     properties: AudioLayerProperties;
     static type: string;
-    settings: AudioLayerSettings;
     constructor(parent: any, properties: AudioLayerProperties | undefined, settings: AudioLayerSettings);
+    static get isAsset(): boolean;
     static get defaultSettings(): Partial<AudioLayerSettings>;
     static get defaultProperties(): Partial<AudioLayerProperties>;
-    static get propertiesDefinition(): {
-        volume: {
-            default: number;
-            animatable: boolean;
-        };
-        pan: {
-            default: number;
-            animatable: boolean;
-        };
-        pitch: {
-            default: number;
-            animatable: boolean;
-        };
-        mute: {
-            default: boolean;
-            animatable: boolean;
-        };
-    };
 }

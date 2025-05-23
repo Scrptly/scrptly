@@ -41,6 +41,9 @@ export default class BaseLayer {
 				...properties
 		};
 	}
+	static get isAsset() {
+		return false;
+	}
 
 	static get defaultSettings(): Partial<BaseLayerSettings> {
 		return {

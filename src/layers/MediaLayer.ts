@@ -2,7 +2,7 @@ import VisualLayer, { VisualLayerProperties, VisualLayerSettings } from './Visua
 
 export interface MediaLayerSettings extends VisualLayerSettings {
 	source: string;
-	sourceType?: 'url' | 'mediaId' | 'base64';
+	sourceType?: 'url' | 'asset' | 'base64' | 'file';
 }
 
 export interface MediaLayerProperties extends VisualLayerProperties {
@@ -16,6 +16,9 @@ export default class MediaLayer extends VisualLayer {
 
 	constructor(parent: any, properties: MediaLayerProperties = {}, settings: MediaLayerSettings) {
 		super(parent, properties, settings);
+	}
+	static get isAsset() {
+		return true;
 	}
 	static get defaultSettings(): Partial<MediaLayerSettings> {
 		return {

@@ -1,14 +1,15 @@
+import AssetUploader from './assetUploader.js';
 import BaseLayer from './layers/BaseLayer.js';
 import FolderLayer from './layers/FolderLayer.js';
 import TextLayer from './layers/TextLayer.js';
 import CaptionsLayer from './layers/CaptionsLayer.js';
 import ImageLayer from './layers/ImageLayer.js';
 import VideoLayer from './layers/VideoLayer.js';
-import AudioTrackLayer from './layers/AudioTrackLayer.js';
+import AudioLayer from './layers/AudioLayer.js';
 import TTSLayer from './layers/TTSLayer.js';
-export { BaseLayer, FolderLayer, TextLayer, CaptionsLayer, ImageLayer, VideoLayer, AudioTrackLayer, TTSLayer };
+export { BaseLayer, FolderLayer, TextLayer, CaptionsLayer, ImageLayer, VideoLayer, AudioLayer, TTSLayer };
 export { default as TextualLayer } from './layers/TextualLayer.js';
-export { default as AudioLayer } from './layers/AudioLayer.js';
+export { default as AuditoryLayer } from './layers/AuditoryLayer.js';
 export { default as MediaLayer } from './layers/MediaLayer.js';
 export { default as VisualLayer } from './layers/VisualLayer.js';
 const scriptlySettings = {
@@ -17,7 +18,7 @@ const scriptlySettings = {
 };
 export default class Scrptly {
     constructor(settings = {}) {
-        this.elements = [];
+        this.layers = [];
         this.flow = [];
         this._flowPointer = this.flow;
         this.settings = {
@@ -62,7 +63,7 @@ export default class Scrptly {
     }
     addLayer(LayerClass, properties = {}, settings = {}, options = {}) {
         const layer = new LayerClass(this, properties, settings);
-        this.elements.push(layer);
+        this.layers.push(layer);
         this.pushAction({ statement: 'addLayer', id: layer.id, type: LayerClass.type, settings, properties, options });
         return layer;
     }
@@ -79,7 +80,7 @@ export default class Scrptly {
         return this.addLayer(VideoLayer, properties, settings, options);
     }
     addAudio(properties, settings, options) {
-        return this.addLayer(AudioTrackLayer, properties, settings, options);
+        return this.addLayer(AudioLayer, properties, settings, options);
     }
     addCaptions(properties, settings, options) {
         return this.addLayer(CaptionsLayer, properties, settings, options);
@@ -107,6 +108,28 @@ export default class Scrptly {
     }
     async info() {
         const response = await this.apiCall('info');
+        return response;
+    }
+    async prepareAssets() {
+        for (let layer_ of this.layers) {
+            let layer = layer_;
+            if (layer.constructor.isAsset && layer.settings.sourceType == 'file') {
+                let asset = new AssetUploader(this, layer.settings.source, layer.constructor.type);
+                let response = await asset.uploadAsset();
+                layer.settings.source = response.url;
+                layer.settings.sourceType = 'asset';
+            }
+        }
+    }
+    async renderVideo(options = {}) {
+        // TODO upload media files
+        await this.prepareAssets();
+        const response = await this.apiCall('renderVideo', {
+            body: JSON.stringify({
+                flow: this.generate(),
+                settings: this.settings,
+            }),
+        });
         return response;
     }
 }
