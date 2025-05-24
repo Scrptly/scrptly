@@ -32,7 +32,10 @@ export type ProjectSettings = {
     };
     frameRate?: number | string;
     backgroundColor?: string;
-    defaultEasing?: Easing;
+    defaults?: {
+        easing?: Easing;
+        fontFamily?: string;
+    };
 };
 export type ScrptlySettings = {
     apiKey: string | false;

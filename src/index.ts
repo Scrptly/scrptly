@@ -45,7 +45,10 @@ export type ProjectSettings = {
 	size?: { width: number; height: number };
 	frameRate?: number | string;
 	backgroundColor?: string;
-	defaultEasing?: Easing;
+	defaults?: {
+		easing?: Easing;
+		fontFamily?: string;
+	}
 };
 export type ScrptlySettings = {
 	apiKey: string | false;
@@ -76,7 +79,10 @@ export default class Scrptly {
 			size: { width: 1920, height: 1080 },
 			frameRate: 30,
 			backgroundColor: '#00000000',
-			defaultEasing: 'easeInOut',
+			defaults: {
+				easing: 'easeInOut',
+				fontFamily: 'Noto Sans',
+			}
 		};
 	}
 	static setApiSettings(settings: ScrptlySettings) {
