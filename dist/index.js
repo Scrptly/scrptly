@@ -62,9 +62,6 @@ export default class Scrptly {
         this._flowPointer = initialPointer;
         this.pushAction({ statement: 'parallel', actions });
     }
-    generate() {
-        return this.flow;
-    }
     addLayer(LayerClass, properties = {}, settings = {}, options = {}) {
         const layer = new LayerClass(this, properties, settings);
         this.layers.push(layer);
@@ -114,16 +111,26 @@ export default class Scrptly {
         const response = await this.apiCall('info');
         return response;
     }
-    async prepareAssets() {
-        for (let layer_ of this.layers) {
-            let layer = layer_;
-            if (layer.constructor.isAsset && layer.settings.sourceType == 'file') {
-                let asset = new AssetUploader(this, layer.settings.source, layer.constructor.type);
-                let response = await asset.uploadAsset();
-                layer.settings.source = response.url;
-                layer.settings.sourceType = 'asset';
+    async prepareAssets(actions = []) {
+        for (let action of this.flow) {
+            if (action.statement === 'addLayer') {
+                let layer = this.layers.find(l => l.id === action.id);
+                if (layer && layer.constructor.isAsset && layer.settings.sourceType == 'file') {
+                    let asset = new AssetUploader(this, layer.settings.source, layer.constructor.type);
+                    let response = await asset.uploadAsset();
+                    layer.settings.source = response.url;
+                    layer.settings.sourceType = 'asset';
+                    action.settings.source = response.url;
+                    action.settings.sourceType = 'asset';
+                }
+            }
+            else if (action.statement == 'parallel') {
+                for (let subActions of action.actions) {
+                    await this.prepareAssets(subActions);
+                }
             }
         }
+        return true;
     }
     async renderVideo(options = {}) {
         // TODO upload media files
@@ -131,7 +138,7 @@ export default class Scrptly {
         const response = await this.apiCall('renderVideo', {
             method: 'POST',
             body: JSON.stringify({
-                flow: this.generate(),
+                flow: this.flow,
                 settings: this.settings,
             }),
         });

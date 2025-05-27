@@ -52,7 +52,6 @@ export default class Scrptly {
     pushAction(action: Action): void;
     wait(time: Time): this;
     parallel(funcs: Array<() => Action>, settings?: any): void;
-    generate(): Action[];
     addLayer<T extends BaseLayer>(LayerClass: new (parent: Scrptly, properties?: any, settings?: any) => T, properties?: any, settings?: any, options?: AddLayerOptions): T;
     addFolder(properties?: any, settings?: any, options?: AddLayerOptions): FolderLayer;
     addText(properties?: any, settings?: any, options?: AddLayerOptions): TextLayer;
@@ -63,6 +62,6 @@ export default class Scrptly {
     addTTS(properties?: any, settings?: any, options?: AddLayerOptions): TTSLayer;
     apiCall(endpoint: string, options?: any): Promise<any>;
     info(): Promise<any>;
-    prepareAssets(): Promise<void>;
+    prepareAssets(actions?: Action[]): Promise<boolean>;
     renderVideo(options?: {}): Promise<any>;
 }
