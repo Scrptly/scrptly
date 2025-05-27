@@ -113,10 +113,6 @@ export default class Scrptly {
 		this.pushAction({ statement: 'parallel', actions });
 	}
 
-	generate() {
-		return this.flow;
-	}
-
 	addLayer<T extends BaseLayer>(
 		LayerClass: new (parent: Scrptly, properties?: any, settings?: any) => T,
 		properties: any = {},
@@ -193,7 +189,7 @@ export default class Scrptly {
 		const response = await this.apiCall('renderVideo', {
 			method: 'POST',
 			body: JSON.stringify({
-				flow: this.generate(),
+				flow: this.flow,
 				settings: this.settings,
 			}),
 		});
