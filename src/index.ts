@@ -171,8 +171,8 @@ export default class Scrptly {
 		return response;
 	}
 
-	async prepareAssets(actions: Action[] = []) {
-		for(let action of this.flow) {
+	async prepareAssets(actions: Action[] = this.flow) {
+		for(let action of actions) {
 			if(action.statement === 'addLayer') {
 				let layer: MediaLayer = this.layers.find(l => l.id === action.id) as MediaLayer;
 				if(layer && (layer.constructor as typeof MediaLayer).isAsset && layer.settings.sourceType=='file') {
@@ -183,7 +183,7 @@ export default class Scrptly {
 					action.settings.source = response.url;
 					action.settings.sourceType = 'asset';
 				}
-			} else if(action.statement=='parallel') {
+			} else if(action.statement==='parallel') {
 				for(let subActions of action.actions) {
 					await this.prepareAssets(subActions);
 				}

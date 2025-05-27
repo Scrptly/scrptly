@@ -111,8 +111,8 @@ export default class Scrptly {
         const response = await this.apiCall('info');
         return response;
     }
-    async prepareAssets(actions = []) {
-        for (let action of this.flow) {
+    async prepareAssets(actions = this.flow) {
+        for (let action of actions) {
             if (action.statement === 'addLayer') {
                 let layer = this.layers.find(l => l.id === action.id);
                 if (layer && layer.constructor.isAsset && layer.settings.sourceType == 'file') {
@@ -124,7 +124,7 @@ export default class Scrptly {
                     action.settings.sourceType = 'asset';
                 }
             }
-            else if (action.statement == 'parallel') {
+            else if (action.statement === 'parallel') {
                 for (let subActions of action.actions) {
                     await this.prepareAssets(subActions);
                 }
