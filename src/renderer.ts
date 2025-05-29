@@ -39,9 +39,8 @@ export default class Renderer {
 						break;
 					case 'complete':
 						this.scrptly.renderVideoTask.title = 'Render video';
-						this.scrptly.renderVideoTask.ctx.result = data.renderInfo;
 						this.scrptly.renderVideoTask.output = 'Render successful! Video URL: ' + data.renderInfo.videoUrl;
-						resolve(data);
+                        resolve(data.renderInfo);
 						sse.close();
 						break;
 					case 'close':
