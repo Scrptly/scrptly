@@ -30,10 +30,10 @@ export default class Renderer {
                         sse.close();
                         break;
                     case 'complete':
-                        this.scrptly.renderVideoTask.title = 'Render video';
-                        this.scrptly.renderVideoTask.output = 'Render successful! Video URL: ' + data.renderInfo.output.video;
-                        resolve(data.renderInfo);
                         sse.close();
+                        this.scrptly.renderVideoTask.title = 'Render video';
+                        this.scrptly.renderVideoTask.output = `Render successful (took ${Math.round(data.renderInfo.info.renderDuration / 1000)}s)!\nVideo URL: ${data.renderInfo.output.video}\nRender Info: ${data.renderInfo.url}`;
+                        resolve(data.renderInfo);
                         break;
                     case 'close':
                         sse.close();
