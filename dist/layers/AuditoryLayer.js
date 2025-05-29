@@ -1,4 +1,4 @@
-import BaseLayer from './BaseLayer.js';
+import BaseLayer from './BaseLayer';
 export default class AuditoryLayer extends BaseLayer {
     static type = 'auditory';
     constructor(parent, properties = {}, settings) {

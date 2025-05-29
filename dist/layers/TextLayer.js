@@ -1,4 +1,4 @@
-import TextualLayer from './TextualLayer.js';
+import TextualLayer from './TextualLayer';
 export default class TextLayer extends TextualLayer {
     static type = 'text';
     constructor(parent, properties = {}, settings = {}) {

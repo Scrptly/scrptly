@@ -1,4 +1,4 @@
-import type Scrptly from './index.js';
+import type Scrptly from './index';
 export default class AssetUploader {
     $: Scrptly;
     path: string;

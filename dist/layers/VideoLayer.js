@@ -1,5 +1,5 @@
-import MediaLayer from './MediaLayer.js';
-import AuditoryLayer from './AuditoryLayer.js';
+import MediaLayer from './MediaLayer';
+import AuditoryLayer from './AuditoryLayer';
 export default class VideoLayer extends MediaLayer {
     static type = 'video';
     constructor(parent, properties = {}, settings) {

@@ -1,4 +1,4 @@
-import VisualLayer from './VisualLayer.js';
+import VisualLayer from './VisualLayer';
 export default class FolderLayer extends VisualLayer {
     children = [];
     static type = 'folder';

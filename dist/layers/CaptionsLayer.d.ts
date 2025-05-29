@@ -1,4 +1,4 @@
-import VisualLayer, { VisualLayerProperties, VisualLayerSettings } from './VisualLayer.js';
+import VisualLayer, { VisualLayerProperties, VisualLayerSettings } from './VisualLayer';
 export interface CaptionsLayerSettings extends VisualLayerSettings {
     source: string;
     sourceType?: 'layer' | 'subtitles';

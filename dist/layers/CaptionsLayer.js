@@ -1,4 +1,4 @@
-import VisualLayer from './VisualLayer.js';
+import VisualLayer from './VisualLayer';
 export default class CaptionsLayer extends VisualLayer {
     source;
     sourceType;

@@ -1,4 +1,4 @@
-import VisualLayer, { VisualLayerProperties, VisualLayerSettings } from './VisualLayer.js';
+import VisualLayer, { VisualLayerProperties, VisualLayerSettings } from './VisualLayer';
 export interface MediaLayerSettings extends VisualLayerSettings {
     source: string;
     sourceType?: 'url' | 'asset' | 'base64' | 'file';

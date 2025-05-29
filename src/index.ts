@@ -1,7 +1,10 @@
+import AssetUploader from './assetUploader';
+import Renderer from './renderer';
+import type {RenderOptions} from './renderer';
+import { Listr, SilentRenderer } from 'listr2';
+
 import type { Time, Id, Easing, Action, AddLayerOptions } from './types';
 export type { Time, Id, Easing, Action, AddLayerOptions };
-
-import AssetUploader from './assetUploader';
 
 import BaseLayer from './layers/BaseLayer';
 export type { BaseLayerProperties, BaseLayerSettings } from './layers/BaseLayer';
@@ -67,6 +70,8 @@ export default class Scrptly {
 	flow: Action[] = [];
 
 	private _flowPointer: Action[] = this.flow;
+	prepareAssetsTask: any = null;
+	renderVideoTask: any = null;
 
 	constructor(settings: ProjectSettings = {}) {
 		this.settings = {
@@ -176,6 +181,7 @@ export default class Scrptly {
 			if(action.statement === 'addLayer') {
 				let layer: MediaLayer = this.layers.find(l => l.id === action.id) as MediaLayer;
 				if(layer && (layer.constructor as typeof MediaLayer).isAsset && layer.settings.sourceType=='file') {
+					this.prepareAssetsTask.output = `Uploading ${layer.settings.source}...`;
 					let asset = new AssetUploader(this, layer.settings.source, (layer.constructor as typeof MediaLayer).type);
 					let response = await asset.uploadAsset();
 					layer.settings.source = response.url;
@@ -192,16 +198,27 @@ export default class Scrptly {
 		return true;
 	}
 	
-	async renderVideo(options = {}) {
-		// TODO upload media files
-		await this.prepareAssets();
-		const response = await this.apiCall('renderVideo', {
-			method: 'POST',
-			body: JSON.stringify({
-				flow: this.flow,
-				settings: this.settings,
-			}),
+	async renderVideo(options:RenderOptions = {}) {
+		const tasks = new Listr([
+			{
+				title: 'Preparing assets',
+				task: async (ctx, task) => {
+					this.prepareAssetsTask = task;
+					await this.prepareAssets();
+				}
+			},
+			{
+				title: 'Rendering video',
+				task: async (ctx, task) => {
+					this.renderVideoTask = task;
+					const renderer = new Renderer(this, options, this.settings, this.flow);
+					ctx.result = await renderer.render();
+				}
+			}
+		], {
+			renderer: options.verbose ? 'default' : SilentRenderer
 		});
-		return response;
+		await tasks.run();
+		return tasks.ctx.result;
 	}
 }

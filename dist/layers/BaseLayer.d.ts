@@ -1,5 +1,5 @@
-import type Scrptly from '../index.js';
-import type { Id, Time, Easing } from '../types.js';
+import type Scrptly from '../index';
+import type { Id, Time, Easing } from '../types';
 export interface BaseLayerSettings {
     name?: string;
     enabled?: boolean;

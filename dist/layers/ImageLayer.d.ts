@@ -1,4 +1,4 @@
-import MediaLayer, { MediaLayerSettings, MediaLayerProperties } from './MediaLayer.js';
+import MediaLayer, { MediaLayerSettings, MediaLayerProperties } from './MediaLayer';
 export interface ImageLayerSettings extends MediaLayerSettings {
 }
 export interface ImageLayerProperties extends MediaLayerProperties {

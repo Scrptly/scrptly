@@ -1,4 +1,4 @@
-import BaseLayer, { BaseLayerSettings, BaseLayerProperties } from './BaseLayer.js';
+import BaseLayer, { BaseLayerSettings, BaseLayerProperties } from './BaseLayer';
 export interface AuditoryLayerProperties extends BaseLayerProperties {
     volume?: number;
     pan?: number;

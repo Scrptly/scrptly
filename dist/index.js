@@ -1,17 +1,18 @@
-import AssetUploader from './assetUploader.js';
-import BaseLayer from './layers/BaseLayer.js';
-import FolderLayer from './layers/FolderLayer.js';
-import TextLayer from './layers/TextLayer.js';
-import CaptionsLayer from './layers/CaptionsLayer.js';
-import ImageLayer from './layers/ImageLayer.js';
-import VideoLayer from './layers/VideoLayer.js';
-import AudioLayer from './layers/AudioLayer.js';
-import TTSLayer from './layers/TTSLayer.js';
+import AssetUploader from './assetUploader';
+import Renderer from './renderer';
+import BaseLayer from './layers/BaseLayer';
+import FolderLayer from './layers/FolderLayer';
+import TextLayer from './layers/TextLayer';
+import CaptionsLayer from './layers/CaptionsLayer';
+import ImageLayer from './layers/ImageLayer';
+import VideoLayer from './layers/VideoLayer';
+import AudioLayer from './layers/AudioLayer';
+import TTSLayer from './layers/TTSLayer';
 export { BaseLayer, FolderLayer, TextLayer, CaptionsLayer, ImageLayer, VideoLayer, AudioLayer, TTSLayer };
-export { default as TextualLayer } from './layers/TextualLayer.js';
-export { default as AuditoryLayer } from './layers/AuditoryLayer.js';
-export { default as MediaLayer } from './layers/MediaLayer.js';
-export { default as VisualLayer } from './layers/VisualLayer.js';
+export { default as TextualLayer } from './layers/TextualLayer';
+export { default as AuditoryLayer } from './layers/AuditoryLayer';
+export { default as MediaLayer } from './layers/MediaLayer';
+export { default as VisualLayer } from './layers/VisualLayer';
 const scriptlySettings = {
     apiKey: false,
     apiEndpoint: 'https://api.scrptly.com/',
@@ -135,13 +136,7 @@ export default class Scrptly {
     async renderVideo(options = {}) {
         // TODO upload media files
         await this.prepareAssets();
-        const response = await this.apiCall('renderVideo', {
-            method: 'POST',
-            body: JSON.stringify({
-                flow: this.flow,
-                settings: this.settings,
-            }),
-        });
-        return response;
+        const renderer = new Renderer(this, options, this.settings, this.flow);
+        return await renderer.render();
     }
 }

@@ -1,0 +1,74 @@
+import {EventSource} from 'eventsource';
+import type { ProjectSettings } from './index';
+import type { Action } from './types';
+import type Scrptly from './index';
+
+export type RenderOptions = {
+	verbose?: boolean;
+};
+
+export default class Renderer {
+	scrptly!: Scrptly;
+	options = {
+		verbose: true
+	};
+	flow: Action[];
+	settings: ProjectSettings;
+	constructor(scrptly: Scrptly, options:RenderOptions = {}, settings:ProjectSettings, flow: Action[]) {
+		this.scrptly = scrptly;
+		Object.assign(this.options, options);
+		this.flow = flow;
+		this.settings = settings;
+	}
+	async listenToEvents(url: string) {
+		await new Promise((resolve, reject) => {
+			const sse = new EventSource(url);
+			sse.onmessage = (event) => {
+				let {command, data} = JSON.parse(event.data);
+				switch(command) {
+					case 'log':
+						this.scrptly.renderVideoTask.output = data.message;
+						break;
+					case 'progress':
+						this.scrptly.renderVideoTask.title = 'Rendering video — '+data.progress.toFixed(1)+'%';
+						break;
+					case 'warn':
+						this.scrptly.renderVideoTask.report(data.warn);
+						break;
+					case 'fail':
+						//this.spinner?.fail(data.error);
+						reject(new Error(data.error));
+						sse.close();
+						break;
+					case 'complete':
+						this.scrptly.renderVideoTask.title = 'Render video';
+						this.scrptly.renderVideoTask.output = data.message;
+						resolve(data);
+						sse.close();
+						break;
+					default:
+						console.warn('Unknown command:', command, 'Data:', data);
+				}
+			};
+			sse.onerror = (err) => {
+				this.options.verbose && console.error('SSE error:', err);
+			};
+		});
+	}
+	async render() {
+		const response = await this.scrptly.apiCall('renderVideo', {
+			method: 'POST',
+			body: JSON.stringify({
+				flow: this.flow,
+				settings: this.settings,
+			}),
+		});
+		if(response.success) {
+			await this.listenToEvents(response.eventsUrl);
+			return response;
+		} else {
+			throw new Error(`Render failed: ${response.error}`);
+		}
+	}
+
+}

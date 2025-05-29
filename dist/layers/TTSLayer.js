@@ -1,4 +1,4 @@
-import AuditoryLayer from './AuditoryLayer.js';
+import AuditoryLayer from './AuditoryLayer';
 export default class TTSLayer extends AuditoryLayer {
     static type = 'tts';
     constructor(parent, properties = {}, settings) {
