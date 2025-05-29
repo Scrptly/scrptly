@@ -65,8 +65,7 @@ export default class Renderer {
 			}),
 		});
 		if(response.success) {
-			await this.listenToEvents(response.eventsUrl);
-			return response;
+			return await this.listenToEvents(response.eventsUrl);
 		} else {
 			throw new Error(`Render failed: ${response.error}`);
 		}

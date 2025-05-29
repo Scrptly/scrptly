@@ -11,5 +11,5 @@ export default class Renderer {
     settings: ProjectSettings;
     constructor(scrptly: Scrptly, options: RenderOptions | undefined, settings: ProjectSettings, flow: Action[]);
     listenToEvents(url: string): Promise<void>;
-    render(): Promise<any>;
+    render(): Promise<void>;
 }
