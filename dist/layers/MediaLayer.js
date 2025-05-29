@@ -1,4 +1,4 @@
-import VisualLayer from './VisualLayer';
+import VisualLayer from './VisualLayer.js';
 export default class MediaLayer extends VisualLayer {
     static type = 'media';
     constructor(parent, properties = {}, settings) {

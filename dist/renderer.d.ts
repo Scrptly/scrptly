@@ -1,6 +1,6 @@
-import type { ProjectSettings } from './index';
-import type { Action } from './types';
-import type Scrptly from './index';
+import type { ProjectSettings } from './index.js';
+import type { Action } from './types.js';
+import type Scrptly from './index.js';
 export type RenderOptions = {
     verbose?: boolean;
 };

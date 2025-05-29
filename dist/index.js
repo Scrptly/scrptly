@@ -1,18 +1,19 @@
-import AssetUploader from './assetUploader';
-import Renderer from './renderer';
-import BaseLayer from './layers/BaseLayer';
-import FolderLayer from './layers/FolderLayer';
-import TextLayer from './layers/TextLayer';
-import CaptionsLayer from './layers/CaptionsLayer';
-import ImageLayer from './layers/ImageLayer';
-import VideoLayer from './layers/VideoLayer';
-import AudioLayer from './layers/AudioLayer';
-import TTSLayer from './layers/TTSLayer';
+import AssetUploader from './assetUploader.js';
+import Renderer from './renderer.js';
+import { Listr, SilentRenderer } from 'listr2';
+import BaseLayer from './layers/BaseLayer.js';
+import FolderLayer from './layers/FolderLayer.js';
+import TextLayer from './layers/TextLayer.js';
+import CaptionsLayer from './layers/CaptionsLayer.js';
+import ImageLayer from './layers/ImageLayer.js';
+import VideoLayer from './layers/VideoLayer.js';
+import AudioLayer from './layers/AudioLayer.js';
+import TTSLayer from './layers/TTSLayer.js';
 export { BaseLayer, FolderLayer, TextLayer, CaptionsLayer, ImageLayer, VideoLayer, AudioLayer, TTSLayer };
-export { default as TextualLayer } from './layers/TextualLayer';
-export { default as AuditoryLayer } from './layers/AuditoryLayer';
-export { default as MediaLayer } from './layers/MediaLayer';
-export { default as VisualLayer } from './layers/VisualLayer';
+export { default as TextualLayer } from './layers/TextualLayer.js';
+export { default as AuditoryLayer } from './layers/AuditoryLayer.js';
+export { default as MediaLayer } from './layers/MediaLayer.js';
+export { default as VisualLayer } from './layers/VisualLayer.js';
 const scriptlySettings = {
     apiKey: false,
     apiEndpoint: 'https://api.scrptly.com/',
@@ -22,6 +23,8 @@ export default class Scrptly {
     layers = [];
     flow = [];
     _flowPointer = this.flow;
+    prepareAssetsTask = null;
+    renderVideoTask = null;
     constructor(settings = {}) {
         this.settings = {
             ...(this.constructor.defaultSettings),
@@ -117,6 +120,7 @@ export default class Scrptly {
             if (action.statement === 'addLayer') {
                 let layer = this.layers.find(l => l.id === action.id);
                 if (layer && layer.constructor.isAsset && layer.settings.sourceType == 'file') {
+                    this.prepareAssetsTask.output = `Uploading ${layer.settings.source}...`;
                     let asset = new AssetUploader(this, layer.settings.source, layer.constructor.type);
                     let response = await asset.uploadAsset();
                     layer.settings.source = response.url;
@@ -134,9 +138,26 @@ export default class Scrptly {
         return true;
     }
     async renderVideo(options = {}) {
-        // TODO upload media files
-        await this.prepareAssets();
-        const renderer = new Renderer(this, options, this.settings, this.flow);
-        return await renderer.render();
+        const tasks = new Listr([
+            {
+                title: 'Preparing assets',
+                task: async (ctx, task) => {
+                    this.prepareAssetsTask = task;
+                    await this.prepareAssets();
+                }
+            },
+            {
+                title: 'Rendering video',
+                task: async (ctx, task) => {
+                    this.renderVideoTask = task;
+                    const renderer = new Renderer(this, options, this.settings, this.flow);
+                    ctx.result = await renderer.render();
+                }
+            }
+        ], {
+            renderer: options.verbose ? 'default' : SilentRenderer
+        });
+        await tasks.run();
+        return tasks.ctx.result;
     }
 }

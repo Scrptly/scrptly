@@ -1,5 +1,5 @@
-import MediaLayer, { MediaLayerSettings, MediaLayerProperties } from './MediaLayer';
-import { AuditoryLayerSettings, AuditoryLayerProperties } from './AuditoryLayer';
+import MediaLayer, { MediaLayerSettings, MediaLayerProperties } from './MediaLayer.js';
+import { AuditoryLayerSettings, AuditoryLayerProperties } from './AuditoryLayer.js';
 export interface VideoLayerSettings extends MediaLayerSettings, AuditoryLayerSettings {
 }
 export interface VideoLayerProperties extends MediaLayerProperties, AuditoryLayerProperties {

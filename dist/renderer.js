@@ -1,4 +1,4 @@
-import EventSource from 'eventsource';
+import { EventSource } from 'eventsource';
 export default class Renderer {
     scrptly;
     options = {
@@ -19,17 +19,22 @@ export default class Renderer {
                 let { command, data } = JSON.parse(event.data);
                 switch (command) {
                     case 'log':
-                        if (this.options.verbose) {
-                            console.log('Log:', data);
-                        }
+                        this.scrptly.renderVideoTask.output = data.message;
                         break;
-                    case 'error':
-                        console.error('Error:', data);
-                        reject(new Error(data));
+                    case 'progress':
+                        this.scrptly.renderVideoTask.title = 'Rendering video — ' + data.progress.toFixed(1) + '%';
+                        break;
+                    case 'warn':
+                        this.scrptly.renderVideoTask.report(data.warn);
+                        break;
+                    case 'fail':
+                        //this.spinner?.fail(data.error);
+                        reject(new Error(data.error));
                         sse.close();
                         break;
                     case 'complete':
-                        console.log('Render complete:', data);
+                        this.scrptly.renderVideoTask.title = 'Render video';
+                        this.scrptly.renderVideoTask.output = data.message;
                         resolve(data);
                         sse.close();
                         break;

@@ -1,4 +1,4 @@
-import BaseLayer from './BaseLayer';
+import BaseLayer from './BaseLayer.js';
 export default class VisualLayer extends BaseLayer {
     static type = 'visual';
     constructor(parent, properties = {}, settings) {

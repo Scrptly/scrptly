@@ -1,4 +1,4 @@
-import TextualLayer, { TextualLayerProperties, TextualLayerSettings } from './TextualLayer';
+import TextualLayer, { TextualLayerProperties, TextualLayerSettings } from './TextualLayer.js';
 export interface TextLayerProperties extends TextualLayerProperties {
     text?: string;
 }

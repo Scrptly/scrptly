@@ -1,5 +1,5 @@
-import VisualLayer, { VisualLayerProperties, VisualLayerSettings } from './VisualLayer';
-import type BaseLayer from './BaseLayer';
+import VisualLayer, { VisualLayerProperties, VisualLayerSettings } from './VisualLayer.js';
+import type BaseLayer from './BaseLayer.js';
 export interface FolderLayerSettings extends VisualLayerSettings {
 }
 export interface FolderLayerProperties extends VisualLayerProperties {

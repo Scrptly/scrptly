@@ -1,4 +1,4 @@
-import VisualLayer, { VisualLayerProperties, VisualLayerSettings } from './VisualLayer';
+import VisualLayer, { VisualLayerProperties, VisualLayerSettings } from './VisualLayer.js';
 export interface TextualLayerProperties extends VisualLayerProperties {
     fontSize?: number;
     fontFamily?: string;

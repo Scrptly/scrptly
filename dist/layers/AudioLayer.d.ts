@@ -1,4 +1,4 @@
-import AuditoryLayer, { AuditoryLayerProperties, AuditoryLayerSettings } from './AuditoryLayer';
+import AuditoryLayer, { AuditoryLayerProperties, AuditoryLayerSettings } from './AuditoryLayer.js';
 export interface AudioLayerSettings extends AuditoryLayerSettings {
     source: string;
     sourceType?: 'url' | 'asset' | 'base64' | 'file';

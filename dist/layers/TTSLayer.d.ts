@@ -1,4 +1,4 @@
-import AuditoryLayer, { AuditoryLayerProperties, AuditoryLayerSettings } from './AuditoryLayer';
+import AuditoryLayer, { AuditoryLayerProperties, AuditoryLayerSettings } from './AuditoryLayer.js';
 export interface TTSLayerSettings extends AuditoryLayerSettings {
     voice: string;
     model: string;

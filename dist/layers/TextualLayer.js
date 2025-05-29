@@ -1,4 +1,4 @@
-import VisualLayer from './VisualLayer';
+import VisualLayer from './VisualLayer.js';
 export default class TextualLayer extends VisualLayer {
     static type = 'textual';
     constructor(parent, properties = {}, settings = {}) {

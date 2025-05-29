@@ -1,5 +1,5 @@
-import BaseLayer, { BaseLayerSettings, BaseLayerProperties } from './BaseLayer';
-import type { Time, Easing } from '../types';
+import BaseLayer, { BaseLayerSettings, BaseLayerProperties } from './BaseLayer.js';
+import type { Time, Easing } from '../types.js';
 export interface VisualLayerProperties extends BaseLayerProperties {
     visible?: boolean;
     opacity?: number;
