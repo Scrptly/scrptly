@@ -9,9 +9,7 @@ export type RenderOptions = {
 
 export default class Renderer {
 	scrptly!: Scrptly;
-	options = {
-		verbose: true
-	};
+	options: RenderOptions = {};
 	flow: Action[];
 	settings: ProjectSettings;
 	constructor(scrptly: Scrptly, options:RenderOptions = {}, settings:ProjectSettings, flow: Action[]) {

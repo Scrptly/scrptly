@@ -199,6 +199,9 @@ export default class Scrptly {
 	}
 	
 	async renderVideo(options:RenderOptions = {}) {
+		options = Object.assign({
+			verbose: true,
+		}, options);
 		const tasks = new Listr([
 			{
 				title: 'Preparing assets',

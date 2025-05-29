@@ -1,9 +1,7 @@
 import { EventSource } from 'eventsource';
 export default class Renderer {
     scrptly;
-    options = {
-        verbose: true
-    };
+    options = {};
     flow;
     settings;
     constructor(scrptly, options = {}, settings, flow) {
