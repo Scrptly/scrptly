@@ -222,7 +222,10 @@ export default class Scrptly {
 					this.renderVideoTask = task;
 					const renderer = new Renderer(this, options, this.settings, this.flow);
 					ctx.result = await renderer.render();
-				}
+				},
+				rendererOptions: {
+					persistentOutput: true,
+				},
 			}
 		], {
 			renderer: options.verbose===false ? SilentRenderer : 'default',
