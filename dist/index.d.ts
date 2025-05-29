@@ -42,6 +42,9 @@ export type ScrptlySettings = {
     apiKey: string | false;
     apiEndpoint?: string;
 };
+interface RenderCtx {
+    result?: any;
+}
 export default class Scrptly {
     settings: ProjectSettings;
     layers: BaseLayer[];
@@ -49,6 +52,7 @@ export default class Scrptly {
     private _flowPointer;
     prepareAssetsTask: any;
     renderVideoTask: any;
+    renderCtx: RenderCtx;
     constructor(settings?: ProjectSettings);
     static get defaultSettings(): ProjectSettings;
     static setApiSettings(settings: ScrptlySettings): void;

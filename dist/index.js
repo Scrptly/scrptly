@@ -14,6 +14,7 @@ export { default as TextualLayer } from './layers/TextualLayer.js';
 export { default as AuditoryLayer } from './layers/AuditoryLayer.js';
 export { default as MediaLayer } from './layers/MediaLayer.js';
 export { default as VisualLayer } from './layers/VisualLayer.js';
+;
 const scriptlySettings = {
     apiKey: false,
     apiEndpoint: 'https://api.scrptly.com/',
@@ -25,6 +26,7 @@ export default class Scrptly {
     _flowPointer = this.flow;
     prepareAssetsTask = null;
     renderVideoTask = null;
+    renderCtx = {};
     constructor(settings = {}) {
         this.settings = {
             ...(this.constructor.defaultSettings),
@@ -141,8 +143,7 @@ export default class Scrptly {
         options = Object.assign({
             verbose: true,
         }, options);
-        ;
-        const ctx = {};
+        this.renderCtx = {};
         const tasks = new Listr([
             {
                 title: 'Preparing assets',
@@ -161,7 +162,7 @@ export default class Scrptly {
             }
         ], {
             renderer: options.verbose === false ? SilentRenderer : 'default',
-            ctx
+            ctx: this.renderCtx
         });
         await tasks.run();
         return tasks.ctx.result;

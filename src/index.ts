@@ -58,6 +58,10 @@ export type ScrptlySettings = {
 	apiEndpoint?: string
 };
 
+interface RenderCtx {
+	result?: any;
+};
+
 const scriptlySettings: ScrptlySettings = {
 	apiKey: false,
 	apiEndpoint: 'https://api.scrptly.com/',
@@ -72,6 +76,7 @@ export default class Scrptly {
 	private _flowPointer: Action[] = this.flow;
 	prepareAssetsTask: any = null;
 	renderVideoTask: any = null;
+	renderCtx: RenderCtx = {};
 
 	constructor(settings: ProjectSettings = {}) {
 		this.settings = {
@@ -202,10 +207,7 @@ export default class Scrptly {
 		options = Object.assign({
 			verbose: true,
 		}, options);
-		interface Ctx {
-			result?: any;
-		};
-		const ctx: Ctx = {};
+		this.renderCtx = {};
 		const tasks = new Listr([
 			{
 				title: 'Preparing assets',
@@ -224,7 +226,7 @@ export default class Scrptly {
 			}
 		], {
 			renderer: options.verbose===false ? SilentRenderer : 'default',
-			ctx
+			ctx: this.renderCtx
 		});
 		await tasks.run();
 		return tasks.ctx.result;
