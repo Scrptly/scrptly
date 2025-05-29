@@ -11,7 +11,7 @@ export default class Renderer {
         this.settings = settings;
     }
     async listenToEvents(url) {
-        await new Promise((resolve, reject) => {
+        return await new Promise((resolve, reject) => {
             const sse = new EventSource(url);
             sse.onmessage = (event) => {
                 let { command, data } = JSON.parse(event.data);
