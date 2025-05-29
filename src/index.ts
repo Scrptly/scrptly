@@ -202,6 +202,10 @@ export default class Scrptly {
 		options = Object.assign({
 			verbose: true,
 		}, options);
+		interface Ctx {
+			result?: any;
+		};
+		const ctx: Ctx = {};
 		const tasks = new Listr([
 			{
 				title: 'Preparing assets',
@@ -219,7 +223,8 @@ export default class Scrptly {
 				}
 			}
 		], {
-			renderer: options.verbose===false ? SilentRenderer : 'default'
+			renderer: options.verbose===false ? SilentRenderer : 'default',
+			ctx
 		});
 		await tasks.run();
 		return tasks.ctx.result;

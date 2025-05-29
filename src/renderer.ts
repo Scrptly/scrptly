@@ -44,6 +44,9 @@ export default class Renderer {
 						resolve(data);
 						sse.close();
 						break;
+					case 'close':
+						sse.close();
+						break;
 					default:
 						console.warn('Unknown command:', command, 'Data:', data);
 				}
