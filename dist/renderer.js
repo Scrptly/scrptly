@@ -28,13 +28,13 @@ export default class Renderer {
                         this.scrptly.renderVideoTask.report(data.warn);
                         break;
                     case 'fail':
-                        //this.spinner?.fail(data.error);
                         reject(new Error(data.error));
                         sse.close();
                         break;
                     case 'complete':
                         this.scrptly.renderVideoTask.title = 'Render video';
-                        this.scrptly.renderVideoTask.output = data.message;
+                        this.scrptly.renderVideoTask.ctx.result = data.renderInfo;
+                        this.scrptly.renderVideoTask.output = 'Render successful! Video URL: ' + data.renderInfo.videoUrl;
                         resolve(data);
                         sse.close();
                         break;
@@ -44,6 +44,7 @@ export default class Renderer {
             };
             sse.onerror = (err) => {
                 this.options.verbose && console.error('SSE error:', err);
+                reject(new Error('SSE error: ' + String(err)));
             };
         });
     }
