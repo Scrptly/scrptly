@@ -4,6 +4,7 @@ export default class Renderer {
     options = {};
     flow;
     settings;
+    renderId;
     constructor(scrptly, options = {}, settings, flow) {
         this.scrptly = scrptly;
         Object.assign(this.options, options);
@@ -44,7 +45,7 @@ export default class Renderer {
             };
             sse.onerror = (err) => {
                 this.options.verbose && console.error('SSE error:', err);
-                reject(new Error('SSE error: ' + String(err)));
+                reject(new Error(`Connection to renderer server lost.${this.renderId ? `\nTrack Render status at: https://scrptly.com/render/${this.renderId}` : ''}`));
             };
         });
     }
@@ -57,6 +58,7 @@ export default class Renderer {
             }),
         });
         if (response.success) {
+            this.renderId = response.renderId;
             return await this.listenToEvents(response.eventsUrl);
         }
         else {

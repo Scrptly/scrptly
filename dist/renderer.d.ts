@@ -9,6 +9,7 @@ export default class Renderer {
     options: RenderOptions;
     flow: Action[];
     settings: ProjectSettings;
+    renderId?: string;
     constructor(scrptly: Scrptly, options: RenderOptions | undefined, settings: ProjectSettings, flow: Action[]);
     listenToEvents(url: string): Promise<unknown>;
     render(): Promise<unknown>;
