@@ -155,7 +155,7 @@ export default class Scrptly {
                 }
             }
         ], {
-            renderer: options.verbose ? 'default' : SilentRenderer
+            renderer: options.verbose === false ? SilentRenderer : 'default'
         });
         await tasks.run();
         return tasks.ctx.result;
