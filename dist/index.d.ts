@@ -36,6 +36,7 @@ export type ProjectSettings = {
     defaults?: {
         easing?: Easing;
         fontFamily?: string;
+        cacheIntegrations?: boolean;
     };
 };
 export type ScrptlySettings = {

@@ -41,6 +41,7 @@ export default class Scrptly {
             defaults: {
                 easing: 'easeInOut',
                 fontFamily: 'Noto Sans',
+                cacheIntegrations: true,
             }
         };
     }

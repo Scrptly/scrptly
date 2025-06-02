@@ -1,8 +1,10 @@
 import AuditoryLayer, { AuditoryLayerProperties, AuditoryLayerSettings } from './AuditoryLayer';
 
 export interface TTSLayerSettings extends AuditoryLayerSettings {
-	voice: string;
+	voice?: string | "default"; // A search term for finding the voice, or "default", or "id:<voice_id>" for a specific voice ID, or "auto" to let Scrptly choose the best voice
 	model: string;
+	modelSettings?: any;
+	cache?: boolean; // whether to cache the TTS output
 }
 export interface TTSLayerProperties extends AuditoryLayerProperties { }
 

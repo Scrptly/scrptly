@@ -51,6 +51,7 @@ export type ProjectSettings = {
 	defaults?: {
 		easing?: Easing;
 		fontFamily?: string;
+		cacheIntegrations?: boolean; // whether to cache API calls to third party integrations like TTS, AI generators, etc.
 	}
 };
 export type ScrptlySettings = {
@@ -92,6 +93,7 @@ export default class Scrptly {
 			defaults: {
 				easing: 'easeInOut',
 				fontFamily: 'Noto Sans',
+				cacheIntegrations: true,
 			}
 		};
 	}
