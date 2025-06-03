@@ -55,7 +55,8 @@ export default class BaseLayer {
         this.parent.pushAction({ statement: 'set', id: this.id, value });
         return this;
     }
-    animate(from, to, settings = { duration: 0 }) {
+    animate(from, to, { duration = '0.25s', easing, wait } = { duration: '0.25s' }) {
+        let settings = { duration, easing, wait };
         this.parent.pushAction({ statement: 'animate', id: this.id, from, to, settings });
         return this;
     }

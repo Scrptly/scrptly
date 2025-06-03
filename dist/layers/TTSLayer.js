@@ -14,8 +14,8 @@ export default class TTSLayer extends AuditoryLayer {
             ...super.defaultProperties,
         };
     }
-    say(text) {
-        this.parent.pushAction({ statement: 'ttsSay', id: this.id, text });
+    say(text, settings = {}) {
+        this.parent.pushAction({ statement: 'ttsSay', id: this.id, text, settings });
         return this;
     }
 }

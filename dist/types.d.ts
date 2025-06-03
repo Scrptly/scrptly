@@ -39,4 +39,7 @@ export type Action = {
     statement: 'ttsSay';
     id: Id;
     text: string;
+    settings?: {
+        wait?: boolean;
+    };
 };

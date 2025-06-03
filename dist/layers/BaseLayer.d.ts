@@ -24,13 +24,13 @@ export default class BaseLayer {
     protected parent: Scrptly;
     private removed;
     constructor(parent: Scrptly, properties: BaseLayerProperties | undefined, settings: BaseLayerSettings);
-    autoDetermineSourceType(source: string): "url" | "asset" | "base64" | "file" | undefined;
+    autoDetermineSourceType(source: string): "asset" | "url" | "base64" | "file" | undefined;
     static get isAsset(): boolean;
     static get defaultSettings(): Partial<BaseLayerSettings>;
     static get defaultProperties(): Partial<BaseLayerProperties>;
     static get propertiesDefinition(): Record<string, PropertyDefinition>;
     set(value: Record<string, any>): this;
-    animate(from: Record<string, any>, to: Record<string, any>, settings?: {
+    animate(from: Record<string, any>, to: Record<string, any>, { duration, easing, wait }?: {
         duration: Time;
         easing?: Easing;
         wait?: boolean;

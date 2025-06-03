@@ -28,8 +28,10 @@ export default class TTSLayer extends AuditoryLayer {
 	}
 	
 
-	say(text: string) {
-		this.parent.pushAction({ statement: 'ttsSay', id: this.id, text });
+	say(text: string, settings: {
+		wait?: boolean // default: true
+	} = {}) {
+		this.parent.pushAction({ statement: 'ttsSay', id: this.id, text, settings });
 		return this;
 	}
 }

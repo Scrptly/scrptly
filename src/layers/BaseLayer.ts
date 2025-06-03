@@ -81,12 +81,17 @@ export default class BaseLayer {
 	animate(
 		from: Record<string, any>,
 		to: Record<string, any>,
-		settings: {
+		{
+			duration = '0.25s',
+			easing,
+			wait
+		}:{
 			duration: Time,
 			easing?: Easing,
-			wait?: boolean
-		} = {duration: 0}
+			wait?: boolean, // default: true
+		} = { duration: '0.25s'}
 	) {
+		let settings = { duration, easing, wait };
 		this.parent.pushAction({ statement: 'animate', id: this.id, from, to, settings });
 		return this;
 	}
