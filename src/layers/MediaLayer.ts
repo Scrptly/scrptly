@@ -7,7 +7,7 @@ export type MediaLayerSettings =
 	})
 	| (VisualLayerSettings & {
 		prompt: string; // Prompt to use for generating media
-		model: 'auto' | 'default' | 'unsplash' | 'openai' | 'google' | 'falai' | string; // Model to use for generating media Submodel can be specified like this: falai:stable-diffusion
+		model?: 'auto' | 'default' | 'unsplash' | 'openai' | 'google' | 'falai' | string; // Model to use for generating media Submodel can be specified like this: falai:stable-diffusion
 	});
 export type MediaLayerProperties = VisualLayerProperties & {
 	objectFit?: string;
