@@ -4,7 +4,7 @@ export type MediaLayerSettings = (VisualLayerSettings & {
     sourceType?: 'url' | 'asset' | 'base64' | 'file';
 }) | (VisualLayerSettings & {
     prompt: string;
-    model?: 'auto' | 'default' | 'unsplash' | 'openai' | 'google' | 'falai' | string;
+    model: 'unsplash' | 'openai' | 'google' | 'falai' | string;
     modelSettings?: any;
     cache?: boolean;
 });
