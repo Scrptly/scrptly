@@ -1,9 +1,7 @@
 import VisualLayer, { VisualLayerProperties, VisualLayerSettings } from './VisualLayer.js';
 import type BaseLayer from './BaseLayer.js';
-export interface FolderLayerSettings extends VisualLayerSettings {
-}
-export interface FolderLayerProperties extends VisualLayerProperties {
-}
+export type FolderLayerSettings = VisualLayerSettings;
+export type FolderLayerProperties = VisualLayerProperties;
 export default class FolderLayer extends VisualLayer {
     children: BaseLayer[];
     static type: string;

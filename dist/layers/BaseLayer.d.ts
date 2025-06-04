@@ -1,21 +1,20 @@
 import type Scrptly from '../index.js';
 import type { Id, Time, Easing } from '../types.js';
-export interface BaseLayerSettings {
+export type BaseLayerSettings = {
     name?: string;
     enabled?: boolean;
     locked?: boolean;
     startTime?: number;
     endTime?: false | number;
     speed?: number;
-}
-export interface BaseLayerProperties {
-}
-export interface PropertyDefinition {
+};
+export type BaseLayerProperties = {};
+export type PropertyDefinition = {
     cssProperty?: string;
     units?: string[];
     default: any;
     animatable: boolean;
-}
+};
 export default class BaseLayer {
     readonly id: Id;
     static type: string;

@@ -1,9 +1,7 @@
 import MediaLayer, { MediaLayerSettings, MediaLayerProperties } from './MediaLayer.js';
 import { AuditoryLayerSettings, AuditoryLayerProperties } from './AuditoryLayer.js';
-export interface VideoLayerSettings extends MediaLayerSettings, AuditoryLayerSettings {
-}
-export interface VideoLayerProperties extends MediaLayerProperties, AuditoryLayerProperties {
-}
+export type VideoLayerSettings = MediaLayerSettings & AuditoryLayerSettings & {};
+export type VideoLayerProperties = MediaLayerProperties & AuditoryLayerProperties;
 export default class VideoLayer extends MediaLayer {
     static type: string;
     settings: VideoLayerSettings;

@@ -1,9 +1,8 @@
 import TextualLayer, { TextualLayerProperties, TextualLayerSettings } from './TextualLayer.js';
-export interface TextLayerProperties extends TextualLayerProperties {
+export type TextLayerProperties = TextualLayerProperties & {
     text?: string;
-}
-export interface TextLayerSettings extends TextualLayerSettings {
-}
+};
+export type TextLayerSettings = TextualLayerSettings;
 export default class TextLayer extends TextualLayer {
     static type: string;
     properties: TextLayerProperties;

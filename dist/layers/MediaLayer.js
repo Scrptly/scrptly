@@ -3,7 +3,7 @@ export default class MediaLayer extends VisualLayer {
     static type = 'media';
     constructor(parent, properties = {}, settings) {
         super(parent, properties, settings);
-        if (settings.source && !settings.sourceType)
+        if ('source' in settings && 'source' in this.settings && settings.source && !settings.sourceType)
             this.settings.sourceType = this.autoDetermineSourceType(settings.source);
     }
     static get isAsset() {

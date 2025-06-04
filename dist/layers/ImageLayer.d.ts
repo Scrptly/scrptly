@@ -1,8 +1,6 @@
 import MediaLayer, { MediaLayerSettings, MediaLayerProperties } from './MediaLayer.js';
-export interface ImageLayerSettings extends MediaLayerSettings {
-}
-export interface ImageLayerProperties extends MediaLayerProperties {
-}
+export type ImageLayerSettings = MediaLayerSettings;
+export type ImageLayerProperties = MediaLayerProperties;
 export default class ImageLayer extends MediaLayer {
     static type: string;
     settings: ImageLayerSettings;

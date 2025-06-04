@@ -122,7 +122,7 @@ export default class Scrptly {
         for (let action of actions) {
             if (action.statement === 'addLayer') {
                 let layer = this.layers.find(l => l.id === action.id);
-                if (layer && layer.constructor.isAsset && layer.settings.sourceType == 'file') {
+                if (layer && layer.constructor.isAsset && 'source' in layer.settings && layer.settings.sourceType == 'file') {
                     this.prepareAssetsTask.output = `Uploading ${layer.settings.source}...`;
                     let asset = new AssetUploader(this, layer.settings.source, layer.constructor.type);
                     let response = await asset.uploadAsset();

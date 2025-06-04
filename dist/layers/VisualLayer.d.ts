@@ -1,6 +1,6 @@
 import BaseLayer, { BaseLayerSettings, BaseLayerProperties } from './BaseLayer.js';
 import type { Time, Easing } from '../types.js';
-export interface VisualLayerProperties extends BaseLayerProperties {
+export type VisualLayerProperties = BaseLayerProperties & {
     visible?: boolean;
     opacity?: number;
     blendMode?: string;
@@ -31,9 +31,8 @@ export interface VisualLayerProperties extends BaseLayerProperties {
     filterHueRotate?: number;
     filterSaturate?: number;
     perspective?: number;
-}
-export interface VisualLayerSettings extends BaseLayerSettings {
-}
+};
+export type VisualLayerSettings = BaseLayerSettings;
 export default class VisualLayer extends BaseLayer {
     static type: string;
     properties: VisualLayerProperties;

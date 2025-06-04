@@ -1,11 +1,14 @@
 import VisualLayer, { VisualLayerProperties, VisualLayerSettings } from './VisualLayer.js';
-export interface MediaLayerSettings extends VisualLayerSettings {
+export type MediaLayerSettings = (VisualLayerSettings & {
     source: string;
     sourceType?: 'url' | 'asset' | 'base64' | 'file';
-}
-export interface MediaLayerProperties extends VisualLayerProperties {
+}) | (VisualLayerSettings & {
+    prompt: string;
+    model: 'auto' | 'default' | 'unsplash' | 'openai' | 'google' | 'falai' | string;
+});
+export type MediaLayerProperties = VisualLayerProperties & {
     objectFit?: string;
-}
+};
 export default class MediaLayer extends VisualLayer {
     static type: string;
     settings: MediaLayerSettings;

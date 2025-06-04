@@ -1,12 +1,11 @@
 import BaseLayer, { BaseLayerSettings, BaseLayerProperties } from './BaseLayer.js';
-export interface AuditoryLayerProperties extends BaseLayerProperties {
+export type AuditoryLayerProperties = BaseLayerProperties & {
     volume?: number;
     pan?: number;
     pitch?: number;
     mute?: boolean;
-}
-export interface AuditoryLayerSettings extends BaseLayerSettings {
-}
+};
+export type AuditoryLayerSettings = BaseLayerSettings;
 export default class AuditoryLayer extends BaseLayer {
     static type: string;
     properties: AuditoryLayerProperties;

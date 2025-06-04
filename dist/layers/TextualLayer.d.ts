@@ -1,5 +1,5 @@
 import VisualLayer, { VisualLayerProperties, VisualLayerSettings } from './VisualLayer.js';
-export interface TextualLayerProperties extends VisualLayerProperties {
+export type TextualLayerProperties = VisualLayerProperties & {
     fontSize?: number;
     fontFamily?: string;
     fontWeight?: string | number;
@@ -23,9 +23,8 @@ export interface TextualLayerProperties extends VisualLayerProperties {
     wordSpacing?: number;
     direction?: string;
     textIndent?: number;
-}
-export interface TextualLayerSettings extends VisualLayerSettings {
-}
+};
+export type TextualLayerSettings = VisualLayerSettings;
 export default class TextualLayer extends VisualLayer {
     static type: string;
     properties: TextualLayerProperties;
