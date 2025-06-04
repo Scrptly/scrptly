@@ -5,6 +5,8 @@ export type MediaLayerSettings = (VisualLayerSettings & {
 }) | (VisualLayerSettings & {
     prompt: string;
     model?: 'auto' | 'default' | 'unsplash' | 'openai' | 'google' | 'falai' | string;
+    modelSettings?: any;
+    cache?: boolean;
 });
 export type MediaLayerProperties = VisualLayerProperties & {
     objectFit?: string;

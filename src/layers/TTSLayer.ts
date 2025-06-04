@@ -10,7 +10,7 @@ export type TTSLayerSettings = AuditoryLayerSettings & {
 	voice?: string | "default";
 	model: string;
 	modelSettings?: any;
-	cache?: boolean; // whether to cache the TTS output
+	cache?: boolean; // whether to cache the TTS output (default: true)
 };
 export type TTSLayerProperties = AuditoryLayerProperties;
 
