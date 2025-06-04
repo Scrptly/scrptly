@@ -1,10 +1,10 @@
 import AuditoryLayer, { AuditoryLayerProperties, AuditoryLayerSettings } from './AuditoryLayer';
 
-export interface AudioLayerSettings extends AuditoryLayerSettings {
+export type AudioLayerSettings = AuditoryLayerSettings & {
 	source: string;
 	sourceType?: 'url' | 'asset' | 'base64' | 'file';
-}
-export interface AudioLayerProperties extends AuditoryLayerProperties { }
+};
+export type AudioLayerProperties = AuditoryLayerProperties;
 
 export default class AudioLayer extends AuditoryLayer {
 	static type = 'audio';
