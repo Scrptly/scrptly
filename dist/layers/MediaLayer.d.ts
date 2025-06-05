@@ -1,13 +1,15 @@
 import VisualLayer, { VisualLayerProperties, VisualLayerSettings } from './VisualLayer.js';
-export type MediaLayerSettings = (VisualLayerSettings & {
+export type MediaLayerSettingsStatic = VisualLayerSettings & {
     source: string;
     sourceType?: 'url' | 'asset' | 'base64' | 'file';
-}) | (VisualLayerSettings & {
+};
+export type MediaLayerSettingsDynamic = VisualLayerSettings & {
     prompt: string;
     model: 'unsplash' | 'openai' | 'google' | 'falai' | string;
     modelSettings?: any;
     cache?: boolean;
-});
+};
+export type MediaLayerSettings = MediaLayerSettingsStatic | MediaLayerSettingsDynamic;
 export type MediaLayerProperties = VisualLayerProperties & {
     objectFit?: string;
 };

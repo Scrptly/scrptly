@@ -1,6 +1,17 @@
-import MediaLayer, { MediaLayerSettings, MediaLayerProperties } from './MediaLayer.js';
+import MediaLayer, { MediaLayerSettingsStatic, MediaLayerSettingsDynamic, MediaLayerProperties } from './MediaLayer.js';
 import { AuditoryLayerSettings, AuditoryLayerProperties } from './AuditoryLayer.js';
-export type VideoLayerSettings = MediaLayerSettings & AuditoryLayerSettings & {};
+export type VideoLayerSettings = (MediaLayerSettingsStatic | (MediaLayerSettingsDynamic & {
+    duration?: number;
+    image?: {
+        source: string;
+        sourceType?: 'url' | 'asset' | 'base64' | 'file';
+    } | {
+        prompt: string;
+        model: 'unsplash' | 'openai' | 'google' | 'falai' | string;
+        modelSettings?: any;
+        cache?: boolean;
+    };
+})) & AuditoryLayerSettings;
 export type VideoLayerProperties = MediaLayerProperties & AuditoryLayerProperties;
 export default class VideoLayer extends MediaLayer {
     static type: string;
