@@ -7,41 +7,53 @@ import type { Time, Id, Easing, Action, AddLayerOptions } from './types';
 export type { Time, Id, Easing, Action, AddLayerOptions };
 
 import BaseLayer from './layers/BaseLayer';
-export type { BaseLayerProperties, BaseLayerSettings } from './layers/BaseLayer';
+import type { BaseLayerProperties, BaseLayerSettings } from './layers/BaseLayer';
+export type { BaseLayerProperties, BaseLayerSettings };
 
 import FolderLayer from './layers/FolderLayer';
-export type { FolderLayerProperties, FolderLayerSettings } from './layers/FolderLayer';
+import type { FolderLayerProperties, FolderLayerSettings } from './layers/FolderLayer';
+export type { FolderLayerProperties, FolderLayerSettings };
 
 import TextLayer from './layers/TextLayer';
-export type { TextLayerProperties, TextLayerSettings } from './layers/TextLayer';
+import type { TextLayerProperties, TextLayerSettings } from './layers/TextLayer';
+export type { TextLayerProperties, TextLayerSettings };
 
 import CaptionsLayer from './layers/CaptionsLayer';
-export type { CaptionsLayerProperties, CaptionsLayerSettings } from './layers/CaptionsLayer';
+import type { CaptionsLayerProperties, CaptionsLayerSettings } from './layers/CaptionsLayer';
+export type { CaptionsLayerProperties, CaptionsLayerSettings };
 
 import ImageLayer from './layers/ImageLayer';
-export type { ImageLayerProperties, ImageLayerSettings } from './layers/ImageLayer';
+import type { ImageLayerProperties, ImageLayerSettings } from './layers/ImageLayer';
+export type { ImageLayerProperties, ImageLayerSettings };
 
 import VideoLayer from './layers/VideoLayer';
-export type { VideoLayerProperties, VideoLayerSettings } from './layers/VideoLayer';
+import type { VideoLayerProperties, VideoLayerSettings } from './layers/VideoLayer';
+export type { VideoLayerProperties, VideoLayerSettings };
 
 import AudioLayer from './layers/AudioLayer';
-export type { AudioLayerProperties, AudioLayerSettings } from './layers/AudioLayer';
+import type { AudioLayerProperties, AudioLayerSettings } from './layers/AudioLayer';
+export type { AudioLayerProperties, AudioLayerSettings };
 
 import TTSLayer from './layers/TTSLayer';
-export type { TTSLayerProperties, TTSLayerSettings } from './layers/TTSLayer';
+import type { TTSLayerProperties, TTSLayerSettings } from './layers/TTSLayer';
+export type { TTSLayerProperties, TTSLayerSettings };
 
 export { BaseLayer, FolderLayer, TextLayer, CaptionsLayer, ImageLayer, VideoLayer, AudioLayer, TTSLayer };
 
 export {default as TextualLayer} from './layers/TextualLayer';
 export type { TextualLayerProperties, TextualLayerSettings } from './layers/TextualLayer';
+
 export {default as AuditoryLayer} from './layers/AuditoryLayer';
 export type { AuditoryLayerProperties, AuditoryLayerSettings } from './layers/AuditoryLayer';
+
 export {default as MediaLayer} from './layers/MediaLayer';
 import MediaLayer from './layers/MediaLayer';
-export type { MediaLayerProperties, MediaLayerSettings } from './layers/MediaLayer';
 import type { MediaLayerProperties, MediaLayerSettings } from './layers/MediaLayer';
+export type { MediaLayerProperties, MediaLayerSettings };
+
 export {default as VisualLayer} from './layers/VisualLayer';
-export type { VisualLayerProperties, VisualLayerSettings } from './layers/VisualLayer';
+import type { VisualLayerProperties, VisualLayerSettings } from './layers/VisualLayer';
+export type { VisualLayerProperties, VisualLayerSettings };
 
 
 export type ProjectSettings = {
@@ -127,8 +139,8 @@ export default class Scrptly {
 
 	addLayer<T extends BaseLayer>(
 		LayerClass: new (parent: Scrptly, properties?: any, settings?: any) => T,
-		properties: any = {},
-		settings: any = {},
+		properties: Record<string, any> = {},
+		settings: Record<string, any> = {},
 		options: AddLayerOptions = {}
 	) {
 		const layer = new LayerClass(this, properties, settings);
@@ -137,25 +149,26 @@ export default class Scrptly {
 		return layer;
 	}
 
-	addFolder(properties?: any, settings?: any, options?: AddLayerOptions) {
+	/*addFolder(properties?: Record<string, any>, settings?: Record<string, any>, options?: AddLayerOptions) {
 		return this.addLayer(FolderLayer, properties, settings, options);
-	}
-	addText(properties?: any, settings?: any, options?: AddLayerOptions) {
+	}*/
+	addText(properties?: TextLayerProperties, settings?: TextLayerSettings, options?: AddLayerOptions) {
 		return this.addLayer(TextLayer, properties, settings, options);
 	}
-	addImage(properties?: any, settings?: any, options?: AddLayerOptions) {
+	addImage(properties?: ImageLayerProperties, settings?: ImageLayerSettings, options?: AddLayerOptions) {
 		return this.addLayer(ImageLayer, properties, settings, options);
 	}
-	addVideo(properties?: any, settings?: any, options?: AddLayerOptions) {
+	addVideo(properties?: VideoLayerProperties, settings?: VideoLayerSettings, options?: AddLayerOptions) {
 		return this.addLayer(VideoLayer, properties, settings, options);
 	}
-	addAudio(properties?: any, settings?: any, options?: AddLayerOptions) {
+	addAudio(properties?: AudioLayerProperties, settings?: AudioLayerSettings, options?: AddLayerOptions) {
 		return this.addLayer(AudioLayer, properties, settings, options);
 	}
-	addCaptions(properties?: any, settings?: any, options?: AddLayerOptions) {
+	addCaptions(properties?: CaptionsLayerProperties, settings?: CaptionsLayerSettings, options?: AddLayerOptions) {
+		settings
 		return this.addLayer(CaptionsLayer, properties, settings, options);
 	}
-	addTTS(properties?: any, settings?: any, options?: AddLayerOptions) {
+	addTTS(properties?: TTSLayerProperties, settings?: TTSLayerSettings, options?: AddLayerOptions) {
 		return this.addLayer(TTSLayer, properties, settings, options);
 	}
 
