@@ -1,9 +1,15 @@
 import AuditoryLayer, { AuditoryLayerProperties, AuditoryLayerSettings } from './AuditoryLayer';
 
-export type AudioLayerSettings = AuditoryLayerSettings & {
-	source: string;
-	sourceType?: 'url' | 'asset' | 'base64' | 'file';
-};
+export type AudioLayerSettings =
+	| (AuditoryLayerSettings & {
+		source: string;
+		sourceType?: 'url' | 'asset' | 'base64' | 'file';
+	})
+	| (AuditoryLayerSettings & {
+		prompt: string;
+		duration?: number; // duration in seconds
+		modelSettings?: any;
+	});
 export type AudioLayerProperties = AuditoryLayerProperties;
 
 export default class AudioLayer extends AuditoryLayer {
@@ -13,7 +19,7 @@ export default class AudioLayer extends AuditoryLayer {
 
 	constructor(parent: any, properties: AudioLayerProperties = {}, settings: AudioLayerSettings) {
 		super(parent, properties, settings);
-		if(settings.source && !settings.sourceType)
+		if('source' in settings && 'source' in this.settings && settings.source && !settings.sourceType)
 			this.settings.sourceType = this.autoDetermineSourceType(settings.source);
 	}
 	static get isAsset() {
