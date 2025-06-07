@@ -1,5 +1,6 @@
 import TextualLayer, { TextualLayerProperties, TextualLayerSettings } from './TextualLayer';
 import { Id } from '../types';
+import { text } from 'stream/consumers';
 
 export type CaptionsLayerSettings = TextualLayerSettings & {
 	source: string;// Could be  a URL to an audio file, a layer ID, or "project" to generate captions from timeline's audio
@@ -31,6 +32,17 @@ export default class CaptionsLayer extends TextualLayer {
 	static get defaultProperties(): Partial<CaptionsLayerProperties> {
 		return {
 			...super.defaultProperties,
+		};
+	}
+
+	static get propertiesDefinition() {
+		return {
+			...super.propertiesDefinition,
+			'text': {
+				cssProperty: false,
+				default: undefined, // No default text, captions will be generated from the source
+				animatable: false,
+			},
 		};
 	}
 }

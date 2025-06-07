@@ -19,4 +19,14 @@ export default class CaptionsLayer extends TextualLayer {
             ...super.defaultProperties,
         };
     }
+    static get propertiesDefinition() {
+        return {
+            ...super.propertiesDefinition,
+            'text': {
+                cssProperty: false,
+                default: undefined, // No default text, captions will be generated from the source
+                animatable: false,
+            },
+        };
+    }
 }
