@@ -186,15 +186,28 @@ export default class Scrptly {
 	async prepareAssets(actions: Action[] = this.flow) {
 		for(let action of actions) {
 			if(action.statement === 'addLayer') {
-				let layer: MediaLayer = this.layers.find(l => l.id === action.id) as MediaLayer;
-				if(layer && (layer.constructor as typeof MediaLayer).isAsset && 'source' in layer.settings && layer.settings.sourceType=='file') {
+				let layer: any = this.layers.find(l => l.id === action.id) as any;
+				if(layer && layer.constructor.isAsset && 'source' in layer.settings && layer.settings.sourceType=='file') {
 					this.prepareAssetsTask.output = `Uploading ${layer.settings.source}...`;
-					let asset = new AssetUploader(this, layer.settings.source, (layer.constructor as typeof MediaLayer).type);
+					let asset = new AssetUploader(this, layer.settings.source, layer.constructor.type);
 					let response = await asset.uploadAsset();
 					layer.settings.source = response.url;
 					layer.settings.sourceType = 'asset';
+
 					action.settings.source = response.url;
 					action.settings.sourceType = 'asset';
+
+					// Prepare image assets for video layers
+					if(action.type === 'video' && layer.settings?.image?.source && layer.settings.image.sourceType === 'file') {
+						this.prepareAssetsTask.output = `Uploading ${layer.settings.image.source}...`;
+						let asset = new AssetUploader(this, layer.settings.image.source, (layer.constructor as typeof MediaLayer).type);
+						let response = await asset.uploadAsset();
+						layer.settings.image.source = response.url;
+						layer.settings.image.sourceType = 'asset';
+
+						action.settings.image.source = response.url;
+						action.settings.image.sourceType = 'asset';
+					}
 				}
 			} else if(action.statement==='parallel') {
 				for(let subActions of action.actions) {
