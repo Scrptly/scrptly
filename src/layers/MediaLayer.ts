@@ -26,7 +26,7 @@ export default class MediaLayer extends VisualLayer {
 	constructor(parent: any, properties: MediaLayerProperties = {}, settings: MediaLayerSettings) {
 		super(parent, properties, settings);
 		if('source' in settings && 'source' in this.settings && settings.source && !settings.sourceType)
-			this.settings.sourceType = this.autoDetermineSourceType(settings.source);
+			this.settings.sourceType = this.autoDetermineSourceType(settings.source) as any;
 	}
 	static get isAsset() {
 		return true;
@@ -34,7 +34,6 @@ export default class MediaLayer extends VisualLayer {
 	static get defaultSettings(): Partial<MediaLayerSettings> {
 		return {
 			...super.defaultSettings,
-			sourceType: 'url',
 		};
 	}
 	static get defaultProperties(): Partial<MediaLayerProperties> {

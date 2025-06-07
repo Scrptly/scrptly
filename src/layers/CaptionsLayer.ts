@@ -1,26 +1,31 @@
-import VisualLayer, { VisualLayerProperties, VisualLayerSettings } from './VisualLayer';
+import TextualLayer, { TextualLayerProperties, TextualLayerSettings } from './TextualLayer';
+import { Id } from '../types';
 
-export type CaptionsLayerSettings = VisualLayerSettings & {
-	source: string;
-	sourceType?: 'layer' | 'subtitles';
+export type CaptionsLayerSettings = TextualLayerSettings & {
+	source: string;// Could be  a URL to an audio file, a layer ID, or "project" to generate captions from timeline's audio
+	sourceType?: 'url' | 'asset' | 'base64' | 'file' | Id | 'other'; // Type of the source, default is 'url'
+	maxCharsPerLine?: number; // Maximum number of characters per line
+	maxLines?: number; // Maximum number of lines to display
 };
-export type CaptionsLayerProperties = VisualLayerProperties;
+export type CaptionsLayerProperties = TextualLayerProperties;
 
-export default class CaptionsLayer extends VisualLayer {
-	source!: string;
-	sourceType!: 'layer' | 'subtitles';
+export default class CaptionsLayer extends TextualLayer {
 	static type = 'captions';
 	declare settings: CaptionsLayerSettings;
 	declare properties: CaptionsLayerProperties;
 
 	constructor(parent: any, properties: CaptionsLayerProperties = {}, settings: CaptionsLayerSettings) {
 		super(parent, properties, settings);
+		if('source' in settings && 'source' in this.settings && settings.source && !settings.sourceType)
+			this.settings.sourceType = this.autoDetermineSourceType(settings.source);
 	}
 	
+	static get isAsset() {
+		return true;
+	}
 	static get defaultSettings(): Partial<CaptionsLayerSettings> {
 		return {
 			...super.defaultSettings,
-			sourceType: 'layer',
 		};
 	}
 	static get defaultProperties(): Partial<CaptionsLayerProperties> {

@@ -12,7 +12,6 @@ export default class MediaLayer extends VisualLayer {
     static get defaultSettings() {
         return {
             ...super.defaultSettings,
-            sourceType: 'url',
         };
     }
     static get defaultProperties() {

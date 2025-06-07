@@ -20,7 +20,7 @@ export default class AudioLayer extends AuditoryLayer {
 	constructor(parent: any, properties: AudioLayerProperties = {}, settings: AudioLayerSettings) {
 		super(parent, properties, settings);
 		if('source' in settings && 'source' in this.settings && settings.source && !settings.sourceType)
-			this.settings.sourceType = this.autoDetermineSourceType(settings.source);
+			this.settings.sourceType = this.autoDetermineSourceType(settings.source) as any;
 	}
 	static get isAsset() {
 		return true;
@@ -28,8 +28,7 @@ export default class AudioLayer extends AuditoryLayer {
 
 	static get defaultSettings(): Partial<AudioLayerSettings> {
 		return {
-			...super.defaultSettings,
-			sourceType: 'url',
+			...super.defaultSettings
 		};
 	}
 	static get defaultProperties(): Partial<AudioLayerProperties> {

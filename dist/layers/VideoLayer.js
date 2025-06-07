@@ -4,6 +4,10 @@ export default class VideoLayer extends MediaLayer {
     static type = 'video';
     constructor(parent, properties = {}, settings) {
         super(parent, properties, settings);
+        if ('image' in settings && settings.image && 'source' in settings.image &&
+            'image' in this.settings && this.settings.image && 'source' in this.settings.image &&
+            settings.image.source && !settings.image.sourceType)
+            this.settings.image.sourceType = this.autoDetermineSourceType(settings.image.source);
     }
     static get defaultSettings() {
         return {

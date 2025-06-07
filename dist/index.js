@@ -75,9 +75,9 @@ export default class Scrptly {
         this.pushAction({ statement: 'addLayer', id: layer.id, type: LayerClass.type, settings, properties, options });
         return layer;
     }
-    addFolder(properties, settings, options) {
+    /*addFolder(properties?: Record<string, any>, settings?: Record<string, any>, options?: AddLayerOptions) {
         return this.addLayer(FolderLayer, properties, settings, options);
-    }
+    }*/
     addText(properties, settings, options) {
         return this.addLayer(TextLayer, properties, settings, options);
     }
@@ -91,6 +91,7 @@ export default class Scrptly {
         return this.addLayer(AudioLayer, properties, settings, options);
     }
     addCaptions(properties, settings, options) {
+        settings;
         return this.addLayer(CaptionsLayer, properties, settings, options);
     }
     addTTS(properties, settings, options) {
@@ -130,6 +131,16 @@ export default class Scrptly {
                     layer.settings.sourceType = 'asset';
                     action.settings.source = response.url;
                     action.settings.sourceType = 'asset';
+                    // Prepare image assets for video layers
+                    if (action.type === 'video' && layer.settings?.image?.source && layer.settings.image.sourceType === 'file') {
+                        this.prepareAssetsTask.output = `Uploading ${layer.settings.image.source}...`;
+                        let asset = new AssetUploader(this, layer.settings.image.source, layer.constructor.type);
+                        let response = await asset.uploadAsset();
+                        layer.settings.image.source = response.url;
+                        layer.settings.image.sourceType = 'asset';
+                        action.settings.image.source = response.url;
+                        action.settings.image.sourceType = 'asset';
+                    }
                 }
             }
             else if (action.statement === 'parallel') {

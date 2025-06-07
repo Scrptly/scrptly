@@ -31,6 +31,12 @@ export default class BaseLayer {
         else if (source.startsWith('file://') || (!source.match(/[:=]/) && source.match(/[\.][a-z0-9]{3,4}$/i))) {
             return 'file';
         }
+        else if (source.match(/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i)) {
+            return 'id';
+        }
+        else {
+            return 'other';
+        }
     }
     static get isAsset() {
         return false;

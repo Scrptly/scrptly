@@ -23,7 +23,7 @@ export default class BaseLayer {
     protected parent: Scrptly;
     private removed;
     constructor(parent: Scrptly, properties: BaseLayerProperties | undefined, settings: BaseLayerSettings);
-    autoDetermineSourceType(source: string): "url" | "asset" | "base64" | "file" | undefined;
+    autoDetermineSourceType(source: string): "url" | "asset" | "base64" | "file" | "other" | "id";
     static get isAsset(): boolean;
     static get defaultSettings(): Partial<BaseLayerSettings>;
     static get defaultProperties(): Partial<BaseLayerProperties>;

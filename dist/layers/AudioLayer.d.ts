@@ -1,8 +1,12 @@
 import AuditoryLayer, { AuditoryLayerProperties, AuditoryLayerSettings } from './AuditoryLayer.js';
-export type AudioLayerSettings = AuditoryLayerSettings & {
+export type AudioLayerSettings = (AuditoryLayerSettings & {
     source: string;
     sourceType?: 'url' | 'asset' | 'base64' | 'file';
-};
+}) | (AuditoryLayerSettings & {
+    prompt: string;
+    duration?: number;
+    modelSettings?: any;
+});
 export type AudioLayerProperties = AuditoryLayerProperties;
 export default class AudioLayer extends AuditoryLayer {
     static type: string;

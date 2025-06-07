@@ -22,6 +22,12 @@ export default class VideoLayer extends MediaLayer {
 
 	constructor(parent: any, properties: VideoLayerProperties = {}, settings: VideoLayerSettings) {
 		super(parent, properties, settings);
+		if(
+			'image' in settings && settings.image && 'source' in settings.image &&
+			'image' in this.settings && this.settings.image && 'source' in this.settings.image &&
+			settings.image.source && !settings.image.sourceType
+		)
+			this.settings.image.sourceType = this.autoDetermineSourceType(settings.image.source) as any;
 	}
 	static get defaultSettings(): Partial<VideoLayerSettings> {
 		return {
