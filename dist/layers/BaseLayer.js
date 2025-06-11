@@ -43,7 +43,6 @@ export default class BaseLayer {
     }
     static get defaultSettings() {
         return {
-            name: 'Layer',
             enabled: true,
             locked: false,
             startTime: 0,
