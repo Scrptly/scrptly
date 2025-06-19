@@ -15,7 +15,7 @@ export type MediaLayerSettingsDynamic = VisualLayerSettings & {
 
 export type MediaLayerSettings = MediaLayerSettingsStatic | MediaLayerSettingsDynamic;
 export type MediaLayerProperties = VisualLayerProperties & {
-	objectFit?: string;
+	fit?: 'contain' | 'cover'; // Changes the whole element's size/box to contain or cover the project dimensions
 };
 
 export default class MediaLayer extends VisualLayer {
@@ -47,12 +47,6 @@ export default class MediaLayer extends VisualLayer {
 			'fit': { // Changes the whole element's size/box to contain or cover the project dimensions
 				enum: ['contain', 'cover'],
 				default: 'contain',
-				animatable: false,
-			},
-			'objectFit': { // Changes the object-fit property of the element
-				cssProperty: 'object-fit',
-				enum: ['fill', 'contain', 'cover'],
-				default: 'fill',
 				animatable: false,
 			},
 		};
