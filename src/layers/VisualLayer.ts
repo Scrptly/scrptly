@@ -109,8 +109,12 @@ export default class VisualLayer extends BaseLayer {
 			},
 			'borderColor': {
 				cssProperty: 'border-color',
-				default: 'black',
+				default: '#000000',
 				animatable: true,
+			},
+			'outerBorder': {
+				default: false,
+				animatable: false,
 			},
 			'borderRadius': {
 				cssProperty: 'border-radius',
@@ -163,7 +167,7 @@ export default class VisualLayer extends BaseLayer {
 			},
 			'outlineColor': {
 				cssProperty: 'outline-color',
-				default: 'black',
+				default: '#000000',
 				animatable: true,
 			},
 			'outlineOffset': {

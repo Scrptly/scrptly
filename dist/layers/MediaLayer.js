@@ -27,12 +27,6 @@ export default class MediaLayer extends VisualLayer {
                 default: 'contain',
                 animatable: false,
             },
-            'objectFit': {
-                cssProperty: 'object-fit',
-                enum: ['fill', 'contain', 'cover'],
-                default: 'fill',
-                animatable: false,
-            },
         };
     }
 }

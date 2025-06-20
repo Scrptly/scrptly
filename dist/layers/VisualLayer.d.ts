@@ -92,6 +92,10 @@ export default class VisualLayer extends BaseLayer {
             default: string;
             animatable: boolean;
         };
+        outerBorder: {
+            default: boolean;
+            animatable: boolean;
+        };
         borderRadius: {
             cssProperty: string;
             units: string[];

@@ -195,6 +195,10 @@ export default class TextLayer extends TextualLayer {
             default: string;
             animatable: boolean;
         };
+        outerBorder: {
+            default: boolean;
+            animatable: boolean;
+        };
         borderRadius: {
             cssProperty: string;
             units: string[];

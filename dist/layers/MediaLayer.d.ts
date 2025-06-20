@@ -11,7 +11,7 @@ export type MediaLayerSettingsDynamic = VisualLayerSettings & {
 };
 export type MediaLayerSettings = MediaLayerSettingsStatic | MediaLayerSettingsDynamic;
 export type MediaLayerProperties = VisualLayerProperties & {
-    objectFit?: string;
+    fit?: 'contain' | 'cover';
 };
 export default class MediaLayer extends VisualLayer {
     static type: string;
@@ -23,12 +23,6 @@ export default class MediaLayer extends VisualLayer {
     static get defaultProperties(): Partial<MediaLayerProperties>;
     static get propertiesDefinition(): {
         fit: {
-            enum: string[];
-            default: string;
-            animatable: boolean;
-        };
-        objectFit: {
-            cssProperty: string;
             enum: string[];
             default: string;
             animatable: boolean;
@@ -82,6 +76,10 @@ export default class MediaLayer extends VisualLayer {
         borderColor: {
             cssProperty: string;
             default: string;
+            animatable: boolean;
+        };
+        outerBorder: {
+            default: boolean;
             animatable: boolean;
         };
         borderRadius: {

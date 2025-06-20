@@ -42,12 +42,6 @@ export default class VideoLayer extends MediaLayer {
             default: boolean;
             animatable: boolean;
         };
-        objectFit: {
-            cssProperty: string;
-            enum: string[];
-            default: string;
-            animatable: boolean;
-        };
         visible: {
             default: boolean;
             animatable: boolean;
@@ -97,6 +91,10 @@ export default class VideoLayer extends MediaLayer {
         borderColor: {
             cssProperty: string;
             default: string;
+            animatable: boolean;
+        };
+        outerBorder: {
+            default: boolean;
             animatable: boolean;
         };
         borderRadius: {

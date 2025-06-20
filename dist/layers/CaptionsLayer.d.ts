@@ -200,6 +200,10 @@ export default class CaptionsLayer extends TextualLayer {
             default: string;
             animatable: boolean;
         };
+        outerBorder: {
+            default: boolean;
+            animatable: boolean;
+        };
         borderRadius: {
             cssProperty: string;
             units: string[];

@@ -212,6 +212,10 @@ export default class TextualLayer extends VisualLayer {
             default: string;
             animatable: boolean;
         };
+        outerBorder: {
+            default: boolean;
+            animatable: boolean;
+        };
         borderRadius: {
             cssProperty: string;
             units: string[];
