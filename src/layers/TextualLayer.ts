@@ -62,7 +62,7 @@ export default class TextualLayer extends VisualLayer {
 			},
 			'fontWeight': {
 				cssProperty: 'font-weight',
-				default: 400,
+				default: 600,
 				animatable: true,
 			},
 			'fontStyle': {
