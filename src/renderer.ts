@@ -54,7 +54,7 @@ export default class Renderer {
 								console.warn('Unknown command:', command, 'Data:', data);
 						}
 					} catch(e) {
-						console.error(e);
+						this.scrptly.renderVideoTask.report(String(e));
 					}
 				};
 				sse.onerror = (err) => {
@@ -82,7 +82,7 @@ export default class Renderer {
 							case 'complete':
 								sse.close();
 								this.scrptly.generateProjectTask.title = 'Generate project';
-								this.scrptly.generateProjectTask.output = `Project successfully generated (took ${Math.round(data.taskInfo.duration / 1000)}s)!\nProject URL: ${data.taskInfo.projectUrl}`;
+								this.scrptly.generateProjectTask.output = `Project successfully generated (took ${Math.round(data.taskInfo?.duration / 1000)}s)!\nProject URL: ${data.taskInfo?.projectUrl}`;
 								resolve(data.taskInfo);
 								break;
 							case 'close':
@@ -92,7 +92,7 @@ export default class Renderer {
 								console.warn('Unknown command:', command, 'Data:', data);
 						}
 					} catch(e) {
-						console.error(e);
+						this.scrptly.generateProjectTask.report(String(e));
 					}
 				};
 				sse.onerror = (err) => {
