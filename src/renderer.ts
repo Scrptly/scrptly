@@ -25,32 +25,36 @@ export default class Renderer {
 			return await new Promise((resolve, reject) => {
 				const sse = new EventSource(url);
 				sse.onmessage = (event) => {
-					let {command, data} = JSON.parse(event.data);
-					switch(command) {
-						case 'log':
-							this.scrptly.renderVideoTask.output = data.message;
-							break;
-						case 'progress':
-							this.scrptly.renderVideoTask.title = 'Rendering video — '+data.progress.toFixed(1)+'%';
-							break;
-						case 'warn':
-							this.scrptly.renderVideoTask.report(data.warn);
-							break;
-						case 'fail':
-							reject(new Error(data.error));
-							sse.close();
-							break;
-						case 'complete':
-							sse.close();
-							this.scrptly.renderVideoTask.title = 'Render video';
-							this.scrptly.renderVideoTask.output = `Render successful (took ${Math.round(data.renderInfo.info.renderDuration / 1000)}s)!\nVideo URL: ${data.renderInfo.output.video}\nRender Info: ${data.renderInfo.url}`;
-							resolve(data.renderInfo);
-							break;
-						case 'close':
-							sse.close();
-							break;
-						default:
-							console.warn('Unknown command:', command, 'Data:', data);
+					try {
+						let {command, data} = JSON.parse(event.data);
+						switch(command) {
+							case 'log':
+								this.scrptly.renderVideoTask.output = data.message;
+								break;
+							case 'progress':
+								this.scrptly.renderVideoTask.title = 'Rendering video — '+data.progress.toFixed(1)+'%';
+								break;
+							case 'warn':
+								this.scrptly.renderVideoTask.report(data.warn);
+								break;
+							case 'fail':
+								reject(new Error(data.error));
+								sse.close();
+								break;
+							case 'complete':
+								sse.close();
+								this.scrptly.renderVideoTask.title = 'Render video';
+								this.scrptly.renderVideoTask.output = `Render successful (took ${Math.round(data.renderInfo.info.renderDuration / 1000)}s)!\nVideo URL: ${data.renderInfo.output.video}\nRender Info: ${data.renderInfo.url}`;
+								resolve(data.renderInfo);
+								break;
+							case 'close':
+								sse.close();
+								break;
+							default:
+								console.warn('Unknown command:', command, 'Data:', data);
+						}
+					} catch(e) {
+						console.error(e);
 					}
 				};
 				sse.onerror = (err) => {
@@ -62,29 +66,33 @@ export default class Renderer {
 			return await new Promise((resolve, reject) => {
 				const sse = new EventSource(url);
 				sse.onmessage = (event) => {
-					let {command, data} = JSON.parse(event.data);
-					switch(command) {
-						case 'log':
-							this.scrptly.generateProjectTask.output = data.message;
-							break;
-						case 'warn':
-							this.scrptly.generateProjectTask.report(data.warn);
-							break;
-						case 'fail':
-							reject(new Error(data.error));
-							sse.close();
-							break;
-						case 'complete':
-							sse.close();
-							this.scrptly.generateProjectTask.title = 'Generate project';
-							this.scrptly.generateProjectTask.output = `Project successfully generated (took ${Math.round(data.taskInfo.duration / 1000)}s)!\nProject URL: ${data.taskInfo.projectUrl}`;
-							resolve(data.taskInfo);
-							break;
-						case 'close':
-							sse.close();
-							break;
-						default:
-							console.warn('Unknown command:', command, 'Data:', data);
+					try {
+						let {command, data} = JSON.parse(event.data);
+						switch(command) {
+							case 'log':
+								this.scrptly.generateProjectTask.output = data.message;
+								break;
+							case 'warn':
+								this.scrptly.generateProjectTask.report(data.warn);
+								break;
+							case 'fail':
+								reject(new Error(data.error));
+								sse.close();
+								break;
+							case 'complete':
+								sse.close();
+								this.scrptly.generateProjectTask.title = 'Generate project';
+								this.scrptly.generateProjectTask.output = `Project successfully generated (took ${Math.round(data.taskInfo.duration / 1000)}s)!\nProject URL: ${data.taskInfo.projectUrl}`;
+								resolve(data.taskInfo);
+								break;
+							case 'close':
+								sse.close();
+								break;
+							default:
+								console.warn('Unknown command:', command, 'Data:', data);
+						}
+					} catch(e) {
+						console.error(e);
 					}
 				};
 				sse.onerror = (err) => {
