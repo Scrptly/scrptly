@@ -35,7 +35,7 @@ export default class Renderer {
 								this.scrptly.renderVideoTask.title = 'Rendering video — '+data.progress.toFixed(1)+'%';
 								break;
 							case 'warn':
-								this.scrptly.renderVideoTask.report(data.warn);
+								this.options.verbose && console.warn('\n⚠️'+data.warn+'\n');
 								break;
 							case 'fail':
 								reject(new Error(data.error));
@@ -54,7 +54,7 @@ export default class Renderer {
 								console.warn('Unknown command:', command, 'Data:', data);
 						}
 					} catch(e) {
-						this.scrptly.renderVideoTask.report(String(e));
+						this.options.verbose && console.log('\n⚠️'+String(e)+'\n');
 					}
 				};
 				sse.onerror = (err) => {
@@ -73,7 +73,7 @@ export default class Renderer {
 								this.scrptly.generateProjectTask.output = data.message;
 								break;
 							case 'warn':
-								this.scrptly.generateProjectTask.report(data.warn);
+								this.options.verbose && console.warn('\n⚠️'+data.warn+'\n');
 								break;
 							case 'fail':
 								reject(new Error(data.error));
@@ -92,7 +92,7 @@ export default class Renderer {
 								console.warn('Unknown command:', command, 'Data:', data);
 						}
 					} catch(e) {
-						this.scrptly.generateProjectTask.report(String(e));
+						this.options.verbose && console.log('\n⚠️'+String(e)+'\n');
 					}
 				};
 				sse.onerror = (err) => {
