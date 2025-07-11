@@ -110,7 +110,7 @@ export default class CaptionsLayer extends TextualLayer {
         letterSpacing: {
             cssProperty: string;
             units: string[];
-            default: number;
+            default: string;
             animatable: boolean;
         };
         lineHeight: {

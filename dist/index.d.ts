@@ -63,6 +63,7 @@ export default class Scrptly {
     private _flowPointer;
     prepareAssetsTask: any;
     renderVideoTask: any;
+    generateProjectTask: any;
     renderCtx: RenderCtx;
     constructor(settings?: ProjectSettings);
     static get defaultSettings(): ProjectSettings;
@@ -81,4 +82,5 @@ export default class Scrptly {
     info(): Promise<any>;
     prepareAssets(actions?: Action[]): Promise<boolean>;
     renderVideo(options?: RenderOptions): Promise<any>;
+    generateProject(options?: RenderOptions): Promise<any>;
 }

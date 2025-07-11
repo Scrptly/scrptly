@@ -122,7 +122,7 @@ export default class TextualLayer extends VisualLayer {
         letterSpacing: {
             cssProperty: string;
             units: string[];
-            default: number;
+            default: string;
             animatable: boolean;
         };
         lineHeight: {

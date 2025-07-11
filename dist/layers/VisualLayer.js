@@ -62,7 +62,7 @@ export default class VisualLayer extends BaseLayer {
             'borderStyle': {
                 cssProperty: 'border-style',
                 enum: ['none', 'solid', 'dashed', 'dotted', 'double', 'groove', 'ridge', 'inset', 'outset'],
-                default: 'none',
+                default: 'solid',
                 animatable: false,
             },
             'borderColor': {
@@ -188,7 +188,7 @@ export default class VisualLayer extends BaseLayer {
             'perspective': {
                 cssProperty: '--perspective',
                 units: ['px'],
-                default: 0,
+                default: 2000,
                 animatable: true,
             },
         };

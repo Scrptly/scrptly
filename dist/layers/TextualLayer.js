@@ -30,12 +30,12 @@ export default class TextualLayer extends VisualLayer {
             },
             'fontWeight': {
                 cssProperty: 'font-weight',
-                default: 400,
+                default: 600,
                 animatable: true,
             },
             'fontStyle': {
                 cssProperty: 'font-style',
-                enum: ['normal', 'italic', 'oblique'],
+                enum: ['normal', 'italic'],
                 default: 'normal',
                 animatable: false,
             },
@@ -106,13 +106,13 @@ export default class TextualLayer extends VisualLayer {
             'letterSpacing': {
                 cssProperty: 'letter-spacing',
                 units: ['em', 'px'],
-                default: 0,
+                default: "0em",
                 animatable: true,
             },
             'lineHeight': {
                 cssProperty: 'line-height',
                 units: ['em', 'px', ''],
-                default: 1.2,
+                default: 1,
                 animatable: true,
             },
             'textTransform': {

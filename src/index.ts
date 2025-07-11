@@ -89,6 +89,7 @@ export default class Scrptly {
 	private _flowPointer: Action[] = this.flow;
 	prepareAssetsTask: any = null;
 	renderVideoTask: any = null;
+	generateProjectTask: any = null;
 	renderCtx: RenderCtx = {};
 
 	constructor(settings: ProjectSettings = {}) {
@@ -250,6 +251,39 @@ export default class Scrptly {
 					this.renderVideoTask = task;
 					const renderer = new Renderer(this, options, this.settings, this.flow);
 					ctx.result = await renderer.render();
+				},
+				rendererOptions: {
+					persistentOutput: true,
+				},
+			}
+		], {
+			renderer: options.verbose===false ? SilentRenderer : 'default',
+			ctx: this.renderCtx
+		});
+		await tasks.run();
+		return tasks.ctx.result;
+	}
+
+
+	async generateProject(options:RenderOptions = {}) {
+		options = Object.assign({
+			verbose: true,
+		}, options);
+		this.renderCtx = {};
+		const tasks = new Listr([
+			{
+				title: 'Preparing assets',
+				task: async (ctx, task) => {
+					this.prepareAssetsTask = task;
+					await this.prepareAssets();
+				}
+			},
+			{
+				title: 'Generating project',
+				task: async (ctx, task) => {
+					this.generateProjectTask = task;
+					const renderer = new Renderer(this, options, this.settings, this.flow);
+					ctx.result = await renderer.generateProject();
 				},
 				rendererOptions: {
 					persistentOutput: true,

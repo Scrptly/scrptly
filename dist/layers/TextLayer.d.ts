@@ -105,7 +105,7 @@ export default class TextLayer extends TextualLayer {
         letterSpacing: {
             cssProperty: string;
             units: string[];
-            default: number;
+            default: string;
             animatable: boolean;
         };
         lineHeight: {

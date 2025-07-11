@@ -10,7 +10,9 @@ export default class Renderer {
     flow: Action[];
     settings: ProjectSettings;
     renderId?: string;
+    taskId?: string;
     constructor(scrptly: Scrptly, options: RenderOptions | undefined, settings: ProjectSettings, flow: Action[]);
-    listenToEvents(url: string): Promise<unknown>;
+    listenToEvents(url: string, mode?: 'render' | 'generate'): Promise<unknown>;
     render(): Promise<unknown>;
+    generateProject(): Promise<unknown>;
 }
