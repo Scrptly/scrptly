@@ -13,7 +13,7 @@ export default class Renderer {
         this.settings = settings;
     }
     async listenToEvents(url, mode = 'render') {
-        if (mode === 'generate') {
+        if (mode === 'render') {
             return await new Promise((resolve, reject) => {
                 const sse = new EventSource(url);
                 sse.onmessage = (event) => {
@@ -56,7 +56,7 @@ export default class Renderer {
                 };
             });
         }
-        else {
+        else if (mode === 'generate') {
             return await new Promise((resolve, reject) => {
                 const sse = new EventSource(url);
                 sse.onmessage = (event) => {
@@ -96,6 +96,9 @@ export default class Renderer {
                 };
             });
         }
+        else {
+            throw new Error(`Unknown mode: ${mode}`);
+        }
     }
     async render() {
         const response = await this.scrptly.apiCall('renderVideo', {
@@ -107,7 +110,7 @@ export default class Renderer {
         });
         if (response.success) {
             this.renderId = response.renderId;
-            return await this.listenToEvents(response.eventsUrl);
+            return await this.listenToEvents(response.eventsUrl, 'render');
         }
         else {
             throw new Error(`Render failed: ${response.error}`);
@@ -122,7 +125,7 @@ export default class Renderer {
             }),
         });
         if (response.success) {
-            return await this.listenToEvents(response.eventsUrl);
+            return await this.listenToEvents(response.eventsUrl, 'generate');
         }
         else {
             throw new Error(`Render failed: ${response.error}`);

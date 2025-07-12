@@ -21,7 +21,7 @@ export default class Renderer {
 		this.settings = settings;
 	}
 	async listenToEvents(url: string, mode: 'render' | 'generate' = 'render') {
-		if(mode === 'generate') {
+		if(mode === 'render') {
 			return await new Promise((resolve, reject) => {
 				const sse = new EventSource(url);
 				sse.onmessage = (event) => {
@@ -62,7 +62,7 @@ export default class Renderer {
 					reject(new Error(`Connection to render server lost.${this.renderId?`\nTrack Render status at: https://scrptly.com/render/${this.renderId}` : ''}`));
 				};
 			});
-		} else {
+		} else if(mode === 'generate') {
 			return await new Promise((resolve, reject) => {
 				const sse = new EventSource(url);
 				sse.onmessage = (event) => {
@@ -100,6 +100,8 @@ export default class Renderer {
 					reject(new Error(`Connection to render server lost.`));
 				};
 			});
+		} else {
+			throw new Error(`Unknown mode: ${mode}`);
 		}
 	}
 	async render() {
@@ -112,7 +114,7 @@ export default class Renderer {
 		});
 		if(response.success) {
 			this.renderId = response.renderId;
-			return await this.listenToEvents(response.eventsUrl);
+			return await this.listenToEvents(response.eventsUrl, 'render');
 		} else {
 			throw new Error(`Render failed: ${response.error}`);
 		}
@@ -126,7 +128,7 @@ export default class Renderer {
 			}),
 		});
 		if(response.success) {
-			return await this.listenToEvents(response.eventsUrl);
+			return await this.listenToEvents(response.eventsUrl, 'generate');
 		} else {
 			throw new Error(`Render failed: ${response.error}`);
 		}
