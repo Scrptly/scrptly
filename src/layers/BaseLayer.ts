@@ -14,9 +14,9 @@ export type BaseLayerSettings = {
 export type BaseLayerProperties = { };
 export type PropertyDefinition = {
 	cssProperty?: string;
-	units?: string[],
-	default: any,
-	animatable: boolean
+	units?: string[];
+	default: any;
+	animatable: boolean;
 };
 
 

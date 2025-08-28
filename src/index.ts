@@ -68,7 +68,7 @@ export type ProjectSettings = {
 };
 export type ScrptlySettings = {
 	apiKey: string | false;
-	apiEndpoint?: string
+	apiEndpoint?: string;
 };
 
 interface RenderCtx {
