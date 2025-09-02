@@ -55,6 +55,10 @@ export {default as VisualLayer} from './layers/VisualLayer';
 import type { VisualLayerProperties, VisualLayerSettings } from './layers/VisualLayer';
 export type { VisualLayerProperties, VisualLayerSettings };
 
+import ChartLayer from './layers/ChartLayer';
+import type { ChartLayerProperties, ChartLayerSettings } from './layers/ChartLayer';
+export type { ChartLayerProperties, ChartLayerSettings };
+
 
 export type ProjectSettings = {
 	size?: { width: number; height: number };
@@ -171,6 +175,9 @@ export default class Scrptly {
 	}
 	addTTS(properties?: TTSLayerProperties, settings?: TTSLayerSettings, options?: AddLayerOptions) {
 		return this.addLayer(TTSLayer, properties, settings, options);
+	}
+	addChart(properties?: ChartLayerProperties, settings?: ChartLayerSettings, options?: AddLayerOptions) {
+		return this.addLayer(ChartLayer, properties, settings, options);
 	}
 
 

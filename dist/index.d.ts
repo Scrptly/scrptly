@@ -36,6 +36,9 @@ export type { MediaLayerProperties, MediaLayerSettings };
 export { default as VisualLayer } from './layers/VisualLayer.js';
 import type { VisualLayerProperties, VisualLayerSettings } from './layers/VisualLayer.js';
 export type { VisualLayerProperties, VisualLayerSettings };
+import ChartLayer from './layers/ChartLayer.js';
+import type { ChartLayerProperties, ChartLayerSettings } from './layers/ChartLayer.js';
+export type { ChartLayerProperties, ChartLayerSettings };
 export type ProjectSettings = {
     size?: {
         width: number;
@@ -78,6 +81,7 @@ export default class Scrptly {
     addAudio(properties?: AudioLayerProperties, settings?: AudioLayerSettings, options?: AddLayerOptions): AudioLayer;
     addCaptions(properties?: CaptionsLayerProperties, settings?: CaptionsLayerSettings, options?: AddLayerOptions): CaptionsLayer;
     addTTS(properties?: TTSLayerProperties, settings?: TTSLayerSettings, options?: AddLayerOptions): TTSLayer;
+    addChart(properties?: ChartLayerProperties, settings?: ChartLayerSettings, options?: AddLayerOptions): ChartLayer;
     apiCall(endpoint: string, options?: any): Promise<any>;
     info(): Promise<any>;
     prepareAssets(actions?: Action[]): Promise<boolean>;

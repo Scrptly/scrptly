@@ -14,6 +14,7 @@ export { default as TextualLayer } from './layers/TextualLayer.js';
 export { default as AuditoryLayer } from './layers/AuditoryLayer.js';
 export { default as MediaLayer } from './layers/MediaLayer.js';
 export { default as VisualLayer } from './layers/VisualLayer.js';
+import ChartLayer from './layers/ChartLayer.js';
 ;
 const scriptlySettings = {
     apiKey: false,
@@ -97,6 +98,9 @@ export default class Scrptly {
     }
     addTTS(properties, settings, options) {
         return this.addLayer(TTSLayer, properties, settings, options);
+    }
+    addChart(properties, settings, options) {
+        return this.addLayer(ChartLayer, properties, settings, options);
     }
     // API calls
     async apiCall(endpoint, options = {}) {
