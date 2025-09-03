@@ -25,7 +25,10 @@ export type { AudioLayerProperties, AudioLayerSettings };
 import TTSLayer from './layers/TTSLayer.js';
 import type { TTSLayerProperties, TTSLayerSettings } from './layers/TTSLayer.js';
 export type { TTSLayerProperties, TTSLayerSettings };
-export { BaseLayer, FolderLayer, TextLayer, CaptionsLayer, ImageLayer, VideoLayer, AudioLayer, TTSLayer };
+import ChartLayer from './layers/ChartLayer.js';
+import type { ChartLayerProperties, ChartLayerSettings } from './layers/ChartLayer.js';
+export type { ChartLayerProperties, ChartLayerSettings };
+export { BaseLayer, FolderLayer, TextLayer, CaptionsLayer, ImageLayer, VideoLayer, AudioLayer, TTSLayer, ChartLayer };
 export { default as TextualLayer } from './layers/TextualLayer.js';
 export type { TextualLayerProperties, TextualLayerSettings } from './layers/TextualLayer.js';
 export { default as AuditoryLayer } from './layers/AuditoryLayer.js';
@@ -36,9 +39,6 @@ export type { MediaLayerProperties, MediaLayerSettings };
 export { default as VisualLayer } from './layers/VisualLayer.js';
 import type { VisualLayerProperties, VisualLayerSettings } from './layers/VisualLayer.js';
 export type { VisualLayerProperties, VisualLayerSettings };
-import ChartLayer from './layers/ChartLayer.js';
-import type { ChartLayerProperties, ChartLayerSettings } from './layers/ChartLayer.js';
-export type { ChartLayerProperties, ChartLayerSettings };
 export type ProjectSettings = {
     size?: {
         width: number;

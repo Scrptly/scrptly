@@ -38,7 +38,11 @@ import TTSLayer from './layers/TTSLayer';
 import type { TTSLayerProperties, TTSLayerSettings } from './layers/TTSLayer';
 export type { TTSLayerProperties, TTSLayerSettings };
 
-export { BaseLayer, FolderLayer, TextLayer, CaptionsLayer, ImageLayer, VideoLayer, AudioLayer, TTSLayer };
+import ChartLayer from './layers/ChartLayer';
+import type { ChartLayerProperties, ChartLayerSettings } from './layers/ChartLayer';
+export type { ChartLayerProperties, ChartLayerSettings };
+
+export { BaseLayer, FolderLayer, TextLayer, CaptionsLayer, ImageLayer, VideoLayer, AudioLayer, TTSLayer, ChartLayer };
 
 export {default as TextualLayer} from './layers/TextualLayer';
 export type { TextualLayerProperties, TextualLayerSettings } from './layers/TextualLayer';
@@ -54,10 +58,6 @@ export type { MediaLayerProperties, MediaLayerSettings };
 export {default as VisualLayer} from './layers/VisualLayer';
 import type { VisualLayerProperties, VisualLayerSettings } from './layers/VisualLayer';
 export type { VisualLayerProperties, VisualLayerSettings };
-
-import ChartLayer from './layers/ChartLayer';
-import type { ChartLayerProperties, ChartLayerSettings } from './layers/ChartLayer';
-export type { ChartLayerProperties, ChartLayerSettings };
 
 
 export type ProjectSettings = {

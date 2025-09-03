@@ -9,12 +9,12 @@ import ImageLayer from './layers/ImageLayer.js';
 import VideoLayer from './layers/VideoLayer.js';
 import AudioLayer from './layers/AudioLayer.js';
 import TTSLayer from './layers/TTSLayer.js';
-export { BaseLayer, FolderLayer, TextLayer, CaptionsLayer, ImageLayer, VideoLayer, AudioLayer, TTSLayer };
+import ChartLayer from './layers/ChartLayer.js';
+export { BaseLayer, FolderLayer, TextLayer, CaptionsLayer, ImageLayer, VideoLayer, AudioLayer, TTSLayer, ChartLayer };
 export { default as TextualLayer } from './layers/TextualLayer.js';
 export { default as AuditoryLayer } from './layers/AuditoryLayer.js';
 export { default as MediaLayer } from './layers/MediaLayer.js';
 export { default as VisualLayer } from './layers/VisualLayer.js';
-import ChartLayer from './layers/ChartLayer.js';
 ;
 const scriptlySettings = {
     apiKey: false,
