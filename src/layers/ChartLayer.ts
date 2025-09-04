@@ -23,7 +23,7 @@ export default class ChartLayer extends VisualLayer {
 			type: 'line',
 			options: {
 				layout: {
-					padding: 15,
+					padding: 20,
 				}
 			}
 		};
