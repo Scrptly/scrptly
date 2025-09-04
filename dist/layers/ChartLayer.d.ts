@@ -11,10 +11,16 @@ export default class ChartLayer extends VisualLayer {
     settings: ChartLayerSettings;
     properties: ChartLayerProperties;
     constructor(parent: any, properties: ChartLayerProperties | undefined, settings: ChartLayerSettings);
+    static get defaultSettings(): Partial<ChartLayerSettings>;
     static get propertiesDefinition(): {
         data: {
             cssProperty: boolean;
             default: {};
+            animatable: boolean;
+        };
+        backgroundColor: {
+            default: string;
+            cssProperty: string;
             animatable: boolean;
         };
         visible: {
@@ -44,11 +50,6 @@ export default class ChartLayer extends VisualLayer {
         anchor: {
             cssProperty: string;
             default: number[];
-            animatable: boolean;
-        };
-        backgroundColor: {
-            cssProperty: string;
-            default: string;
             animatable: boolean;
         };
         borderWidth: {
