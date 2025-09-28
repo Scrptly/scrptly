@@ -21,16 +21,16 @@ export default class Renderer {
                         let { command, data } = JSON.parse(event.data);
                         switch (command) {
                             case 'log':
-                                this.scrptly.renderVideoTask.output = data.message;
+                                this.scrptly.renderVideoTask.output = data;
                                 break;
                             case 'progress':
-                                this.scrptly.renderVideoTask.title = 'Rendering video — ' + data.progress.toFixed(1) + '%';
+                                this.scrptly.renderVideoTask.title = 'Rendering video — ' + data.toFixed(1) + '%';
                                 break;
                             case 'warn':
-                                this.options.verbose && console.warn('\n⚠️ ' + data.warn + '\n');
+                                this.options.verbose && console.warn('\n⚠️ ' + data + '\n');
                                 break;
-                            case 'fail':
-                                reject(new Error(data.error));
+                            case 'error':
+                                reject(new Error(data));
                                 sse.close();
                                 break;
                             case 'complete':
@@ -64,13 +64,13 @@ export default class Renderer {
                         let { command, data } = JSON.parse(event.data);
                         switch (command) {
                             case 'log':
-                                this.scrptly.generateProjectTask.output = data.message;
+                                this.scrptly.generateProjectTask.output = data;
                                 break;
                             case 'warn':
-                                this.options.verbose && console.warn('\n⚠️ ' + data.warn + '\n');
+                                this.options.verbose && console.warn('\n⚠️ ' + data + '\n');
                                 break;
-                            case 'fail':
-                                reject(new Error(data.error));
+                            case 'error':
+                                reject(new Error(data));
                                 sse.close();
                                 break;
                             case 'complete':
