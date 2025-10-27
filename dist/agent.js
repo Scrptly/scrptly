@@ -7,7 +7,7 @@ export default class Agent {
     projectId;
     projectUrl;
     taskId;
-    constructor(scrptly, options = {}, prompt, context = []) {
+    constructor(scrptly, prompt, context = [], options = {}) {
         this.scrptly = scrptly;
         Object.assign(this.options, options);
         this.prompt = prompt;

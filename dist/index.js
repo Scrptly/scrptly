@@ -1,5 +1,6 @@
 import AssetUploader from './assetUploader.js';
 import Renderer from './renderer.js';
+import Agent from './agent.js';
 import { Listr, SilentRenderer } from 'listr2';
 import BaseLayer from './layers/BaseLayer.js';
 import FolderLayer from './layers/FolderLayer.js';
@@ -221,7 +222,7 @@ export default class Scrptly {
         await tasks.run();
         return tasks.ctx.result;
     }
-    async generateAiVideo(propmt, context = [], options = {}) {
+    async generateAiVideo(prompt, context = [], options = {}) {
         options = Object.assign({
             verbose: true,
         }, options);
@@ -245,8 +246,8 @@ export default class Scrptly {
                 title: 'Generating AI Video',
                 task: async (ctx, task) => {
                     this.generateAiVideoTask = task;
-                    const renderer = new Renderer(this, options, this.settings, this.flow);
-                    ctx.result = await renderer.generateProject();
+                    const agent = new Agent(this, prompt, context, options);
+                    ctx.result = await agent.generateAiVideo();
                 },
                 rendererOptions: {
                     persistentOutput: true,

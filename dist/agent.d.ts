@@ -11,7 +11,7 @@ export default class Agent {
     projectId?: string;
     projectUrl?: string;
     taskId?: string;
-    constructor(scrptly: Scrptly, options: AgentOptions | undefined, prompt: string, context?: ContextInput);
+    constructor(scrptly: Scrptly, prompt: string, context?: ContextInput, options?: AgentOptions);
     listenToEvents(url: string): Promise<unknown>;
     generateAiVideo(): Promise<unknown>;
 }

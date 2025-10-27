@@ -1,4 +1,5 @@
 import type { RenderOptions } from './renderer.js';
+import type { AgentOptions } from './agent.js';
 import type { Time, Id, Easing, Action, AddLayerOptions, ContextInput } from './types.js';
 export type { Time, Id, Easing, Action, AddLayerOptions, ContextInput };
 import BaseLayer from './layers/BaseLayer.js';
@@ -92,5 +93,5 @@ export default class Scrptly {
     prepareAssets(actions?: Action[]): Promise<boolean>;
     renderVideo(options?: RenderOptions): Promise<any>;
     generateProject(options?: RenderOptions): Promise<any>;
-    generateAiVideo(propmt: string, context?: ContextInput, options?: RenderOptions): Promise<any>;
+    generateAiVideo(prompt: string, context?: ContextInput, options?: AgentOptions): Promise<any>;
 }

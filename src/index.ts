@@ -1,6 +1,10 @@
 import AssetUploader from './assetUploader';
 import Renderer from './renderer';
 import type {RenderOptions} from './renderer';
+
+import Agent from './agent';
+import type { AgentOptions } from './agent';
+
 import { Listr, SilentRenderer } from 'listr2';
 
 import type { Time, Id, Easing, Action, AddLayerOptions, ContextInput } from './types';
@@ -99,7 +103,7 @@ export default class Scrptly {
 	renderVideoTask: any = null;
 	generateProjectTask: any = null;
 	renderCtx: RenderCtx = {};
-	
+
 	generateCtx: GenerateCtx = {};
 	generateAiVideoTask: any = null;
 
@@ -312,7 +316,7 @@ export default class Scrptly {
 	}
 
 
-	async generateAiVideo(propmt: string, context:ContextInput = [], options:RenderOptions = {}) {
+	async generateAiVideo(prompt: string, context:ContextInput = [], options:AgentOptions = {}) {
 		options = Object.assign({
 			verbose: true,
 		}, options);
@@ -336,8 +340,8 @@ export default class Scrptly {
 				title: 'Generating AI Video',
 				task: async (ctx, task) => {
 					this.generateAiVideoTask = task;
-					const renderer = new Renderer(this, options, this.settings, this.flow);
-					ctx.result = await renderer.generateProject();
+					const agent = new Agent(this, prompt, context, options);
+					ctx.result = await agent.generateAiVideo();
 					
 				},
 				rendererOptions: {
