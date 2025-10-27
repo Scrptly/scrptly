@@ -113,12 +113,12 @@ export default class Scrptly {
         const url = `${scriptlySettings.apiEndpoint}${endpoint}`;
         const response = await fetch(url, {
             method: options?.method || 'GET',
+            ...options,
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${scriptlySettings.apiKey}`,
                 ...(options?.headers || {}),
             },
-            ...options
         });
         if (!response.ok)
             throw new Error(`API call failed: ${response.statusText}`);
