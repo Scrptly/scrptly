@@ -3,8 +3,8 @@ import Renderer from './renderer';
 import type {RenderOptions} from './renderer';
 import { Listr, SilentRenderer } from 'listr2';
 
-import type { Time, Id, Easing, Action, AddLayerOptions } from './types';
-export type { Time, Id, Easing, Action, AddLayerOptions };
+import type { Time, Id, Easing, Action, AddLayerOptions, ContextInput } from './types';
+export type { Time, Id, Easing, Action, AddLayerOptions, ContextInput };
 
 import BaseLayer from './layers/BaseLayer';
 import type { BaseLayerProperties, BaseLayerSettings } from './layers/BaseLayer';
@@ -79,6 +79,10 @@ interface RenderCtx {
 	result?: any;
 };
 
+interface GenerateCtx {
+	result?: any;
+};
+
 const scriptlySettings: ScrptlySettings = {
 	apiKey: false,
 	apiEndpoint: 'https://api.scrptly.com/',
@@ -95,6 +99,9 @@ export default class Scrptly {
 	renderVideoTask: any = null;
 	generateProjectTask: any = null;
 	renderCtx: RenderCtx = {};
+	
+	generateCtx: GenerateCtx = {};
+	generateAiVideoTask: any = null;
 
 	constructor(settings: ProjectSettings = {}) {
 		this.settings = {
@@ -299,6 +306,47 @@ export default class Scrptly {
 		], {
 			renderer: options.verbose===false ? SilentRenderer : 'default',
 			ctx: this.renderCtx
+		});
+		await tasks.run();
+		return tasks.ctx.result;
+	}
+
+
+	async generateAiVideo(propmt: string, context:ContextInput = [], options:RenderOptions = {}) {
+		options = Object.assign({
+			verbose: true,
+		}, options);
+		this.generateCtx = {};
+		const tasks = new Listr([
+			{
+				title: 'Uploading context images',
+				task: async (ctx, task) => {
+					this.prepareAssetsTask = task;
+					for(let item of context) {
+						if(!item.url.startsWith('https://') && !item.url.startsWith('http://')) { // Upload local file
+							this.prepareAssetsTask.output = `Uploading "${item.url}"...`;
+							let asset = new AssetUploader(this, item.url, 'image');
+							let response = await asset.uploadAsset();
+							item.url = response.url;
+						}
+					}
+				}
+			},
+			{
+				title: 'Generating AI Video',
+				task: async (ctx, task) => {
+					this.generateAiVideoTask = task;
+					const renderer = new Renderer(this, options, this.settings, this.flow);
+					ctx.result = await renderer.generateProject();
+					
+				},
+				rendererOptions: {
+					persistentOutput: true,
+				},
+			}
+		], {
+			renderer: options.verbose===false ? SilentRenderer : 'default',
+			ctx: this.generateCtx
 		});
 		await tasks.run();
 		return tasks.ctx.result;

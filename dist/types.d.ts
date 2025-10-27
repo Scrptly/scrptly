@@ -43,3 +43,9 @@ export type Action = {
         wait?: boolean;
     };
 };
+export type ContextInput = [] | [
+    {
+        url: string;
+        description?: string;
+    }
+];

@@ -16,6 +16,7 @@ export { default as AuditoryLayer } from './layers/AuditoryLayer.js';
 export { default as MediaLayer } from './layers/MediaLayer.js';
 export { default as VisualLayer } from './layers/VisualLayer.js';
 ;
+;
 const scriptlySettings = {
     apiKey: false,
     apiEndpoint: 'https://api.scrptly.com/',
@@ -29,6 +30,8 @@ export default class Scrptly {
     renderVideoTask = null;
     generateProjectTask = null;
     renderCtx = {};
+    generateCtx = {};
+    generateAiVideoTask = null;
     constructor(settings = {}) {
         this.settings = {
             ...(this.constructor.defaultSettings),
@@ -214,6 +217,44 @@ export default class Scrptly {
         ], {
             renderer: options.verbose === false ? SilentRenderer : 'default',
             ctx: this.renderCtx
+        });
+        await tasks.run();
+        return tasks.ctx.result;
+    }
+    async generateAiVideo(propmt, context = [], options = {}) {
+        options = Object.assign({
+            verbose: true,
+        }, options);
+        this.generateCtx = {};
+        const tasks = new Listr([
+            {
+                title: 'Uploading context images',
+                task: async (ctx, task) => {
+                    this.prepareAssetsTask = task;
+                    for (let item of context) {
+                        if (!item.url.startsWith('https://') && !item.url.startsWith('http://')) { // Upload local file
+                            this.prepareAssetsTask.output = `Uploading "${item.url}"...`;
+                            let asset = new AssetUploader(this, item.url, 'image');
+                            let response = await asset.uploadAsset();
+                            item.url = response.url;
+                        }
+                    }
+                }
+            },
+            {
+                title: 'Generating AI Video',
+                task: async (ctx, task) => {
+                    this.generateAiVideoTask = task;
+                    const renderer = new Renderer(this, options, this.settings, this.flow);
+                    ctx.result = await renderer.generateProject();
+                },
+                rendererOptions: {
+                    persistentOutput: true,
+                },
+            }
+        ], {
+            renderer: options.verbose === false ? SilentRenderer : 'default',
+            ctx: this.generateCtx
         });
         await tasks.run();
         return tasks.ctx.result;

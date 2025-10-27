@@ -15,3 +15,9 @@ export type Action =
 	| { statement: 'set'; id: Id; value: Record<string, any> }
 	| { statement: 'animate'; id: Id; from: Record<string, any>; to: Record<string, any>; settings: { duration: Time; easing?: Easing; wait?: boolean } }
 	| { statement: 'ttsSay'; id: Id; text: string; settings?: { wait?: boolean } };
+export type ContextInput = [] | [
+	{
+		url: string;
+		description?: string;
+	}
+];

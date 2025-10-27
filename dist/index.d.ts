@@ -1,6 +1,6 @@
 import type { RenderOptions } from './renderer.js';
-import type { Time, Id, Easing, Action, AddLayerOptions } from './types.js';
-export type { Time, Id, Easing, Action, AddLayerOptions };
+import type { Time, Id, Easing, Action, AddLayerOptions, ContextInput } from './types.js';
+export type { Time, Id, Easing, Action, AddLayerOptions, ContextInput };
 import BaseLayer from './layers/BaseLayer.js';
 import type { BaseLayerProperties, BaseLayerSettings } from './layers/BaseLayer.js';
 export type { BaseLayerProperties, BaseLayerSettings };
@@ -59,6 +59,9 @@ export type ScrptlySettings = {
 interface RenderCtx {
     result?: any;
 }
+interface GenerateCtx {
+    result?: any;
+}
 export default class Scrptly {
     settings: ProjectSettings;
     layers: BaseLayer[];
@@ -68,6 +71,8 @@ export default class Scrptly {
     renderVideoTask: any;
     generateProjectTask: any;
     renderCtx: RenderCtx;
+    generateCtx: GenerateCtx;
+    generateAiVideoTask: any;
     constructor(settings?: ProjectSettings);
     static get defaultSettings(): ProjectSettings;
     static setApiSettings(settings: ScrptlySettings): void;
@@ -87,4 +92,5 @@ export default class Scrptly {
     prepareAssets(actions?: Action[]): Promise<boolean>;
     renderVideo(options?: RenderOptions): Promise<any>;
     generateProject(options?: RenderOptions): Promise<any>;
+    generateAiVideo(propmt: string, context?: ContextInput, options?: RenderOptions): Promise<any>;
 }
