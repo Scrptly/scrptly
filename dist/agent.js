@@ -81,13 +81,19 @@ export default class Agent {
                         throw new Error(`Project creation failed: ${response.error}`);
                     }
                 },
+                rendererOptions: {
+                    persistentOutput: true,
+                },
             },
             {
                 title: 'Generating AI Video',
                 task: async (ctx, task) => {
                     this.task = task;
                     ctx.result = await this.listenToEvents(ctx.eventsUrl);
-                }
+                },
+                rendererOptions: {
+                    persistentOutput: true,
+                },
             }
         ], {
             rendererOptions: { collapse: false }
