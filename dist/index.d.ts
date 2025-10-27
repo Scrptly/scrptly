@@ -93,5 +93,5 @@ export default class Scrptly {
     prepareAssets(actions?: Action[]): Promise<boolean>;
     renderVideo(options?: RenderOptions): Promise<any>;
     generateProject(options?: RenderOptions): Promise<any>;
-    generateAiVideo(prompt: string, context?: ContextInput, options?: AgentOptions): Promise<any>;
+    generateAiVideo(prompt: string, context: ContextInput | undefined, options: AgentOptions): Promise<any>;
 }

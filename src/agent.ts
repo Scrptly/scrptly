@@ -4,18 +4,19 @@ import type { ContextInput } from './types';
 import type Scrptly from './index';
 
 export type AgentOptions = {
+	approveUpTo: number;
 	verbose?: boolean;
 };
 
 export default class Agent {
 	scrptly!: Scrptly;
-	options: AgentOptions = {};
+	options!: AgentOptions;
 	prompt: string;
 	context: ContextInput = [];
 	projectId?: string;
 	projectUrl?: string;
 	taskId?: string;
-	constructor(scrptly: Scrptly, prompt: string, context: ContextInput = [], options:AgentOptions = {}) {
+	constructor(scrptly: Scrptly, prompt: string, context: ContextInput = [], options:AgentOptions) {
 		this.scrptly = scrptly;
 		Object.assign(this.options, options);
 		this.prompt = prompt;
@@ -69,6 +70,7 @@ export default class Agent {
 			body: JSON.stringify({
 				prompt: this.prompt,
 				context: this.context,
+				approveUpTo: this.options.approveUpTo,
 			}),
 		});
 		if(response.success) {

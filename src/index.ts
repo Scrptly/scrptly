@@ -316,10 +316,12 @@ export default class Scrptly {
 	}
 
 
-	async generateAiVideo(prompt: string, context:ContextInput = [], options:AgentOptions = {}) {
+	async generateAiVideo(prompt: string, context:ContextInput = [], options:AgentOptions) {
 		options = Object.assign({
 			verbose: true,
 		}, options);
+		if(!options.approveUpTo)
+			throw new Error('The "approveUpTo" option is required. This option specifies the maximum number of tokens you are willing to approve for the AI-generated video. If the cost to generate the video exceeds this amount, the generation will be processed partially; note that your account will still be billed for the usage incurred.');
 		this.generateCtx = {};
 		const tasks = new Listr([
 			{

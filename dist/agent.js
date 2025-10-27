@@ -1,13 +1,13 @@
 import { EventSource } from 'eventsource';
 export default class Agent {
     scrptly;
-    options = {};
+    options;
     prompt;
     context = [];
     projectId;
     projectUrl;
     taskId;
-    constructor(scrptly, prompt, context = [], options = {}) {
+    constructor(scrptly, prompt, context = [], options) {
         this.scrptly = scrptly;
         Object.assign(this.options, options);
         this.prompt = prompt;
@@ -62,6 +62,7 @@ export default class Agent {
             body: JSON.stringify({
                 prompt: this.prompt,
                 context: this.context,
+                approveUpTo: this.options.approveUpTo,
             }),
         });
         if (response.success) {
