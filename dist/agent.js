@@ -22,10 +22,10 @@ export default class Agent {
                     let { command, data } = JSON.parse(event.data);
                     switch (command) {
                         case 'log':
-                            this.scrptly.generateAiVideoTask.output = data;
+                            this.task.output = data;
                             break;
                         case 'progress':
-                            this.scrptly.generateAiVideoTask.title = 'Rendering video — ' + data.toFixed(1) + '%';
+                            this.task.title = 'Rendering video — ' + data.toFixed(1) + '%';
                             break;
                         case 'warn':
                             this.options.verbose && console.warn('\n⚠️ ' + data + '\n');
@@ -36,8 +36,8 @@ export default class Agent {
                             break;
                         case 'complete':
                             sse.close();
-                            this.scrptly.generateAiVideoTask.title = 'Generare AI Video';
-                            this.scrptly.generateAiVideoTask.output = `Render successful (took ${Math.round(data.renderInfo.info.renderDuration / 1000)}s)!\nVideo URL: ${data.renderInfo.output.video}\nRender Info: ${data.renderInfo.url}`;
+                            this.task.title = 'Generare AI Video';
+                            this.task.output = `Render successful (took ${Math.round(data.renderInfo.info.renderDuration / 1000)}s)!\nVideo URL: ${data.renderInfo.output.video}\nRender Info: ${data.renderInfo.url}`;
                             resolve(data.renderInfo);
                             break;
                         case 'close':
@@ -80,7 +80,7 @@ export default class Agent {
                     else {
                         throw new Error(`Project creation failed: ${response.error}`);
                     }
-                }
+                },
             },
             {
                 title: 'Generating AI Video',
@@ -89,6 +89,8 @@ export default class Agent {
                     ctx.result = await this.listenToEvents(ctx.eventsUrl);
                 }
             }
-        ]);
+        ], {
+            rendererOptions: { collapse: false }
+        });
     }
 }
