@@ -60,7 +60,7 @@ export default class Agent {
 			};
 			sse.onerror = (err) => {
 				this.options.verbose && console.error('SSE error:', err);
-				reject(new Error(`Connection to server lost.${this.projectUrl?`\nAccess project at: ${this.projectUrl}` : ''}`));
+				reject(new Error(`Connection to server lost.`));
 			};
 		});
 	}
