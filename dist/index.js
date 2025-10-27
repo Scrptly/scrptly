@@ -250,7 +250,7 @@ export default class Scrptly {
                 task: async (ctx, task) => {
                     this.generateAiVideoTask = task;
                     const agent = new Agent(this, prompt, context, options);
-                    ctx.result = await agent.generateAiVideo();
+                    return await agent.generateAiVideo(ctx);
                 },
                 rendererOptions: {
                     persistentOutput: true,

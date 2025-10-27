@@ -65,8 +65,8 @@ export default class Agent {
 			};
 		});
 	}
-	async generateAiVideo() {
-		this.scrptly.generateAiVideoTask.newListr([
+	async generateAiVideo(ctx: any) {
+		return this.scrptly.generateAiVideoTask.newListr([
 			{
 				title: 'Creating AI Project',
 				task: async (ctx: any, task: any) => {
@@ -93,7 +93,7 @@ export default class Agent {
 				title: 'Generating AI Video',
 				task: async (ctx: any, task: any) => {
 					this.task = task;
-					return await this.listenToEvents(ctx.eventsUrl);
+					ctx.result = await this.listenToEvents(ctx.eventsUrl);
 				}
 			}
 		]);
