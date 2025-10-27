@@ -246,17 +246,6 @@ export default class Scrptly {
                 }
             },
             {
-                title: 'Creating AI Project',
-                task: async (ctx, task) => {
-                    this.createAiProjectTask = task;
-                    task.title = 'Pending project creation...';
-                    task.output = 'Preparing...';
-                },
-                rendererOptions: {
-                    persistentOutput: true,
-                },
-            },
-            {
                 title: 'Generating AI Video',
                 task: async (ctx, task) => {
                     this.generateAiVideoTask = task;

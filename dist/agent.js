@@ -7,6 +7,7 @@ export default class Agent {
     projectId;
     projectUrl;
     taskId;
+    task;
     constructor(scrptly, prompt, context = [], options) {
         this.scrptly = scrptly;
         this.options = options;
@@ -57,23 +58,37 @@ export default class Agent {
         });
     }
     async generateAiVideo() {
-        const response = await this.scrptly.apiCall('generateAiVideo', {
-            method: 'POST',
-            body: JSON.stringify({
-                prompt: this.prompt,
-                context: this.context,
-                approveUpTo: this.options.approveUpTo,
-            }),
-        });
-        if (response.success) {
-            this.projectId = response.projectId;
-            this.projectUrl = response.projectUrl;
-            this.scrptly.createAiProjectTask.title = `Created AI Project (ID: ${this.projectId})`;
-            this.scrptly.createAiProjectTask.output = `Project URL: ${this.projectUrl}`;
-            return await this.listenToEvents(response.eventsUrl);
-        }
-        else {
-            throw new Error(`Render failed: ${response.error}`);
-        }
+        this.scrptly.generateAiVideoTask.newListr([
+            {
+                title: 'Creating AI Project',
+                task: async (ctx, task) => {
+                    const response = await this.scrptly.apiCall('generateAiVideo', {
+                        method: 'POST',
+                        body: JSON.stringify({
+                            prompt: this.prompt,
+                            context: this.context,
+                            approveUpTo: this.options.approveUpTo,
+                        }),
+                    });
+                    if (response.success) {
+                        this.projectId = response.projectId;
+                        this.projectUrl = response.projectUrl;
+                        task.title = `Created AI Project (ID: ${this.projectId})`;
+                        task.output = `Project URL: ${this.projectUrl}`;
+                        ctx.eventsUrl = response.eventsUrl;
+                    }
+                    else {
+                        throw new Error(`Project creation failed: ${response.error}`);
+                    }
+                }
+            },
+            {
+                title: 'Generating AI Video',
+                task: async (ctx, task) => {
+                    this.task = task;
+                    return await this.listenToEvents(ctx.eventsUrl);
+                }
+            }
+        ]);
     }
 }
