@@ -32,6 +32,7 @@ export default class Scrptly {
     generateProjectTask = null;
     renderCtx = {};
     generateCtx = {};
+    createAiProjectTask = null;
     generateAiVideoTask = null;
     constructor(settings = {}) {
         this.settings = {
@@ -243,6 +244,13 @@ export default class Scrptly {
                         }
                     }
                 }
+            },
+            {
+                title: 'Creating AI Project',
+                task: async (ctx, task) => {
+                    this.createAiProjectTask = task;
+                },
+                enabled: false,
             },
             {
                 title: 'Generating AI Video',

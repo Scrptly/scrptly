@@ -68,6 +68,9 @@ export default class Agent {
         if (response.success) {
             this.projectId = response.projectId;
             this.projectUrl = response.projectUrl;
+            this.scrptly.createAiProjectTask.title = `Created AI Project (ID: ${this.projectId})`;
+            this.scrptly.createAiProjectTask.output = `Project URL: ${this.projectUrl}`;
+            this.scrptly.createAiProjectTask.enabled = true;
             return await this.listenToEvents(response.eventsUrl);
         }
         else {

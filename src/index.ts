@@ -105,6 +105,7 @@ export default class Scrptly {
 	renderCtx: RenderCtx = {};
 
 	generateCtx: GenerateCtx = {};
+	createAiProjectTask: any = null;
 	generateAiVideoTask: any = null;
 
 	constructor(settings: ProjectSettings = {}) {
@@ -339,12 +340,18 @@ export default class Scrptly {
 				}
 			},
 			{
+				title: 'Creating AI Project',
+				task: async (ctx, task) => {
+					this.createAiProjectTask = task;
+				},
+				enabled: false,
+			},
+			{
 				title: 'Generating AI Video',
 				task: async (ctx, task) => {
 					this.generateAiVideoTask = task;
 					const agent = new Agent(this, prompt, context, options);
 					ctx.result = await agent.generateAiVideo();
-					
 				},
 				rendererOptions: {
 					persistentOutput: true,

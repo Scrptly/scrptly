@@ -73,6 +73,7 @@ export default class Scrptly {
     generateProjectTask: any;
     renderCtx: RenderCtx;
     generateCtx: GenerateCtx;
+    createAiProjectTask: any;
     generateAiVideoTask: any;
     constructor(settings?: ProjectSettings);
     static get defaultSettings(): ProjectSettings;
