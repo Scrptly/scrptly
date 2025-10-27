@@ -18,7 +18,7 @@ export default class Agent {
 	taskId?: string;
 	constructor(scrptly: Scrptly, prompt: string, context: ContextInput = [], options:AgentOptions) {
 		this.scrptly = scrptly;
-		Object.assign(this.options, options);
+		this.options = options;
 		this.prompt = prompt;
 		this.context = context;
 	}
