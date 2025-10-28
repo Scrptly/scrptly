@@ -28,7 +28,7 @@ export default class Agent {
                             this.task.title = data;
                             break;
                         case 'progress':
-                            this.task.title = 'Rendering video — ' + data.toFixed(1) + '%';
+                            this.task.output = 'Rendering video — ' + data.toFixed(1) + '%';
                             break;
                         case 'warn':
                             this.options.verbose && console.warn('\n⚠️ ' + data + '\n');
