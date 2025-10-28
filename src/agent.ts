@@ -33,6 +33,9 @@ export default class Agent {
 						case 'log':
 							this.task.output = data;
 							break;
+						case 'title':
+							this.task.title = data;
+							break;
 						case 'progress':
 							this.task.title = 'Rendering video — '+data.toFixed(1)+'%';
 							break;
