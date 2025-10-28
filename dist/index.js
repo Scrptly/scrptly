@@ -223,19 +223,19 @@ export default class Scrptly {
         await tasks.run();
         return tasks.ctx.result;
     }
-    async generateAiVideo(prompt, context = [], options) {
+    async generateAiVideo(parameters, options) {
         options = Object.assign({
             verbose: true,
         }, options);
-        if (!options.approveUpTo)
-            throw new Error('The "approveUpTo" option is required. This option specifies the maximum number of tokens you are willing to approve for the AI-generated video. If the cost to generate the video exceeds this amount, the generation will be processed partially; note that your account will still be billed for the usage incurred.');
+        if (options.verbose && !parameters.approveUpTo)
+            console.warn('⚠️ The "approveUpTo" option is highly recommended. This option specifies the maximum number of tokens you are willing to approve for the AI-generated video. If the cost to generate the video exceeds this amount, the generation will be processed partially; note that your account will still be billed for the usage incurred. When unspecified, it defaults to 10,000 tokens.');
         this.generateCtx = {};
         const tasks = new Listr([
             {
                 title: 'Uploading context images',
                 task: async (ctx, task) => {
                     this.prepareAssetsTask = task;
-                    for (let item of context) {
+                    for (let item of (parameters.context || [])) {
                         if (!item.url.startsWith('https://') && !item.url.startsWith('http://')) { // Upload local file
                             this.prepareAssetsTask.output = `Uploading "${item.url}"...`;
                             let asset = new AssetUploader(this, item.url, 'image');
@@ -249,7 +249,7 @@ export default class Scrptly {
                 title: 'Generating AI Video',
                 task: async (ctx, task) => {
                     this.generateAiVideoTask = task;
-                    const agent = new Agent(this, prompt, context, options);
+                    const agent = new Agent(this, parameters, options);
                     return await agent.generateAiVideo(ctx);
                 },
                 rendererOptions: {
@@ -258,7 +258,10 @@ export default class Scrptly {
             }
         ], {
             renderer: options.verbose === false ? SilentRenderer : 'default',
-            ctx: this.generateCtx
+            ctx: this.generateCtx,
+            rendererOptions: {
+                collapseSubtasks: false
+            }
         });
         await tasks.run();
         return tasks.ctx.result;

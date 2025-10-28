@@ -57,6 +57,11 @@ export type ScrptlySettings = {
     apiKey: string | false;
     apiEndpoint?: string;
 };
+export type AiAgentParameters = {
+    prompt: string;
+    context?: ContextInput;
+    approveUpTo?: number;
+};
 interface RenderCtx {
     result?: any;
 }
@@ -94,5 +99,5 @@ export default class Scrptly {
     prepareAssets(actions?: Action[]): Promise<boolean>;
     renderVideo(options?: RenderOptions): Promise<any>;
     generateProject(options?: RenderOptions): Promise<any>;
-    generateAiVideo(prompt: string, context: ContextInput | undefined, options: AgentOptions): Promise<any>;
+    generateAiVideo(parameters: AiAgentParameters, options: AgentOptions): Promise<any>;
 }

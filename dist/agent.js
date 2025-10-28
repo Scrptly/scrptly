@@ -2,17 +2,15 @@ import { EventSource } from 'eventsource';
 export default class Agent {
     scrptly;
     options;
-    prompt;
-    context = [];
+    parameters;
     projectId;
     projectUrl;
     taskId;
     task;
-    constructor(scrptly, prompt, context = [], options) {
+    constructor(scrptly, parameters, options) {
         this.scrptly = scrptly;
         this.options = options;
-        this.prompt = prompt;
-        this.context = context;
+        this.parameters = parameters;
     }
     async listenToEvents(url) {
         return await new Promise((resolve, reject) => {
@@ -28,7 +26,7 @@ export default class Agent {
                             this.task.title = data;
                             break;
                         case 'progress':
-                            this.task.output = 'Rendering video — ' + data.toFixed(1) + '%';
+                            this.task.output = 'Rendering video — ' + (data || 0).toFixed(1) + '%';
                             break;
                         case 'warn':
                             this.options.verbose && console.warn('\n⚠️ ' + data + '\n');
@@ -68,9 +66,9 @@ export default class Agent {
                     const response = await this.scrptly.apiCall('generateAiVideo', {
                         method: 'POST',
                         body: JSON.stringify({
-                            prompt: this.prompt,
-                            context: this.context,
-                            approveUpTo: this.options.approveUpTo,
+                            prompt: this.parameters.prompt,
+                            context: this.parameters.context,
+                            approveUpTo: this.parameters.approveUpTo,
                         }),
                     });
                     if (response.success) {

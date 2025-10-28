@@ -1,27 +1,23 @@
 import {EventSource} from 'eventsource';
-import { Listr } from 'listr2';
-import type { ContextInput } from './types';
 import type Scrptly from './index';
+import { AiAgentParameters } from './index';
 
 export type AgentOptions = {
-	approveUpTo: number;
 	verbose?: boolean;
 };
 
 export default class Agent {
 	scrptly!: Scrptly;
 	options!: AgentOptions;
-	prompt: string;
-	context: ContextInput = [];
+	parameters!: AiAgentParameters;
 	projectId?: string;
 	projectUrl?: string;
 	taskId?: string;
 	task: any;
-	constructor(scrptly: Scrptly, prompt: string, context: ContextInput = [], options:AgentOptions) {
+	constructor(scrptly: Scrptly, parameters: AiAgentParameters, options:AgentOptions) {
 		this.scrptly = scrptly;
 		this.options = options;
-		this.prompt = prompt;
-		this.context = context;
+		this.parameters = parameters;
 	}
 	async listenToEvents(url: string) {
 		return await new Promise((resolve, reject) => {
@@ -37,7 +33,7 @@ export default class Agent {
 							this.task.title = data;
 							break;
 						case 'progress':
-							this.task.output = 'Rendering video — '+data.toFixed(1)+'%';
+							this.task.output = 'Rendering video — '+(data || 0).toFixed(1)+'%';
 							break;
 						case 'warn':
 							this.options.verbose && console.warn('\n⚠️ '+data+'\n');
@@ -76,9 +72,9 @@ export default class Agent {
 					const response = await this.scrptly.apiCall('generateAiVideo', {
 						method: 'POST',
 						body: JSON.stringify({
-							prompt: this.prompt,
-							context: this.context,
-							approveUpTo: this.options.approveUpTo,
+							prompt: this.parameters.prompt,
+							context: this.parameters.context,
+							approveUpTo: this.parameters.approveUpTo,
 						}),
 					});
 					if(response.success) {
