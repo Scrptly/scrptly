@@ -7,6 +7,7 @@ export type BaseLayerSettings = {
 	enabled?: boolean;
 	locked?: boolean;
 	startTime?: number;
+	trimStart?: number;
 	endTime?: false | number;
 	speed?: number;
 };
@@ -65,6 +66,7 @@ export default class BaseLayer {
 			enabled: true,
 			locked: false,
 			startTime: 0,
+			trimStart: 0,
 			endTime: false,
 			speed: 1,
 		};

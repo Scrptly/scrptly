@@ -46,6 +46,7 @@ export default class BaseLayer {
             enabled: true,
             locked: false,
             startTime: 0,
+            trimStart: 0,
             endTime: false,
             speed: 1,
         };
